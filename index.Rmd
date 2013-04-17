@@ -35,11 +35,60 @@ github:
 
 ---
 
-## Aspectos de la librería ggplot2
+``` {r plot03}
+getwd()
+load("dat.Rda")
+#str(data.geo.islas)
+```
 
-#cargar la librería  
-``` {r library}
+--- &twocol
+
+## Two Column Layout   
+This slide has two columns
+    
+*** =left
+
+- point 1
+- point 2
+- point 3
+
+*** =right
+
+- point 1
+- point 2
+- point 3
+
+---
+
+## Introducción a la librería ggplot2
+
+#cargar la librería 
+``` {r lib01}
 library(ggplot2)
+```
+
+Los comandos gráficos disponibles en ggplot2 son:
+* qplot() - para "quick plots" 
+* ggplot() - para mejor ajuste y control de todo
+
+``` {r plot01, message=FALSE}
+#un gráfico sencillo
+qplot(data=data.geo.islas,x=Superficie,main="Histograma de superficie")
+```
+
+---
+
+## Introducción a la librería ggplot2
+
+#cargar la librería 
+``` {r load ggplot2a}
+library(ggplot2)
+```
+
+#cargar los datos utilizando read.table (en local)
+``` {r load data, eval=FALSE}
+setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
+data.espacios.nat<-read.table(file="superficie_espacios_naturales.txt",header=T,sep=";")
 ```
 
 --- .class1 #id1

@@ -114,12 +114,137 @@
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>Aspectos de la librería ggplot2</h2>
+    
   </hgroup>
   <article data-timings="">
-    <p>#cargar la librería  </p>
+    <pre><code class="r">getwd()
+</code></pre>
+
+<pre><code>## [1] &quot;D:/Mis documentos/Gist_repos/cursoR&quot;
+</code></pre>
+
+<pre><code class="r">load(&quot;dat.Rda&quot;)
+# str(data.geo.islas)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Two Column Layout</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This slide has two columns</p>
+
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>point 1</li>
+<li>point 2</li>
+<li>point 3</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>point 1</li>
+<li>point 2</li>
+<li>point 3</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>#cargar la librería </p>
 
 <pre><code class="r">library(ggplot2)
+</code></pre>
+
+<p>Los comandos gráficos disponibles en ggplot2 son:</p>
+
+<ul>
+<li>qplot() - para &quot;quick plots&quot; </li>
+<li>ggplot() - para mejor ajuste y control de todo</li>
+</ul>
+
+<pre><code class="r"># un gráfico sencillo
+qplot(data = data.geo.islas, x = Superficie, main = &quot;Histograma de superficie&quot;)
+</code></pre>
+
+<p><img src="figure/plot01.png" alt="plot of chunk plot01"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>#cargar la librería </p>
+
+<pre><code class="r">library(ggplot2)
+</code></pre>
+
+<p>#cargar los datos utilizando read.table (en local)</p>
+
+<pre><code class="r">setwd(&quot;D:\\Mis documentos\\Presentaciones\\CursoR\\data&quot;)
+data.espacios.nat &lt;- read.table(file = &quot;superficie_espacios_naturales.txt&quot;, 
+    header = T, sep = &quot;;&quot;)
 </code></pre>
 
   </article>
@@ -158,7 +283,7 @@ x
 <pre><code class="r">rnorm(5)
 </code></pre>
 
-<pre><code>## [1] -0.8689 -0.2288  0.3083 -2.3512  0.3996
+<pre><code>## [1] -1.893396 -0.633924  0.269677 -0.094598  0.005192
 </code></pre>
 
   </article>
@@ -180,7 +305,7 @@ x
 </footer>
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
+<slide class="" id="slide-8" style="background:;">
   <hgroup>
     <h2>Widgets: jQuery-Quiz</h2>
   </hgroup>
@@ -247,20 +372,38 @@ x
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Aspectos de la librería ggplot2'>
+        data-slide=3 title=''>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Slide 2'>
+        data-slide=4 title='Two Column Layout'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Widgets: jQuery-Quiz'>
+        data-slide=5 title='Introducción a la librería ggplot2'>
          5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Introducción a la librería ggplot2'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Slide 2'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Widgets: jQuery-Quiz'>
+         8
       </a>
     </li>
   </ul>
