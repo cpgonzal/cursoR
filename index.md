@@ -15,13 +15,36 @@ github:
  repo: cursoR
 ---
 
-## Introducción
+## La librería ggplot2
 
-1. El software
-2. La interfaz
-3. Otras cosas
+..ul: build
 
---- .class1 #id1 bg:yellow
+* Point 1
+* Point 2
+* Point 3
+
+---
+
+## La librería ggplot2
+
+> 1. Es un paquete que permite generar gráficos estadísticos.
+> 2. Se diferencia de otras librerías en el aspecto de controlar una gran número de componentes gráficos ("gramática de gráficos").
+> 3. Los gráficos se pueden construir añadiéndole sucesivamente más atributos o capas ("layers").  <center>
+<cite>*H.Wickham, ggplot2, Use R, DOI 10.1007/978-0-387-98141_1*</cite></center>
+<center>http://had.co.nz/ggplot2</center>
+
+---
+
+## Aspectos de la librería ggplot2
+
+#cargar la librería  
+
+```r
+library(ggplot2)
+```
+
+
+--- .class1 #id1
 
 ## Slide 2
 
@@ -29,21 +52,23 @@ Slide Contents
 
 
 ```r
+x <- 1 + 1 + 3
+x
+```
 
-x <- 1 + 1
+```
+## [1] 5
+```
 
+```r
 rnorm(5)
 ```
 
 ```
-## [1]  0.2740 -1.1267  1.0881 -0.6127 -0.3227
+## [1] -0.8689 -0.2288  0.3083 -2.3512  0.3996
 ```
 
-```r
 
-```
-
-#id1
 
 --- &radio
 
