@@ -53,38 +53,6 @@
     <h2>La librería ggplot2</h2>
   </hgroup>
   <article data-timings="">
-    <p class='.ul:'>build</p>
-
-<ul>
-<li>Point 1</li>
-<li>Point 2</li>
-<li>Point 3</li>
-</ul>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-2" style="background:;">
-  <hgroup>
-    <h2>La librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
     <ol class = "build incremental">
 <li>Es un paquete que permite generar gráficos estadísticos.</li>
 <li>Se diferencia de otras librerías en el aspecto de controlar una gran número de componentes gráficos (&quot;gramática de gráficos&quot;).</li>
@@ -112,19 +80,67 @@
 </footer>
 </slide>
 
-<slide class="" id="slide-3" style="background:;">
+<slide class="" id="slide-2" style="background:;">
   <hgroup>
-    
+    <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">getwd()
+    
+<div class='left' style='float:left;width:50%'>
+ <pre><code class="r">#cargar la librería 
+library(ggplot2)
+#un gráfico sencillo
+qplot(data=data.geo.municipios, x=Superficie,   
+      main=&quot;Histograma de superficie&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;D:/Mis documentos/Gist_repos/cursoR&quot;
-</code></pre>
+<p><img src="figure/plot01.png" alt="plot of chunk plot01"> </p>
 
-<pre><code class="r">load(&quot;dat.Rda&quot;)
-# str(data.geo.islas)
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <p>Los comandos gráficos disponibles en ggplot2 son:</p>
+
+<ul>
+<li>qplot() - para &quot;quick plots&quot; </li>
+<li>ggplot() - para mejor ajuste y control de todo</li>
+</ul>
+
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">qplot(data=data.geo.islas,x=Superficie,main=&quot;Histograma de superficie&quot;,binwidth=10000)
+
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;)
+
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;, 
+xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;)
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;, 
+xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;,
+xlim=c(0,2500),ylim=c(0,1500))
 </code></pre>
 
   </article>
@@ -148,27 +164,34 @@
 
 <slide class="" id="slide-4" style="background:;">
   <hgroup>
-    <h2>Two Column Layout</h2>
+    <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
   <article data-timings="">
-    <p>This slide has two columns</p>
+    <h3>Color, tamaño, forma (aspectos estéticos)</h3>
 
-<div style='float:left;width:48%;' class='centered'>
-  <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
-</ul>
+<p>Con el comando clásico plot(), si queremos representar  variables categóricas (e.g. una variable de tipo sexo, &quot;Hombre&quot;,&quot;Mujer&quot;) con colores, debemos realizar nosotros mismos la 
+correspondencia entre categoría y color.</p>
 
-</div>
-<div style='float:right;width:48%;'>
-  <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
-</ul>
+<p>En qplot() se puede especificar varios argumentos: colour, size, shape </p>
 
-</div>
+<h4>la vida en color</h4>
+
+<pre><code class="r">qplot(data = data.geo.islas, x = Superficie, y = Altitud, colour = Isla, main = &quot;Gráfico de superficie vs. altitud&quot;, 
+    xlab = &quot;Superficie&quot;, ylab = &quot;Altitud&quot;)
+</code></pre>
+
+<h4>el tamaño sí importa</h4>
+
+<pre><code class="r">qplot(data = data.geo.islas, x = Superficie, y = Altitud, size = Isla, main = &quot;Gráfico de superficie vs. altitud&quot;, 
+    xlab = &quot;Superficie&quot;, ylab = &quot;Altitud&quot;)
+</code></pre>
+
+<h4>dando forma a los puntos</h4>
+
+<pre><code class="r">qplot(data = data.geo.islas, x = Superficie, y = Altitud, shape = Isla, main = &quot;Gráfico de superficie vs. altitud&quot;, 
+    xlab = &quot;Superficie&quot;, ylab = &quot;Altitud&quot;)
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 <footer>
@@ -193,23 +216,39 @@
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
   <article data-timings="">
-    <p>#cargar la librería </p>
+    
+<div class='left' style='float:left;width:45%'>
+ <h3>Color, tamaño, forma (aspectos estéticos)</h3>
 
-<pre><code class="r">library(ggplot2)
+<p>Con el comando clásico plot(), si queremos representar  variables categóricas (e.g. una variable de tipo sexo, &quot;Hombre&quot;,&quot;Mujer&quot;) con colores, debemos realizar nosotros mismos la 
+correspondencia entre categoría y color.</p>
+
+<p>En qplot() se puede especificar varios argumentos: colour, size, shape </p>
+
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <h4>la vida en color</h4>
+
+<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, colour = Isla,
+main=&quot;Gráfico de superficie vs. altitud&quot;, 
+xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) 
 </code></pre>
 
-<p>Los comandos gráficos disponibles en ggplot2 son:</p>
+<h4>el tamaño sí importa</h4>
 
-<ul>
-<li>qplot() - para &quot;quick plots&quot; </li>
-<li>ggplot() - para mejor ajuste y control de todo</li>
-</ul>
-
-<pre><code class="r"># un gráfico sencillo
-qplot(data = data.geo.islas, x = Superficie, main = &quot;Histograma de superficie&quot;)
+<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, size = Isla,
+main=&quot;Gráfico de superficie vs. altitud&quot;, 
+xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) 
 </code></pre>
 
-<p><img src="figure/plot01.png" alt="plot of chunk plot01"> </p>
+<h4>sin perder las formas</h4>
+
+<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, shape = Isla,
+main=&quot;Gráfico de superficie vs. altitud&quot;, 
+xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) 
+</code></pre>
+
+</div>
 
   </article>
   <!-- Presenter Notes -->
@@ -231,6 +270,244 @@ qplot(data = data.geo.islas, x = Superficie, main = &quot;Histograma de superfic
 </slide>
 
 <slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Objetos geométricos</h3>
+
+<p>qplot no está limitado a gráficos de dispersión (scatterplot), 
+sino que puede producir casi cualquier tipo de gráfico variando 
+el argumento geom.</p>
+
+<ul>
+<li>geom = &quot;point&quot; representa puntos para producir un scatterplot. Esta es la opción por 
+defecto cuando se pasan argumentos x e y a qplot().</li>
+<li>geom = &quot;boxplot&quot; produce un gráfico box-and-whisker plot de resumen de la distribución
+de un conjunto de puntos.</li>
+<li>geom = &quot;smooth&quot; ajusta una curva suavizada a los datos (smoother) y su
+error estándar. Esta opción se combina con un argumento method %in% c(&quot;loess&quot;,&quot;gam&quot;,&quot;lm&quot;,&quot;rlm&quot;)
+(ver <a href="http://docs.ggplot2.org/0.9.3/stat_smooth.html">http://docs.ggplot2.org/0.9.3/stat_smooth.html</a>)</li>
+<li>geom = &quot;path&quot; and geom = &quot;line&quot; representa lineas entre los puntos.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;point&quot;)
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;boxplot&quot;, colour = Isla)    # cuidado con el tipo de variables
+qplot(data=data.geo.municipios,x=Isla,y=Altitud, geom = &quot;boxplot&quot;)
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;smooth&quot;, method=&quot;loess&quot;)
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = c(&quot;point&quot;, &quot;smooth&quot;), method=&quot;lm&quot;)
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;path&quot;)
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;line&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Otros argumentos para geom para gráficos 1D (de una variable) son:</p>
+
+<ul>
+<li>geom = &quot;histogram&quot; representa un histograma.</li>
+<li>geom = &quot;density&quot;   representa un gráfico de densidad.</li>
+<li>geom = &quot;bar&quot;       representa un gráfico de barras.</li>
+</ul>
+
+<pre><code class="r">qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;)
+qplot(data=data.espacios.nat, x=Superficie, geom = &quot;density&quot;)
+
+qplot(data=data.espacios.nat, x=Superficie, geom = &quot;density&quot;, colour = Isla)   # las densidades son superpuestas
+qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, colour = Isla) # los histogramas son apilados y se colorea el borde
+qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, fill = Isla)   # los histogramas son apilados y se colorea el interior
+
+
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla) # también los gráficos de barras son apilados
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla, position=&quot;dodge&quot;) 
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, stat=&quot;identity&quot;, fill = Isla, position=&quot;dodge&quot;) 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Veamos otros ejemplos con estos tipos de objetos geométricos</p>
+
+<pre><code class="r">qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;)
+qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;, fill = Isla)
+
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;)
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
+
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;, colour = Provincia)   # las densidades son superpuestas
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, colour = Provincia) # los hist. son apilados y se colorea el borde
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia)   # los hist. son apilados y se colorea el interior
+
+# las barras se pueden representar sin apilar  
+qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia, position=&quot;dodge&quot;)  
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Introducción a la librería ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -283,7 +560,7 @@ x
 <pre><code class="r">rnorm(5)
 </code></pre>
 
-<pre><code>## [1] -1.893396 -0.633924  0.269677 -0.094598  0.005192
+<pre><code>## [1] -1.15256 -0.35002 -2.07061  0.37765 -0.04519
 </code></pre>
 
   </article>
@@ -305,7 +582,7 @@ x
 </footer>
 </slide>
 
-<slide class="" id="slide-8" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Widgets: jQuery-Quiz</h2>
   </hgroup>
@@ -333,8 +610,43 @@ x
 <div class="quiz-explanation">
   <p>This is the explanation</p>
 
+<h2>La librería ggplot2</h2>
+
+<p class='.ul:'>build</p>
+
+<ul>
+<li>Point 1</li>
+<li>Point 2</li>
+<li>Point 3</li>
+</ul>
+
 </div>
 </div>
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article data-timings="">
+    
   </article>
   <!-- Presenter Notes -->
 <footer>
@@ -366,19 +678,19 @@ x
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='La librería ggplot2'>
+        data-slide=2 title='Introducción a la librería ggplot2'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title=''>
+        data-slide=3 title='Introducción a la librería ggplot2'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Two Column Layout'>
+        data-slide=4 title='Introducción a la librería ggplot2'>
          4
       </a>
     </li>
@@ -396,14 +708,62 @@ x
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Slide 2'>
+        data-slide=7 title='Introducción a la librería ggplot2'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Widgets: jQuery-Quiz'>
+        data-slide=8 title='Introducción a la librería ggplot2'>
          8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Introducción a la librería ggplot2'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Introducción a la librería ggplot2'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Introducción a la librería ggplot2'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Introducción a la librería ggplot2'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Introducción a la librería ggplot2'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Slide 2'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Widgets: jQuery-Quiz'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
       </a>
     </li>
   </ul>
