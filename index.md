@@ -101,6 +101,11 @@ plot(canary.counties, axes = TRUE)
 
 ## La librería maptools
 
+Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:
+
+
+
+
 ---
 
 ## La librería maptools
@@ -129,7 +134,8 @@ Libro: <cite>H.Wickham (2009). ggplot2: Elegant Graphics for Data Analysis
 <br>
 Website: http://had.co.nz/ggplot2
 <br>
-Tutorial: http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
+Tutorial: 
+http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
 
 
 
@@ -387,7 +393,7 @@ Y de las siguientes capas o layers:
 ```
 
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
 
 
 ---
@@ -653,7 +659,7 @@ rnorm(5)
 ```
 
 ```
-## [1] -0.4200 -0.1809 -2.7786 -0.1885  0.8468
+## [1]  1.8475 -1.3432  0.2767 -0.7465  1.4916
 ```
 
 
