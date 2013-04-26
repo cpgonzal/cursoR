@@ -369,7 +369,7 @@ se compone de (http://docs.ggplot2.org/current/index.html):
 
 Y de las siguientes capas o layers:
 
-* El tipo de objeto geométrico (punto, línea, barra, etc...) utilizado para la representación (geom). 
+* El tipo de objeto geométrico (punto, línea, barra, ...) utilizado para la representación (geom). 
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
   ejemplo1 + layer(geom="point")  # o tambien: ejemplo1 + geom_point() 
@@ -382,7 +382,7 @@ Y de las siguientes capas o layers:
 # o tambien: ejemplo1 + geom_point()  
 ```
 
-``` {r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=3}
+``` {r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=2.5}
   ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
   ejemplo1 + layer(geom="point", stat="identity" )
 ```

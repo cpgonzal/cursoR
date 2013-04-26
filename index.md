@@ -376,7 +376,7 @@ se compone de (http://docs.ggplot2.org/current/index.html):
 
 Y de las siguientes capas o layers:
 
-* El tipo de objeto geométrico (punto, línea, barra, etc...) utilizado para la representación (geom). 
+* El tipo de objeto geométrico (punto, línea, barra, ...) utilizado para la representación (geom). 
 
 
 ```r
@@ -659,7 +659,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  1.8475 -1.3432  0.2767 -0.7465  1.4916
+## [1]  0.57364  0.06233 -0.00947 -1.16231  0.24778
 ```
 
 
