@@ -36,10 +36,11 @@ library(googleVis)
 data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
 ```
 
----
+--- &twocol w1:60% w2:40%
 
 ## La librería googleVis
 
+*** =left
 
 ``` {r loadgoog02, echo=TRUE, message=FALSE, eval=FALSE}
 library(googleVis)
@@ -50,10 +51,12 @@ plot(motion.capitales)
 # print(motion.capitales,tag='chart') 
 ```
 
-``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=3.5, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+*** =right
+
+``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
 data.pob.municipios$Anio<-as.numeric(data.pob.municipios$Anio)
 data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
-motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=250, width=350))
 print(motion.capitales,tag='chart') 
 ```
 

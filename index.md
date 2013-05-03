@@ -31,10 +31,11 @@ Website (blog): http://www.r-bloggers.com/search/googlevis
 
 
 
----
+--- &twocol w1:60% w2:40%
 
 ## La librería googleVis
 
+*** =left
 
 
 ```r
@@ -49,15 +50,17 @@ plot(motion.capitales)
 ```
 
 
+*** =right
+
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:05:50 2013 -->
+<!-- Fri May 03 22:11:11 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID21b45c4061fe () {
+function gvisDataMotionChartID11a015abcc7 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -308,14 +311,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID21b45c4061fe() {
-  var data = gvisDataMotionChartID21b45c4061fe();
+function drawChartMotionChartID11a015abcc7() {
+  var data = gvisDataMotionChartID11a015abcc7();
   var options = {};
-options["width"] =    400;
-options["height"] =    350;
+options["width"] =    350;
+options["height"] =    250;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID21b45c4061fe')
+       document.getElementById('MotionChartID11a015abcc7')
      );
      chart.draw(data,options);
     
@@ -339,9 +342,9 @@ options["height"] =    350;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID21b45c4061fe);
+  callbacks.push(drawChartMotionChartID11a015abcc7);
 })();
-function displayChartMotionChartID21b45c4061fe() {
+function displayChartMotionChartID11a015abcc7() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -365,12 +368,12 @@ function displayChartMotionChartID21b45c4061fe() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID21b45c4061fe"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID11a015abcc7"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID21b45c4061fe"
-  style="width: 400px; height: 350px;">
+<div id="MotionChartID11a015abcc7"
+  style="width: 350px; height: 250px;">
 </div>
 
 
@@ -1021,7 +1024,7 @@ rnorm(5)
 ```
 
 ```
-## [1] -2.010  1.560  1.150 -1.021 -1.655
+## [1]  0.09083 -0.03735 -2.35955  0.59014  0.69800
 ```
 
 
