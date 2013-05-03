@@ -31,11 +31,10 @@ Website (blog): http://www.r-bloggers.com/search/googlevis
 
 
 
---- &twocol w1:60% w2:40%
+--- 
 
 ## La librería googleVis
 
-*** =left
 
 
 ```r
@@ -50,17 +49,16 @@ plot(motion.capitales)
 ```
 
 
-*** =right
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:11:11 2013 -->
+<!-- Fri May 03 22:15:30 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID11a015abcc7 () {
+function gvisDataMotionChartID82c12f614f8 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -311,14 +309,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID11a015abcc7() {
-  var data = gvisDataMotionChartID11a015abcc7();
+function drawChartMotionChartID82c12f614f8() {
+  var data = gvisDataMotionChartID82c12f614f8();
   var options = {};
 options["width"] =    350;
-options["height"] =    250;
+options["height"] =    200;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID11a015abcc7')
+       document.getElementById('MotionChartID82c12f614f8')
      );
      chart.draw(data,options);
     
@@ -342,9 +340,9 @@ options["height"] =    250;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID11a015abcc7);
+  callbacks.push(drawChartMotionChartID82c12f614f8);
 })();
-function displayChartMotionChartID11a015abcc7() {
+function displayChartMotionChartID82c12f614f8() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -368,12 +366,12 @@ function displayChartMotionChartID11a015abcc7() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID11a015abcc7"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID82c12f614f8"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID11a015abcc7"
-  style="width: 350px; height: 250px;">
+<div id="MotionChartID82c12f614f8"
+  style="width: 350px; height: 200px;">
 </div>
 
 
@@ -1024,7 +1022,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  0.09083 -0.03735 -2.35955  0.59014  0.69800
+## [1]  1.2715 -1.6432  1.3303  0.5505 -0.7155
 ```
 
 
