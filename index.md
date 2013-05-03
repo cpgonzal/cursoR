@@ -14,7 +14,369 @@ github:
  user: cpgonzal
  repo: cursoR
  
+---  
+
+## La librería googleVis  
+
+
+> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
+> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
+> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+<br>
+Website : http://code.google.com/p/google-motion-charts-with-r/
+<br>
+Website (blog): http://www.r-bloggers.com/search/googlevis  
+
+
+
+
+
 ---
+
+## La librería googleVis
+
+
+
+```r
+library(googleVis)
+data.pob.capitales <- data.pob.municipios[data.pob.municipios$Indicador == "Cifras absolutas" & 
+    data.pob.municipios$CodMunicipio %in% c("ES705", "ES709"), ]
+motion.capitales <- gvisMotionChart(data.pob.capitales, idvar = "Municipio", 
+    timevar = "Anio", options = list(height = 350, width = 400))
+# Display chart
+plot(motion.capitales)
+# print(motion.capitales,tag='chart')
+```
+
+
+<!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Fri May 03 22:02:39 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMotionChartID20843c5d12aa () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ " GRAN CANARIA",
+2012,
+"2012",
+"ES705",
+"000000",
+"Cifras absolutas",
+852225 
+],
+[
+ " GRAN CANARIA",
+2011,
+"2011",
+"ES705",
+"000000",
+"Cifras absolutas",
+850391 
+],
+[
+ " GRAN CANARIA",
+2010,
+"2010",
+"ES705",
+"000000",
+"Cifras absolutas",
+845676 
+],
+[
+ " GRAN CANARIA",
+2009,
+"2009",
+"ES705",
+"000000",
+"Cifras absolutas",
+838397 
+],
+[
+ " GRAN CANARIA",
+2008,
+"2008",
+"ES705",
+"000000",
+"Cifras absolutas",
+829597 
+],
+[
+ " GRAN CANARIA",
+2007,
+"2007",
+"ES705",
+"000000",
+"Cifras absolutas",
+815379 
+],
+[
+ " GRAN CANARIA",
+2006,
+"2006",
+"ES705",
+"000000",
+"Cifras absolutas",
+807049 
+],
+[
+ " GRAN CANARIA",
+2005,
+"2005",
+"ES705",
+"000000",
+"Cifras absolutas",
+802247 
+],
+[
+ " GRAN CANARIA",
+2004,
+"2004",
+"ES705",
+"000000",
+"Cifras absolutas",
+790360 
+],
+[
+ " GRAN CANARIA",
+2003,
+"2003",
+"ES705",
+"000000",
+"Cifras absolutas",
+789908 
+],
+[
+ " GRAN CANARIA",
+2002,
+"2002",
+"ES705",
+"000000",
+"Cifras absolutas",
+771333 
+],
+[
+ " GRAN CANARIA",
+2001,
+"2001",
+"ES705",
+"000000",
+"Cifras absolutas",
+755489 
+],
+[
+ " GRAN CANARIA",
+2000,
+"2000",
+"ES705",
+"000000",
+"Cifras absolutas",
+741161 
+],
+[
+ " TENERIFE",
+2012,
+"2012",
+"ES709",
+"000000",
+"Cifras absolutas",
+898680 
+],
+[
+ " TENERIFE",
+2011,
+"2011",
+"ES709",
+"000000",
+"Cifras absolutas",
+908555 
+],
+[
+ " TENERIFE",
+2010,
+"2010",
+"ES709",
+"000000",
+"Cifras absolutas",
+906854 
+],
+[
+ " TENERIFE",
+2009,
+"2009",
+"ES709",
+"000000",
+"Cifras absolutas",
+899833 
+],
+[
+ " TENERIFE",
+2008,
+"2008",
+"ES709",
+"000000",
+"Cifras absolutas",
+886033 
+],
+[
+ " TENERIFE",
+2007,
+"2007",
+"ES709",
+"000000",
+"Cifras absolutas",
+865070 
+],
+[
+ " TENERIFE",
+2006,
+"2006",
+"ES709",
+"000000",
+"Cifras absolutas",
+852945 
+],
+[
+ " TENERIFE",
+2005,
+"2005",
+"ES709",
+"000000",
+"Cifras absolutas",
+838877 
+],
+[
+ " TENERIFE",
+2004,
+"2004",
+"ES709",
+"000000",
+"Cifras absolutas",
+812839 
+],
+[
+ " TENERIFE",
+2003,
+"2003",
+"ES709",
+"000000",
+"Cifras absolutas",
+799889 
+],
+[
+ " TENERIFE",
+2002,
+"2002",
+"ES709",
+"000000",
+"Cifras absolutas",
+778071 
+],
+[
+ " TENERIFE",
+2001,
+"2001",
+"ES709",
+"000000",
+"Cifras absolutas",
+744076 
+],
+[
+ " TENERIFE",
+2000,
+"2000",
+"ES709",
+"000000",
+"Cifras absolutas",
+709365 
+] 
+];
+data.addColumn('string','Municipio');
+data.addColumn('number','Anio');
+data.addColumn('string','CodAnio');
+data.addColumn('string','CodMunicipio');
+data.addColumn('string','CodIndicador');
+data.addColumn('string','Indicador');
+data.addColumn('number','Valor');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMotionChartID20843c5d12aa() {
+  var data = gvisDataMotionChartID20843c5d12aa();
+  var options = {};
+options["width"] =    400;
+options["height"] =    350;
+
+     var chart = new google.visualization.MotionChart(
+       document.getElementById('MotionChartID20843c5d12aa')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "motionchart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartMotionChartID20843c5d12aa);
+})();
+function displayChartMotionChartID20843c5d12aa() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20843c5d12aa"></script>
+ 
+<!-- divChart -->
+  
+<div id="MotionChartID20843c5d12aa"
+  style="width: 400px; height: 350px;">
+</div>
+
+
+
+---   
+
 
 ## La librería maptools
 
@@ -393,7 +755,7 @@ Y de las siguientes capas o layers:
 ```
 
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+<img src="figure/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display:block; margin:auto;" />
 
 
 ---
@@ -659,7 +1021,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  0.57364  0.06233 -0.00947 -1.16231  0.24778
+## [1]  1.9028  1.3519  2.3176 -0.3517 -0.0666
 ```
 
 

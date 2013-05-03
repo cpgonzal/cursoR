@@ -14,7 +14,52 @@ github:
  user: cpgonzal
  repo: cursoR
  
+---  
+
+## La librería googleVis  
+
+
+> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
+> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
+> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+<br>
+Website : http://code.google.com/p/google-motion-charts-with-r/
+<br>
+Website (blog): http://www.r-bloggers.com/search/googlevis  
+
+
+``` {r loadgoog01, echo=FALSE, message=FALSE }
+#getwd()
+setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
+load("dataCursoR.RData")
+library(googleVis)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+```
+
 ---
+
+## La librería googleVis
+
+
+``` {r loadgoog02, echo=TRUE, message=FALSE, eval=FALSE}
+library(googleVis)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
+# Display chart
+plot(motion.capitales) 
+# print(motion.capitales,tag='chart') 
+```
+
+``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=4}
+data.pob.municipios$Anio<-as.numeric(data.pob.municipios$Anio)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
+print(motion.capitales,tag='chart') 
+```
+
+
+---   
+
 
 ## La librería maptools
 
@@ -27,7 +72,7 @@ Website (blog): http://rspatialtips.org.uk/
 Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
 
 
-``` {r loadmap01, echo=FALSE, message=FALSE}
+``` {r loadmap01, echo=FALSE, message=FALSE }
 #getwd()
 setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
 load("dataCursoR.RData")
@@ -145,7 +190,7 @@ Tutorial:
 http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
 
 
-``` {r load02, echo=FALSE, message=FALSE}
+``` {r loadgp02, echo=FALSE, message=FALSE}
 #getwd()
 setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
 load("dataCursoR.RData")
@@ -382,7 +427,7 @@ Y de las siguientes capas o layers:
 # o tambien: ejemplo1 + geom_point()  
 ```
 
-``` {r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=2.5}
+``` {r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=2.5, out.extra='style="display:block; margin:auto;"'}
   ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
   ejemplo1 + layer(geom="point", stat="identity" )
 ```
