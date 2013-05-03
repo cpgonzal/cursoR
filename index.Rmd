@@ -57,6 +57,39 @@ motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar
 print(motion.capitales,tag='chart') 
 ```
 
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog04, echo=TRUE, message=FALSE, eval=FALSE, out.width=4, tidy=TRUE}
+# create gagdet
+cat(createGoogleGadget(motion.capitales), file="motionchart.xml")
+# se sube el gadget a algún repositorio y se vincula en alguna página
+# https://sites.google.com/site/cpgonzal/
+```
+
+
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog04, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.coords<-read.table("datos_coordenadas_canarias.txt",header=TRUE,sep=",")
+
+idx <- match(data.pob.capitales$CodMunicipio,data.coords$cod)
+
+data.pob.capitales$LatLong<-paste(data.coords[idx,"latitude"],data.coords[idx,"longitude"],sep=":")
+
+map.capitales<-gvisGeoMap(data.pob.capitales[data.pob.capitales$Anio=='2012',], locationvar="LatLong", numvar="Valor", options=list(region="ES", dataMode='markers',showLegend=FALSE))
+# Display chart
+plot(map.capitales) 
+```
+
+
+
 
 ---   
 

@@ -99,14 +99,14 @@ plot(motion.capitales)
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
 
-<!-- Fri May 03 22:17:18 2013 -->
+<!-- Fri May 03 22:36:24 2013 -->
 
 <!-- jsHeader -->
 
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID22407a793298 () {
+function gvisDataMotionChartID20ec79642003 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -357,14 +357,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID22407a793298() {
-  var data = gvisDataMotionChartID22407a793298();
+function drawChartMotionChartID20ec79642003() {
+  var data = gvisDataMotionChartID20ec79642003();
   var options = {};
 options["width"] =    350;
 options["height"] =    250;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID22407a793298')
+       document.getElementById('MotionChartID20ec79642003')
      );
      chart.draw(data,options);
     
@@ -388,9 +388,9 @@ options["height"] =    250;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID22407a793298);
+  callbacks.push(drawChartMotionChartID20ec79642003);
 })();
-function displayChartMotionChartID22407a793298() {
+function displayChartMotionChartID20ec79642003() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -416,12 +416,12 @@ function displayChartMotionChartID22407a793298() {
 
 <!-- jsChart -->  
 
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID22407a793298"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20ec79642003"></script>
  
 
 <!-- divChart -->
 
-<div id="MotionChartID22407a793298"
+<div id="MotionChartID20ec79642003"
   style="width: 350px; height: 250px;">
 </div>
 
@@ -445,6 +445,36 @@ function displayChartMotionChartID22407a793298() {
 </slide>
 
 <slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>La librería googleVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># create gagdet
+cat(createGoogleGadget(motion.capitales), file = &quot;motionchart.xml&quot;)
+# se sube el gadget a algún repositorio y se vincula en alguna página
+# https://sites.google.com/site/cpgonzal/
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
   <hgroup>
     <h2>La librería maptools</h2>
   </hgroup>
@@ -478,7 +508,7 @@ Tutorial: <a href="https://dl.dropbox.com/u/9577903/broomspatial.pdf">https://dl
 </footer>
 </slide>
 
-<slide class="" id="slide-4" style="background:;">
+<slide class="" id="slide-5" style="background:;">
   <hgroup>
     <h2>La librería maptools</h2>
   </hgroup>
@@ -511,7 +541,7 @@ plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
 </footer>
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
+<slide class="" id="slide-6" style="background:;">
   <hgroup>
     <h2>La librería maptools</h2>
   </hgroup>
@@ -543,7 +573,7 @@ plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
 </footer>
 </slide>
 
-<slide class="" id="slide-6" style="background:;">
+<slide class="" id="slide-7" style="background:;">
   <hgroup>
     <h2>La librería maptools</h2>
   </hgroup>
@@ -585,38 +615,13 @@ plot(canary.counties, axes = TRUE)
 </footer>
 </slide>
 
-<slide class="" id="slide-7" style="background:;">
+<slide class="" id="slide-8" style="background:;">
   <hgroup>
     <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
     <p>Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:</p>
 
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-8" style="background:;">
-  <hgroup>
-    <h2>La librería maptools</h2>
-  </hgroup>
-  <article data-timings="">
-    
   </article>
   <!-- Presenter Notes -->
 <footer>
@@ -663,6 +668,31 @@ plot(canary.counties, axes = TRUE)
 
 <slide class="" id="slide-10" style="background:;">
   <hgroup>
+    <h2>La librería maptools</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
     <h2>La librería ggplot2</h2>
   </hgroup>
   <article data-timings="">
@@ -699,7 +729,7 @@ Tutorial:
 </footer>
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -745,7 +775,7 @@ qplot(data=data.geo.municipios, x=Isla,
 </footer>
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -783,7 +813,7 @@ xlim=c(0,2500),ylim=c(0,1500))
 </footer>
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -845,7 +875,7 @@ scale_shape_manual(values=1:7)
 </footer>
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -886,7 +916,7 @@ error estándar. Esta opción se combina con un argumento method %in% c(&quot;lo
 </footer>
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -928,7 +958,7 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
 </footer>
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -971,7 +1001,7 @@ mediante sucesivas capas (layers).</p>
 </footer>
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1053,7 +1083,7 @@ mediante sucesivas capas (layers).</p>
 </footer>
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1088,7 +1118,7 @@ mediante sucesivas capas (layers).</p>
 </tr>
 <tr>
 <td>identity</td>
-<td>Dont transform data</td>
+<td>Don’t transform data</td>
 </tr>
 <tr>
 <td>quantile</td>
@@ -1135,7 +1165,7 @@ mediante sucesivas capas (layers).</p>
 </footer>
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1174,7 +1204,7 @@ mediante sucesivas capas (layers).</p>
 </footer>
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1217,7 +1247,7 @@ mediante sucesivas capas (layers).</p>
 </footer>
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1255,7 +1285,7 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
 </footer>
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1295,7 +1325,7 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
 </footer>
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1338,7 +1368,7 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
 </footer>
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1379,7 +1409,7 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
 </footer>
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1423,7 +1453,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histog
 </footer>
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1462,7 +1492,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_b
 </footer>
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1498,7 +1528,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar
 </footer>
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1537,7 +1567,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) 
 </footer>
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1575,7 +1605,7 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
 </footer>
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1600,7 +1630,7 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
 </footer>
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1653,7 +1683,7 @@ x
 <pre><code class="r">rnorm(5)
 </code></pre>
 
-<pre><code>## [1] -0.27226  0.10032  0.44052  0.17125 -0.09429
+<pre><code>## [1]  0.61435  1.39632 -1.80427 -0.03752 -0.20422
 </code></pre>
 
   </article>
@@ -1675,7 +1705,7 @@ x
 </footer>
 </slide>
 
-<slide class="" id="slide-33" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>Widgets: jQuery-Quiz</h2>
   </hgroup>
@@ -1734,7 +1764,7 @@ x
 </footer>
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1779,7 +1809,7 @@ qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, stat=&q
 </footer>
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>Introducción a la librería ggplot2</h2>
   </hgroup>
@@ -1838,7 +1868,7 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='La librería maptools'>
+        data-slide=3 title='La librería googleVis'>
          3
       </a>
     </li>
@@ -1880,13 +1910,13 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='La librería ggplot2'>
+        data-slide=10 title='La librería maptools'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Introducción a la librería ggplot2'>
+        data-slide=11 title='La librería ggplot2'>
          11
       </a>
     </li>
@@ -2012,19 +2042,19 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='Slide 2'>
+        data-slide=32 title='Introducción a la librería ggplot2'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Widgets: jQuery-Quiz'>
+        data-slide=33 title='Slide 2'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Introducción a la librería ggplot2'>
+        data-slide=34 title='Widgets: jQuery-Quiz'>
          34
       </a>
     </li>
@@ -2032,6 +2062,12 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
       <a href="#" target="_self" rel='tooltip' 
         data-slide=35 title='Introducción a la librería ggplot2'>
          35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Introducción a la librería ggplot2'>
+         36
       </a>
     </li>
   </ul>

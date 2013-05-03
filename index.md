@@ -50,14 +50,14 @@ plot(motion.capitales)
 
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:17:18 2013 -->
+<!-- Fri May 03 22:36:24 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID22407a793298 () {
+function gvisDataMotionChartID20ec79642003 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -308,14 +308,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID22407a793298() {
-  var data = gvisDataMotionChartID22407a793298();
+function drawChartMotionChartID20ec79642003() {
+  var data = gvisDataMotionChartID20ec79642003();
   var options = {};
 options["width"] =    350;
 options["height"] =    250;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID22407a793298')
+       document.getElementById('MotionChartID20ec79642003')
      );
      chart.draw(data,options);
     
@@ -339,9 +339,9 @@ options["height"] =    250;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID22407a793298);
+  callbacks.push(drawChartMotionChartID20ec79642003);
 })();
-function displayChartMotionChartID22407a793298() {
+function displayChartMotionChartID20ec79642003() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -365,13 +365,30 @@ function displayChartMotionChartID22407a793298() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID22407a793298"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20ec79642003"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID22407a793298"
+<div id="MotionChartID20ec79642003"
   style="width: 350px; height: 250px;">
 </div>
+
+
+--- 
+
+## La librería googleVis
+
+
+
+```r
+# create gagdet
+cat(createGoogleGadget(motion.capitales), file = "motionchart.xml")
+# se sube el gadget a algún repositorio y se vincula en alguna página
+# https://sites.google.com/site/cpgonzal/
+```
+
+
+
 
 
 
@@ -701,7 +718,7 @@ boxplot | Calculate components of box-and-whisker plot
 contour | Contours of 3d data
 density | Density estimation
 function | Superimpose a function
-identity | Dont transform data
+identity | Don’t transform data
 quantile | Continuous quantiles
 smooth | Add a smoother
 step | Create stair steps
@@ -1021,7 +1038,7 @@ rnorm(5)
 ```
 
 ```
-## [1] -0.27226  0.10032  0.44052  0.17125 -0.09429
+## [1]  0.61435  1.39632 -1.80427 -0.03752 -0.20422
 ```
 
 
