@@ -43,7 +43,6 @@ data.pob.capitales <- data.pob.municipios[data.pob.municipios$Indicador == "Cifr
     data.pob.municipios$CodMunicipio %in% c("ES705", "ES709"), ]
 motion.capitales <- gvisMotionChart(data.pob.capitales, idvar = "Municipio", 
     timevar = "Anio", options = list(height = 350, width = 400))
-# Display chart
 plot(motion.capitales)
 # print(motion.capitales,tag='chart')
 ```
@@ -51,14 +50,14 @@ plot(motion.capitales)
 
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:15:30 2013 -->
+<!-- Fri May 03 22:17:18 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID82c12f614f8 () {
+function gvisDataMotionChartID22407a793298 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -309,14 +308,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID82c12f614f8() {
-  var data = gvisDataMotionChartID82c12f614f8();
+function drawChartMotionChartID22407a793298() {
+  var data = gvisDataMotionChartID22407a793298();
   var options = {};
 options["width"] =    350;
-options["height"] =    200;
+options["height"] =    250;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID82c12f614f8')
+       document.getElementById('MotionChartID22407a793298')
      );
      chart.draw(data,options);
     
@@ -340,9 +339,9 @@ options["height"] =    200;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID82c12f614f8);
+  callbacks.push(drawChartMotionChartID22407a793298);
 })();
-function displayChartMotionChartID82c12f614f8() {
+function displayChartMotionChartID22407a793298() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -366,12 +365,12 @@ function displayChartMotionChartID82c12f614f8() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID82c12f614f8"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID22407a793298"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID82c12f614f8"
-  style="width: 350px; height: 200px;">
+<div id="MotionChartID22407a793298"
+  style="width: 350px; height: 250px;">
 </div>
 
 
@@ -1022,7 +1021,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  1.2715 -1.6432  1.3303  0.5505 -0.7155
+## [1] -0.27226  0.10032  0.44052  0.17125 -0.09429
 ```
 
 
