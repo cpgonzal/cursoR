@@ -50,14 +50,14 @@ plot(motion.capitales)
 
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:02:39 2013 -->
+<!-- Fri May 03 22:05:50 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID20843c5d12aa () {
+function gvisDataMotionChartID21b45c4061fe () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -308,14 +308,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID20843c5d12aa() {
-  var data = gvisDataMotionChartID20843c5d12aa();
+function drawChartMotionChartID21b45c4061fe() {
+  var data = gvisDataMotionChartID21b45c4061fe();
   var options = {};
 options["width"] =    400;
 options["height"] =    350;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID20843c5d12aa')
+       document.getElementById('MotionChartID21b45c4061fe')
      );
      chart.draw(data,options);
     
@@ -339,9 +339,9 @@ options["height"] =    350;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID20843c5d12aa);
+  callbacks.push(drawChartMotionChartID21b45c4061fe);
 })();
-function displayChartMotionChartID20843c5d12aa() {
+function displayChartMotionChartID21b45c4061fe() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -365,11 +365,11 @@ function displayChartMotionChartID20843c5d12aa() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20843c5d12aa"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID21b45c4061fe"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID20843c5d12aa"
+<div id="MotionChartID21b45c4061fe"
   style="width: 400px; height: 350px;">
 </div>
 
@@ -1021,7 +1021,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  1.9028  1.3519  2.3176 -0.3517 -0.0666
+## [1] -2.010  1.560  1.150 -1.021 -1.655
 ```
 
 

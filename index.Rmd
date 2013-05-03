@@ -50,7 +50,7 @@ plot(motion.capitales)
 # print(motion.capitales,tag='chart') 
 ```
 
-``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=4}
+``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=3.5, fig.align='center', out.extra='style="display:block; margin:auto;"'}
 data.pob.municipios$Anio<-as.numeric(data.pob.municipios$Anio)
 data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
 motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
