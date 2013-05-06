@@ -1,0 +1,60 @@
+﻿<style type="text/css">
+
+
+#head-logo {
+  margin: 0;
+  margin-top: -0.1em;
+  padding-top: 0.25em;
+  padding-bottom: 0.2em;
+  padding-left: 0;
+  padding-right: 0;
+  height: 3.2em;
+  width: 4.8em;
+  float: right;
+  z-index: 2;
+  background: #FFFFFF;
+}
+
+#head-icon {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 1em;
+  /*background:  #728ec2;*/
+  border-width: 0;
+  height: 1em;
+  max-width: 3em;
+  z-index: 2;
+  float: left;
+}
+
+
+div.background {
+  z-index: 1;
+  position: relative;
+  vertical-align: bottom;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: auto;
+  height: 4.1em;
+  padding: 0 0 0 0.2em;
+  margin: 0 0 0 0;
+  border-width: 0;
+  background-color: #FFFFFF;
+}
+
+
+</style>
+
+
+<div class="background"> 
+  <img id="head-icon" alt="graphic with four colored squares" height="15"
+    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+			
+   <object id="head-logo" >
+        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
+        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
+</object>
+
+</div> 

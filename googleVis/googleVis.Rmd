@@ -1,0 +1,413 @@
+Curso de introducción y manejo de R
+========================================================
+
+La librería googleVis
+-------------------------------------------------------  
+ 
+
+## La librería googleVis  
+
+
+> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
+> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
+> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+<br>
+Website : http://code.google.com/p/google-motion-charts-with-r/
+<br>
+Website (blog): http://www.r-bloggers.com/search/googlevis  
+
+
+``` {r loadgoog01, echo=FALSE, message=FALSE }
+#getwd()
+setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
+#setwd("D:\\Mis documentos\\R_ISTAC")
+load("dataCursoR.RData")
+library(googleVis)
+library(methods)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog02, echo=TRUE, message=FALSE, eval=FALSE, out.width=4, tidy=TRUE}
+library(googleVis)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
+plot(motion.capitales) 
+# print(motion.capitales,tag='chart') 
+```
+
+
+``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.municipios$Anio<-as.numeric(data.pob.municipios$Anio)
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=250, width=350))
+print(motion.capitales,tag='chart') 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog04, echo=TRUE, message=FALSE, eval=FALSE, out.width=4, tidy=TRUE}
+# create gagdet
+cat(createGoogleGadget(motion.capitales), file="motionchart.xml")
+# se sube el gadget a algún repositorio y se vincula en alguna página
+# https://sites.google.com/site/cpgonzal/
+```
+
+
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog05, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.coords<-read.table("datos_coordenadas_canarias.txt",header=TRUE,sep=",")
+
+idx <- match(data.pob.capitales$CodMunicipio,data.coords$cod)
+
+data.pob.capitales$LatLong<-paste(data.coords[idx,"latitude"],data.coords[idx,"longitude"],sep=":")
+
+map.capitales<-gvisGeoMap(data.pob.capitales[data.pob.capitales$Anio=='2012',], locationvar="LatLong", numvar="Valor", options=list(region="ES", dataMode='markers',showLegend=FALSE))
+# Display chart
+plot(map.capitales) 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog06a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.capitales$Tip<-paste("Poblacion:",data.pob.capitales$Valor)
+
+map.capitales<-gvisMap(data.pob.capitales[data.pob.capitales$Anio=='2012',], "LatLong", "Tip", options=list(enableScrollWheel=TRUE,  mapType='terrain', useMapTypeControl=TRUE))
+# Display chart
+plot(map.capitales) 
+```
+
+
+``` {r loadgoog06b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+#data.coords<-read.table("datos_coordenadas_canarias.txt",header=TRUE,sep=",")
+idx <- match(data.pob.capitales$CodMunicipio,data.coords$cod)
+data.pob.capitales$LatLong<-paste(data.coords[idx,"latitude"],data.coords[idx,"longitude"],sep=":")
+data.pob.capitales$Tip<-paste("Poblacion:",data.pob.capitales$Valor)
+
+map.capitales<-gvisMap(data.pob.capitales[data.pob.capitales$Anio=='2012',], "LatLong", "Tip",options=list(enableScrollWheel=TRUE,  mapType='terrain', useMapTypeControl=TRUE))
+
+print(map.capitales,tag='chart') 
+```
+
+---   
+
+## La librería googleVis
+
+
+``` {r loadgoog07a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+table.capitales <- gvisTable(data.pob.capitales, options=list(width=800, height=470))
+# Display chart
+plot(table.capitales) 
+
+table.capitales <- gvisTable(data.pob.capitales, options=list(width=800, height=470,page='enable'))
+# Display chart
+plot(table.capitales) 
+```
+
+
+``` {r loadgoog07b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+table.capitales <- gvisTable(data.pob.capitales, options=list(width=800, height=470,page='enable'))
+
+print(table.capitales,tag='chart') 
+```
+
+---   
+
+## La librería googleVis
+
+
+``` {r loadgoog08a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.capitales$Date<-as.Date(paste(data.pob.capitales$Anio,"-01-01",sep=""))
+
+
+line.capitales<- gvisAnnotatedTimeLine(data.pob.capitales, datevar="Date",
+numvar="Valor", idvar="Municipio", date.format = "%d/%m/%Y",options=list(legendPosition='newRow',displayExactValues="TRUE",                             width=600, height=550) )
+
+# Display chart
+plot(line.capitales) 
+```
+
+
+``` {r loadgoog08b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.capitales$Date<-as.Date(paste(data.pob.capitales$Anio,"-01-01",sep=""))
+
+
+line.capitales<- gvisAnnotatedTimeLine(data.pob.capitales, datevar="Date",
+numvar="Valor", idvar="Municipio", date.format = "%d/%m/%Y",options=list(legendPosition='newRow',displayExactValues="TRUE",                             width=600, height=550) )
+
+print(line.capitales,tag='chart') 
+```
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog09a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+## Bar chart
+bar.capitales <- gvisBarChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+
+plot(bar.capitales)
+```
+
+``` {r loadgoog09b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.capitales2<-data.frame(Anio=data.pob.capitales[data.pob.capitales$Municipio==" TENERIFE","Anio"],
+TENERIFE=data.pob.capitales[data.pob.capitales$Municipio==" TENERIFE","Valor"],GRAN_CANARIA=data.pob.capitales[data.pob.capitales$Municipio==" GRAN CANARIA","Valor"])
+
+bar.capitales <- gvisBarChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+
+print(bar.capitales,tag='chart') 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog10a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+## Column chart
+col.capitales <- gvisColumnChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+plot(col.capitales)
+
+```
+
+``` {r loadgoog10b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+col.capitales <- gvisColumnChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+
+print(col.capitales,tag='chart') 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog11a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+## Area chart
+area.capitales <- gvisAreaChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+plot(area.capitales)
+
+```
+
+``` {r loadgoog11b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+area.capitales <- gvisAreaChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
+
+print(area.capitales,tag='chart') 
+```
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog12a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+## Stepped Area Chart
+step.capitales <- gvisSteppedAreaChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(isStacked=TRUE,  width=600, height=400))
+plot(step.capitales)
+```
+
+``` {r loadgoog12b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.capitales2$Anio<-as.character(data.pob.capitales2$Anio)
+data.pob.capitales2<-data.pob.capitales2[order(data.pob.capitales2$Anio),]
+
+step.capitales <- gvisSteppedAreaChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(isStacked=TRUE,  width=600, height=400))
+
+print(step.capitales,tag='chart') 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog13a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.canarias<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas","Variación interanual") & data.pob.municipios$CodMunicipio %in% c("ES70"),]
+
+data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],
+VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador=="Variación interanual","Valor"])
+
+## Scatter chart
+scatter.canarias <- gvisScatterChart(data.pob.canarias2, 
+options=list(legend="none",
+             lineWidth=2, pointSize=0, 
+             vAxis="{title:'Variacion interanual'}",
+             hAxis="{title:'Poblacion absoluta'}", 
+             title="Comparacion de poblacion absoluta y var. inter.",                                                   
+             width=600, height=600))
+plot(scatter.canarias)
+```
+
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog13b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.canarias<-data.pob.municipios[data.pob.municipios$CodIndicador %in% c("000000","000002") & data.pob.municipios$CodMunicipio %in% c("ES70"),]
+
+data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],
+VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador!="Cifras absolutas","Valor"])
+
+## Scatter chart
+scatter.canarias <- gvisScatterChart(data.pob.canarias2, 
+options=list(legend="none",
+             lineWidth=2, pointSize=0, 
+             vAxis="{title:'Variacion interanual'}",
+             hAxis="{title:'Poblacion absoluta'}", 
+             title="Comparacion de poblacion absoluta y var. inter.",                                                   
+             width=400, height=400))
+
+print(scatter.canarias,tag='chart') 
+```
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog14a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],	VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador=="Variación interanual","Valor"], ANIO=data.pob.canarias[data.pob.canarias$Indicador=="Variación interanual","Anio"])
+
+## Bubble chart
+bubble.canarias <- gvisBubbleChart(data.pob.canarias2, idvar="ANIO", xvar="CIFRAS_ABSOLUTAS", yvar="VAR_INTERANUAL",                                                
+options=list( width=600, height=600))
+
+plot(bubble.canarias)
+```
+
+``` {r loadgoog14b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],  VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador!="Cifras absolutas","Valor"], ANIO=data.pob.canarias[data.pob.canarias$Indicador!="Cifras absolutas","Anio"])
+
+## Bubble chart
+bubble.canarias <- gvisBubbleChart(data.pob.canarias2, idvar="ANIO", xvar="CIFRAS_ABSOLUTAS", yvar="VAR_INTERANUAL",                                                
+options=list( width=300, height=300))
+
+print(bubble.canarias,tag='chart') 
+```
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog15a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas","Variación interanual") & data.pob.municipios$CodMunicipio %in% c("ES705","ES709") & data.pob.municipios$Anio %in% c("2010","2011","2012"),]
+
+data.pob.capitales2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.capitales[data.pob.capitales$Indicador=="Cifras absolutas","Valor"], VAR_INTERANUAL=data.pob.capitales[data.pob.capitales$Indicador=="Variación interanual","Valor"],ANIO=data.pob.capitales[data.pob.capitales$Indicador=="Variación interanual","Anio"], ISLA=data.pob.capitales[data.pob.capitales$Indicador=="Variación interanual","Municipio"])
+
+bubble.canarias <- gvisBubbleChart(data.pob.capitales2, idvar="ISLA", xvar="CIFRAS_ABSOLUTAS", yvar="VAR_INTERANUAL", 
+colorvar="ANIO", sizevar="VAR_INTERANUAL",                         
+options=list( width=300, height=300))
+
+plot(bubble.canarias)
+```
+
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog16a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.pob.canarias<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas") & data.pob.municipios$CodMunicipio %in% c("ES70") & data.pob.municipios$Anio %in% c("2010","2011","2012"),]
+
+data.pob.canarias2<-data.frame(ANIO=as.character(data.pob.canarias[,"Anio"]),
+CIFRAS_ABSOLUTAS=data.pob.canarias[,"Valor"])
+
+## Pie chart
+pie.canarias <- gvisPieChart(data.pob.canarias2,labelvar = "ANIO", numvar = "CIFRAS_ABSOLUTAS", options=list(width=600, height=400))
+plot(pie.canarias)
+
+```
+
+``` {r loadgoog16b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.pob.canarias<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas") & data.pob.municipios$CodMunicipio %in% c("ES70") & data.pob.municipios$Anio %in% c("2010","2011","2012"),]
+
+data.pob.canarias2<-data.frame(ANIO=as.character(data.pob.canarias[,"Anio"]),
+CIFRAS_ABSOLUTAS=data.pob.canarias[,"Valor"])
+
+## Pie chart
+pie.canarias <- gvisPieChart(data.pob.canarias2,labelvar = "ANIO", numvar = "CIFRAS_ABSOLUTAS", options=list(width=300, height=200))
+
+print(pie.canarias,tag='chart') 
+```
+
+--- 
+
+
+## La librería googleVis
+
+
+``` {r loadgoog17a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+## Gauge
+gauge.canarias <-  gvisGauge(data.pob.canarias2, options=list(
+                                      fontSize=9,
+                                      min=2000000, max=2200000, 
+                                      redFrom=2000000, redTo=2100000,
+                                      yellowFrom=2100000, yellowTo=2150000,
+                                      greenFrom=2150000, greenTo=2200000, 
+                                      width=800, height=320))
+plot(gauge.canarias)
+```
+
+``` {r loadgoog17b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+gauge.canarias <-  gvisGauge(data.pob.canarias2, options=list(
+                                      fontSize=9,
+                                      min=2000000, max=2200000, 
+                                      redFrom=2000000, redTo=2100000,
+                                      yellowFrom=2100000, yellowTo=2150000,
+                                      greenFrom=2150000, greenTo=2200000, 
+                                      width=400, height=160))
+
+print(gauge.canarias,tag='chart') 
+```
+
+--- 
+
+## La librería googleVis
+
+
+``` {r loadgoog18a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+data.org.canarias<-data.frame(ISLA=c("CANARIAS", "LANZAROTE", "FUERTEVENTURA", "GRAN CANARIA", "TENERIFE", "LA GOMERA", "LA PALMA", "EL HIERRO"),
+PARENT=c(NA, "GRAN CANARIA", "GRAN CANARIA", "CANARIAS", "CANARIAS", "TENERIFE", "TENERIFE", "TENERIFE"),CODE=c("ES70","ES708","ES704","ES705","ES709","ES706","ES707","ES703") )
+
+## Org chart
+org.canarias <- gvisOrgChart(data.org.canarias, idvar = "ISLA", parentvar = "PARENT", tipvar="CODE",options=list(width=600, height=210,
+size='large', allowCollapse=TRUE))
+
+plot(org.canarias)
+```
+
+``` {r loadgoog18b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
+data.org.canarias<-data.frame(ISLA=c("CANARIAS", "LANZAROTE", "FUERTEVENTURA", "GRAN CANARIA", "TENERIFE", "LA GOMERA", "LA PALMA", "EL HIERRO"),
+PARENT=c(NA, "GRAN CANARIA", "GRAN CANARIA", "CANARIAS", "CANARIAS", "TENERIFE", "TENERIFE", "TENERIFE"),CODE=c("ES70","ES708","ES704","ES705","ES709","ES706","ES707","ES703") )
+
+## Org chart
+org.canarias <- gvisOrgChart(data.org.canarias, idvar = "ISLA", parentvar = "PARENT", tipvar="CODE",options=list(width=200, height=80,
+size='small', allowCollapse=TRUE))
+
+print(org.canarias,tag='chart') 
+```
+
+

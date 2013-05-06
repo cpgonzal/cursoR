@@ -1,0 +1,2487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js.gz"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<style type="text/css">
+
+
+#head-logo {
+  margin: 0;
+  margin-top: -0.1em;
+  padding-top: 0.25em;
+  padding-bottom: 0.2em;
+  padding-left: 0;
+  padding-right: 0;
+  height: 3.2em;
+  width: 4.8em;
+  float: right;
+  z-index: 2;
+  background: #FFFFFF;
+}
+
+#head-icon {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 1em;
+  /*background:  #728ec2;*/
+  border-width: 0;
+  height: 1em;
+  max-width: 3em;
+  z-index: 2;
+  float: left;
+}
+
+
+div.background {
+  z-index: 1;
+  position: relative;
+  vertical-align: bottom;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: auto;
+  height: 4.1em;
+  padding: 0 0 0 0.2em;
+  margin: 0 0 0 0;
+  border-width: 0;
+  background-color: #FFFFFF;
+}
+
+
+</style>
+
+
+<div class="background"> 
+  <img id="head-icon" alt="graphic with four colored squares" height="15"
+    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+			
+   <object id="head-logo" >
+        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
+        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
+</object>
+
+</div> 
+<div id="curso-de-introducción-y-manejo-de-r" class="titleslide slide section level1"><h1>Curso de introducción y manejo de R</h1></div><div id="la-librería-googlevis" class="slide section level2">
+<h1>La librería googleVis</h1>
+</div><div id="la-librería-googlevis-1" class="slide section level2">
+<h1>La librería googleVis</h1>
+<ul class="incremental" style="list-style-type: decimal">
+<li>googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.<br /></li>
+<li>Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un “upload” de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.<br /></li>
+<li>La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.<br /><br> Website : http://code.google.com/p/google-motion-charts-with-r/ <br> Website (blog): http://www.r-bloggers.com/search/googlevis</li>
+</ul>
+</div><div id="la-librería-googlevis-2" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(googleVis)
+data.pob.capitales &lt;-<span class="st"> </span>data.pob.municipios[data.pob.municipios$Indicador ==<span class="st"> &quot;Cifras absolutas&quot;</span> &amp;<span class="st"> </span>
+<span class="st">    </span>data.pob.municipios$CodMunicipio %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ES705&quot;</span>, <span class="st">&quot;ES709&quot;</span>), ]
+motion.capitales &lt;-<span class="st"> </span><span class="kw">gvisMotionChart</span>(data.pob.capitales, <span class="dt">idvar =</span> <span class="st">&quot;Municipio&quot;</span>, 
+    <span class="dt">timevar =</span> <span class="st">&quot;Anio&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">height =</span> <span class="dv">350</span>, <span class="dt">width =</span> <span class="dv">400</span>))
+<span class="kw">plot</span>(motion.capitales)
+<span class="co"># print(motion.capitales,tag=&#39;chart&#39;)</span></code></pre>
+<!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:01 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMotionChartID17444273df2 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ " GRAN CANARIA",
+2012,
+"2012",
+"ES705",
+"000000",
+"Cifras absolutas",
+852225 
+],
+[
+ " GRAN CANARIA",
+2011,
+"2011",
+"ES705",
+"000000",
+"Cifras absolutas",
+850391 
+],
+[
+ " GRAN CANARIA",
+2010,
+"2010",
+"ES705",
+"000000",
+"Cifras absolutas",
+845676 
+],
+[
+ " GRAN CANARIA",
+2009,
+"2009",
+"ES705",
+"000000",
+"Cifras absolutas",
+838397 
+],
+[
+ " GRAN CANARIA",
+2008,
+"2008",
+"ES705",
+"000000",
+"Cifras absolutas",
+829597 
+],
+[
+ " GRAN CANARIA",
+2007,
+"2007",
+"ES705",
+"000000",
+"Cifras absolutas",
+815379 
+],
+[
+ " GRAN CANARIA",
+2006,
+"2006",
+"ES705",
+"000000",
+"Cifras absolutas",
+807049 
+],
+[
+ " GRAN CANARIA",
+2005,
+"2005",
+"ES705",
+"000000",
+"Cifras absolutas",
+802247 
+],
+[
+ " GRAN CANARIA",
+2004,
+"2004",
+"ES705",
+"000000",
+"Cifras absolutas",
+790360 
+],
+[
+ " GRAN CANARIA",
+2003,
+"2003",
+"ES705",
+"000000",
+"Cifras absolutas",
+789908 
+],
+[
+ " GRAN CANARIA",
+2002,
+"2002",
+"ES705",
+"000000",
+"Cifras absolutas",
+771333 
+],
+[
+ " GRAN CANARIA",
+2001,
+"2001",
+"ES705",
+"000000",
+"Cifras absolutas",
+755489 
+],
+[
+ " GRAN CANARIA",
+2000,
+"2000",
+"ES705",
+"000000",
+"Cifras absolutas",
+741161 
+],
+[
+ " TENERIFE",
+2012,
+"2012",
+"ES709",
+"000000",
+"Cifras absolutas",
+898680 
+],
+[
+ " TENERIFE",
+2011,
+"2011",
+"ES709",
+"000000",
+"Cifras absolutas",
+908555 
+],
+[
+ " TENERIFE",
+2010,
+"2010",
+"ES709",
+"000000",
+"Cifras absolutas",
+906854 
+],
+[
+ " TENERIFE",
+2009,
+"2009",
+"ES709",
+"000000",
+"Cifras absolutas",
+899833 
+],
+[
+ " TENERIFE",
+2008,
+"2008",
+"ES709",
+"000000",
+"Cifras absolutas",
+886033 
+],
+[
+ " TENERIFE",
+2007,
+"2007",
+"ES709",
+"000000",
+"Cifras absolutas",
+865070 
+],
+[
+ " TENERIFE",
+2006,
+"2006",
+"ES709",
+"000000",
+"Cifras absolutas",
+852945 
+],
+[
+ " TENERIFE",
+2005,
+"2005",
+"ES709",
+"000000",
+"Cifras absolutas",
+838877 
+],
+[
+ " TENERIFE",
+2004,
+"2004",
+"ES709",
+"000000",
+"Cifras absolutas",
+812839 
+],
+[
+ " TENERIFE",
+2003,
+"2003",
+"ES709",
+"000000",
+"Cifras absolutas",
+799889 
+],
+[
+ " TENERIFE",
+2002,
+"2002",
+"ES709",
+"000000",
+"Cifras absolutas",
+778071 
+],
+[
+ " TENERIFE",
+2001,
+"2001",
+"ES709",
+"000000",
+"Cifras absolutas",
+744076 
+],
+[
+ " TENERIFE",
+2000,
+"2000",
+"ES709",
+"000000",
+"Cifras absolutas",
+709365 
+] 
+];
+data.addColumn('string','Municipio');
+data.addColumn('number','Anio');
+data.addColumn('string','CodAnio');
+data.addColumn('string','CodMunicipio');
+data.addColumn('string','CodIndicador');
+data.addColumn('string','Indicador');
+data.addColumn('number','Valor');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMotionChartID17444273df2() {
+  var data = gvisDataMotionChartID17444273df2();
+  var options = {};
+options["width"] =    350;
+options["height"] =    250;
+
+     var chart = new google.visualization.MotionChart(
+       document.getElementById('MotionChartID17444273df2')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "motionchart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartMotionChartID17444273df2);
+})();
+function displayChartMotionChartID17444273df2() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID17444273df2"></script>
+ 
+<!-- divChart -->
+  
+<div id="MotionChartID17444273df2"
+  style="width: 350px; height: 250px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-3" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create gagdet</span>
+<span class="kw">cat</span>(<span class="kw">createGoogleGadget</span>(motion.capitales), <span class="dt">file =</span> <span class="st">&quot;motionchart.xml&quot;</span>)
+<span class="co"># se sube el gadget a algún repositorio y se vincula en alguna página</span>
+<span class="co"># https://sites.google.com/site/cpgonzal/</span></code></pre>
+</div><div id="la-librería-googlevis-4" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.coords &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;datos_coordenadas_canarias.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)
+
+idx &lt;-<span class="st"> </span><span class="kw">match</span>(data.pob.capitales$CodMunicipio, data.coords$cod)
+
+data.pob.capitales$LatLong &lt;-<span class="st"> </span><span class="kw">paste</span>(data.coords[idx, <span class="st">&quot;latitude&quot;</span>], data.coords[idx, 
+    <span class="st">&quot;longitude&quot;</span>], <span class="dt">sep =</span> <span class="st">&quot;:&quot;</span>)
+
+map.capitales &lt;-<span class="st"> </span><span class="kw">gvisGeoMap</span>(data.pob.capitales[data.pob.capitales$Anio ==<span class="st"> &quot;2012&quot;</span>, 
+    ], <span class="dt">locationvar =</span> <span class="st">&quot;LatLong&quot;</span>, <span class="dt">numvar =</span> <span class="st">&quot;Valor&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">region =</span> <span class="st">&quot;ES&quot;</span>, 
+    <span class="dt">dataMode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">showLegend =</span> <span class="ot">FALSE</span>))
+<span class="co"># Display chart</span>
+<span class="kw">plot</span>(map.capitales)</code></pre>
+</div><div id="la-librería-googlevis-5" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.capitales$Tip &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Poblacion:&quot;</span>, data.pob.capitales$Valor)
+
+map.capitales &lt;-<span class="st"> </span><span class="kw">gvisMap</span>(data.pob.capitales[data.pob.capitales$Anio ==<span class="st"> &quot;2012&quot;</span>, 
+    ], <span class="st">&quot;LatLong&quot;</span>, <span class="st">&quot;Tip&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">enableScrollWheel =</span> <span class="ot">TRUE</span>, <span class="dt">mapType =</span> <span class="st">&quot;terrain&quot;</span>, 
+    <span class="dt">useMapTypeControl =</span> <span class="ot">TRUE</span>))
+<span class="co"># Display chart</span>
+<span class="kw">plot</span>(map.capitales)</code></pre>
+<!-- Map generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:01 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMapID174453bf2d52 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ 28.1157,
+-15.4408,
+"Poblacion: 852225" 
+],
+[
+ 28.4687,
+-16.252,
+"Poblacion: 898680" 
+] 
+];
+data.addColumn('number','Latitude');
+data.addColumn('number','Longitude');
+data.addColumn('string','Tip');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMapID174453bf2d52() {
+  var data = gvisDataMapID174453bf2d52();
+  var options = {};
+options["showTip"] = true;
+options["enableScrollWheel"] = true;
+options["mapType"] = "terrain";
+options["useMapTypeControl"] = true;
+
+     var chart = new google.visualization.Map(
+       document.getElementById('MapID174453bf2d52')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "map";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartMapID174453bf2d52);
+})();
+function displayChartMapID174453bf2d52() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMapID174453bf2d52"></script>
+ 
+<!-- divChart -->
+  
+<div id="MapID174453bf2d52"
+  style="width: 600px; height: 500px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-6" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">table.capitales &lt;-<span class="st"> </span><span class="kw">gvisTable</span>(data.pob.capitales, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">800</span>, 
+    <span class="dt">height =</span> <span class="dv">470</span>))
+<span class="co"># Display chart</span>
+<span class="kw">plot</span>(table.capitales)
+
+table.capitales &lt;-<span class="st"> </span><span class="kw">gvisTable</span>(data.pob.capitales, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">800</span>, 
+    <span class="dt">height =</span> <span class="dv">470</span>, <span class="dt">page =</span> <span class="st">&quot;enable&quot;</span>))
+<span class="co"># Display chart</span>
+<span class="kw">plot</span>(table.capitales)</code></pre>
+<!-- Table generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:01 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableID17448586acc () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "ES705",
+" GRAN CANARIA",
+"2012",
+2012,
+"000000",
+"Cifras absolutas",
+852225,
+"28.1157:-15.4408",
+"Poblacion: 852225" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2011",
+2011,
+"000000",
+"Cifras absolutas",
+850391,
+"28.1157:-15.4408",
+"Poblacion: 850391" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2010",
+2010,
+"000000",
+"Cifras absolutas",
+845676,
+"28.1157:-15.4408",
+"Poblacion: 845676" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2009",
+2009,
+"000000",
+"Cifras absolutas",
+838397,
+"28.1157:-15.4408",
+"Poblacion: 838397" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2008",
+2008,
+"000000",
+"Cifras absolutas",
+829597,
+"28.1157:-15.4408",
+"Poblacion: 829597" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2007",
+2007,
+"000000",
+"Cifras absolutas",
+815379,
+"28.1157:-15.4408",
+"Poblacion: 815379" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2006",
+2006,
+"000000",
+"Cifras absolutas",
+807049,
+"28.1157:-15.4408",
+"Poblacion: 807049" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2005",
+2005,
+"000000",
+"Cifras absolutas",
+802247,
+"28.1157:-15.4408",
+"Poblacion: 802247" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2004",
+2004,
+"000000",
+"Cifras absolutas",
+790360,
+"28.1157:-15.4408",
+"Poblacion: 790360" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2003",
+2003,
+"000000",
+"Cifras absolutas",
+789908,
+"28.1157:-15.4408",
+"Poblacion: 789908" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2002",
+2002,
+"000000",
+"Cifras absolutas",
+771333,
+"28.1157:-15.4408",
+"Poblacion: 771333" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2001",
+2001,
+"000000",
+"Cifras absolutas",
+755489,
+"28.1157:-15.4408",
+"Poblacion: 755489" 
+],
+[
+ "ES705",
+" GRAN CANARIA",
+"2000",
+2000,
+"000000",
+"Cifras absolutas",
+741161,
+"28.1157:-15.4408",
+"Poblacion: 741161" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2012",
+2012,
+"000000",
+"Cifras absolutas",
+898680,
+"28.4687:-16.252",
+"Poblacion: 898680" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2011",
+2011,
+"000000",
+"Cifras absolutas",
+908555,
+"28.4687:-16.252",
+"Poblacion: 908555" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2010",
+2010,
+"000000",
+"Cifras absolutas",
+906854,
+"28.4687:-16.252",
+"Poblacion: 906854" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2009",
+2009,
+"000000",
+"Cifras absolutas",
+899833,
+"28.4687:-16.252",
+"Poblacion: 899833" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2008",
+2008,
+"000000",
+"Cifras absolutas",
+886033,
+"28.4687:-16.252",
+"Poblacion: 886033" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2007",
+2007,
+"000000",
+"Cifras absolutas",
+865070,
+"28.4687:-16.252",
+"Poblacion: 865070" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2006",
+2006,
+"000000",
+"Cifras absolutas",
+852945,
+"28.4687:-16.252",
+"Poblacion: 852945" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2005",
+2005,
+"000000",
+"Cifras absolutas",
+838877,
+"28.4687:-16.252",
+"Poblacion: 838877" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2004",
+2004,
+"000000",
+"Cifras absolutas",
+812839,
+"28.4687:-16.252",
+"Poblacion: 812839" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2003",
+2003,
+"000000",
+"Cifras absolutas",
+799889,
+"28.4687:-16.252",
+"Poblacion: 799889" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2002",
+2002,
+"000000",
+"Cifras absolutas",
+778071,
+"28.4687:-16.252",
+"Poblacion: 778071" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2001",
+2001,
+"000000",
+"Cifras absolutas",
+744076,
+"28.4687:-16.252",
+"Poblacion: 744076" 
+],
+[
+ "ES709",
+" TENERIFE",
+"2000",
+2000,
+"000000",
+"Cifras absolutas",
+709365,
+"28.4687:-16.252",
+"Poblacion: 709365" 
+] 
+];
+data.addColumn('string','CodMunicipio');
+data.addColumn('string','Municipio');
+data.addColumn('string','CodAnio');
+data.addColumn('number','Anio');
+data.addColumn('string','CodIndicador');
+data.addColumn('string','Indicador');
+data.addColumn('number','Valor');
+data.addColumn('string','LatLong');
+data.addColumn('string','Tip');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableID17448586acc() {
+  var data = gvisDataTableID17448586acc();
+  var options = {};
+options["allowHtml"] = true;
+options["width"] =    800;
+options["height"] =    470;
+options["page"] = "enable";
+
+     var chart = new google.visualization.Table(
+       document.getElementById('TableID17448586acc')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "table";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartTableID17448586acc);
+})();
+function displayChartTableID17448586acc() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID17448586acc"></script>
+ 
+<!-- divChart -->
+  
+<div id="TableID17448586acc"
+  style="width: 800px; height: 470px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-7" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.capitales$Date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">paste</span>(data.pob.capitales$Anio, <span class="st">&quot;-01-01&quot;</span>, 
+    <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+
+
+line.capitales &lt;-<span class="st"> </span><span class="kw">gvisAnnotatedTimeLine</span>(data.pob.capitales, <span class="dt">datevar =</span> <span class="st">&quot;Date&quot;</span>, 
+    <span class="dt">numvar =</span> <span class="st">&quot;Valor&quot;</span>, <span class="dt">idvar =</span> <span class="st">&quot;Municipio&quot;</span>, <span class="dt">date.format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">legendPosition =</span> <span class="st">&quot;newRow&quot;</span>, 
+        <span class="dt">displayExactValues =</span> <span class="st">&quot;TRUE&quot;</span>, <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">550</span>))
+
+<span class="co"># Display chart</span>
+<span class="kw">plot</span>(line.capitales)</code></pre>
+<!-- AnnotatedTimeLine generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:01 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataAnnotatedTimeLineID17446a8d428e () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ new Date(2012,0,1),
+852225,
+898680 
+],
+[
+ new Date(2011,0,1),
+850391,
+908555 
+],
+[
+ new Date(2010,0,1),
+845676,
+906854 
+],
+[
+ new Date(2009,0,1),
+838397,
+899833 
+],
+[
+ new Date(2008,0,1),
+829597,
+886033 
+],
+[
+ new Date(2007,0,1),
+815379,
+865070 
+],
+[
+ new Date(2006,0,1),
+807049,
+852945 
+],
+[
+ new Date(2005,0,1),
+802247,
+838877 
+],
+[
+ new Date(2004,0,1),
+790360,
+812839 
+],
+[
+ new Date(2003,0,1),
+789908,
+799889 
+],
+[
+ new Date(2002,0,1),
+771333,
+778071 
+],
+[
+ new Date(2001,0,1),
+755489,
+744076 
+],
+[
+ new Date(2000,0,1),
+741161,
+709365 
+] 
+];
+data.addColumn('date','Date');
+data.addColumn('number',' GRAN CANARIA');
+data.addColumn('number',' TENERIFE');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartAnnotatedTimeLineID17446a8d428e() {
+  var data = gvisDataAnnotatedTimeLineID17446a8d428e();
+  var options = {};
+options["width"] =    600;
+options["height"] =    550;
+options["legendPosition"] = "newRow";
+options["displayExactValues"] = "TRUE";
+
+     var chart = new google.visualization.AnnotatedTimeLine(
+       document.getElementById('AnnotatedTimeLineID17446a8d428e')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "annotatedtimeline";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartAnnotatedTimeLineID17446a8d428e);
+})();
+function displayChartAnnotatedTimeLineID17446a8d428e() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAnnotatedTimeLineID17446a8d428e"></script>
+ 
+<!-- divChart -->
+  
+<div id="AnnotatedTimeLineID17446a8d428e"
+  style="width: 600px; height: 550px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-8" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## Bar chart
+bar.capitales &lt;-<span class="st"> </span><span class="kw">gvisBarChart</span>(data.pob.capitales2, <span class="dt">xvar =</span> <span class="st">&quot;Anio&quot;</span>, <span class="dt">yvar =</span> <span class="kw">c</span>(<span class="st">&quot;TENERIFE&quot;</span>, 
+    <span class="st">&quot;GRAN_CANARIA&quot;</span>), <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">legend =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">400</span>))
+
+<span class="kw">plot</span>(bar.capitales)</code></pre>
+<!-- BarChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:01 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataBarChartID17441a8611a () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ 2012,
+898680,
+852225 
+],
+[
+ 2011,
+908555,
+850391 
+],
+[
+ 2010,
+906854,
+845676 
+],
+[
+ 2009,
+899833,
+838397 
+],
+[
+ 2008,
+886033,
+829597 
+],
+[
+ 2007,
+865070,
+815379 
+],
+[
+ 2006,
+852945,
+807049 
+],
+[
+ 2005,
+838877,
+802247 
+],
+[
+ 2004,
+812839,
+790360 
+],
+[
+ 2003,
+799889,
+789908 
+],
+[
+ 2002,
+778071,
+771333 
+],
+[
+ 2001,
+744076,
+755489 
+],
+[
+ 2000,
+709365,
+741161 
+] 
+];
+data.addColumn('number','Anio');
+data.addColumn('number','TENERIFE');
+data.addColumn('number','GRAN_CANARIA');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartBarChartID17441a8611a() {
+  var data = gvisDataBarChartID17441a8611a();
+  var options = {};
+options["allowHtml"] = true;
+options["legend"] = "right";
+options["width"] =    600;
+options["height"] =    400;
+
+     var chart = new google.visualization.BarChart(
+       document.getElementById('BarChartID17441a8611a')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartBarChartID17441a8611a);
+})();
+function displayChartBarChartID17441a8611a() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID17441a8611a"></script>
+ 
+<!-- divChart -->
+  
+<div id="BarChartID17441a8611a"
+  style="width: 600px; height: 400px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-9" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## Column chart
+col.capitales &lt;-<span class="st"> </span><span class="kw">gvisColumnChart</span>(data.pob.capitales2, <span class="dt">xvar =</span> <span class="st">&quot;Anio&quot;</span>, <span class="dt">yvar =</span> <span class="kw">c</span>(<span class="st">&quot;TENERIFE&quot;</span>, 
+    <span class="st">&quot;GRAN_CANARIA&quot;</span>), <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">legend =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">400</span>))
+<span class="kw">plot</span>(col.capitales)</code></pre>
+<!-- ColumnChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataColumnChartID174437895cff () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ 2012,
+898680,
+852225 
+],
+[
+ 2011,
+908555,
+850391 
+],
+[
+ 2010,
+906854,
+845676 
+],
+[
+ 2009,
+899833,
+838397 
+],
+[
+ 2008,
+886033,
+829597 
+],
+[
+ 2007,
+865070,
+815379 
+],
+[
+ 2006,
+852945,
+807049 
+],
+[
+ 2005,
+838877,
+802247 
+],
+[
+ 2004,
+812839,
+790360 
+],
+[
+ 2003,
+799889,
+789908 
+],
+[
+ 2002,
+778071,
+771333 
+],
+[
+ 2001,
+744076,
+755489 
+],
+[
+ 2000,
+709365,
+741161 
+] 
+];
+data.addColumn('number','Anio');
+data.addColumn('number','TENERIFE');
+data.addColumn('number','GRAN_CANARIA');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartColumnChartID174437895cff() {
+  var data = gvisDataColumnChartID174437895cff();
+  var options = {};
+options["allowHtml"] = true;
+options["legend"] = "right";
+options["width"] =    600;
+options["height"] =    400;
+
+     var chart = new google.visualization.ColumnChart(
+       document.getElementById('ColumnChartID174437895cff')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartColumnChartID174437895cff);
+})();
+function displayChartColumnChartID174437895cff() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartColumnChartID174437895cff"></script>
+ 
+<!-- divChart -->
+  
+<div id="ColumnChartID174437895cff"
+  style="width: 600px; height: 400px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-10" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## Area chart
+area.capitales &lt;-<span class="st"> </span><span class="kw">gvisAreaChart</span>(data.pob.capitales2, <span class="dt">xvar =</span> <span class="st">&quot;Anio&quot;</span>, <span class="dt">yvar =</span> <span class="kw">c</span>(<span class="st">&quot;TENERIFE&quot;</span>, 
+    <span class="st">&quot;GRAN_CANARIA&quot;</span>), <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">legend =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">400</span>))
+<span class="kw">plot</span>(area.capitales)</code></pre>
+<!-- AreaChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataAreaChartID174468ba1777 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ 2012,
+898680,
+852225 
+],
+[
+ 2011,
+908555,
+850391 
+],
+[
+ 2010,
+906854,
+845676 
+],
+[
+ 2009,
+899833,
+838397 
+],
+[
+ 2008,
+886033,
+829597 
+],
+[
+ 2007,
+865070,
+815379 
+],
+[
+ 2006,
+852945,
+807049 
+],
+[
+ 2005,
+838877,
+802247 
+],
+[
+ 2004,
+812839,
+790360 
+],
+[
+ 2003,
+799889,
+789908 
+],
+[
+ 2002,
+778071,
+771333 
+],
+[
+ 2001,
+744076,
+755489 
+],
+[
+ 2000,
+709365,
+741161 
+] 
+];
+data.addColumn('number','Anio');
+data.addColumn('number','TENERIFE');
+data.addColumn('number','GRAN_CANARIA');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartAreaChartID174468ba1777() {
+  var data = gvisDataAreaChartID174468ba1777();
+  var options = {};
+options["allowHtml"] = true;
+options["legend"] = "right";
+options["width"] =    600;
+options["height"] =    400;
+
+     var chart = new google.visualization.AreaChart(
+       document.getElementById('AreaChartID174468ba1777')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartAreaChartID174468ba1777);
+})();
+function displayChartAreaChartID174468ba1777() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAreaChartID174468ba1777"></script>
+ 
+<!-- divChart -->
+  
+<div id="AreaChartID174468ba1777"
+  style="width: 600px; height: 400px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-11" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## Stepped Area Chart
+step.capitales &lt;-<span class="st"> </span><span class="kw">gvisSteppedAreaChart</span>(data.pob.capitales2, <span class="dt">xvar =</span> <span class="st">&quot;Anio&quot;</span>, <span class="dt">yvar =</span> <span class="kw">c</span>(<span class="st">&quot;TENERIFE&quot;</span>, 
+    <span class="st">&quot;GRAN_CANARIA&quot;</span>), <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">isStacked =</span> <span class="ot">TRUE</span>, <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">400</span>))
+<span class="kw">plot</span>(step.capitales)</code></pre>
+<!-- SteppedAreaChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataSteppedAreaChartID1744287922be () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "2000",
+709365,
+741161 
+],
+[
+ "2001",
+744076,
+755489 
+],
+[
+ "2002",
+778071,
+771333 
+],
+[
+ "2003",
+799889,
+789908 
+],
+[
+ "2004",
+812839,
+790360 
+],
+[
+ "2005",
+838877,
+802247 
+],
+[
+ "2006",
+852945,
+807049 
+],
+[
+ "2007",
+865070,
+815379 
+],
+[
+ "2008",
+886033,
+829597 
+],
+[
+ "2009",
+899833,
+838397 
+],
+[
+ "2010",
+906854,
+845676 
+],
+[
+ "2011",
+908555,
+850391 
+],
+[
+ "2012",
+898680,
+852225 
+] 
+];
+data.addColumn('string','Anio');
+data.addColumn('number','TENERIFE');
+data.addColumn('number','GRAN_CANARIA');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartSteppedAreaChartID1744287922be() {
+  var data = gvisDataSteppedAreaChartID1744287922be();
+  var options = {};
+options["allowHtml"] = true;
+options["isStacked"] = true;
+options["width"] =    600;
+options["height"] =    400;
+
+     var chart = new google.visualization.SteppedAreaChart(
+       document.getElementById('SteppedAreaChartID1744287922be')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartSteppedAreaChartID1744287922be);
+})();
+function displayChartSteppedAreaChartID1744287922be() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartSteppedAreaChartID1744287922be"></script>
+ 
+<!-- divChart -->
+  
+<div id="SteppedAreaChartID1744287922be"
+  style="width: 600px; height: 400px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-12" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.canarias &lt;-<span class="st"> </span>data.pob.municipios[data.pob.municipios$Indicador %in%<span class="st"> </span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;Cifras absolutas&quot;</span>, <span class="st">&quot;Variación interanual&quot;</span>) &amp;<span class="st"> </span>data.pob.municipios$CodMunicipio %in%<span class="st"> </span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;ES70&quot;</span>), ]
+
+data.pob.canarias2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CIFRAS_ABSOLUTAS =</span> data.pob.canarias[data.pob.canarias$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Cifras absolutas&quot;</span>, <span class="st">&quot;Valor&quot;</span>], <span class="dt">VAR_INTERANUAL =</span> data.pob.canarias[data.pob.canarias$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Valor&quot;</span>])
+
+## Scatter chart
+scatter.canarias &lt;-<span class="st"> </span><span class="kw">gvisScatterChart</span>(data.pob.canarias2, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">legend =</span> <span class="st">&quot;none&quot;</span>, 
+    <span class="dt">lineWidth =</span> <span class="dv">2</span>, <span class="dt">pointSize =</span> <span class="dv">0</span>, <span class="dt">vAxis =</span> <span class="st">&quot;{title:&#39;Variacion interanual&#39;}&quot;</span>, 
+    <span class="dt">hAxis =</span> <span class="st">&quot;{title:&#39;Poblacion absoluta&#39;}&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Comparacion de poblacion absoluta y var. inter.&quot;</span>, 
+    <span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">600</span>))
+<span class="kw">plot</span>(scatter.canarias)</code></pre>
+</div><div id="la-librería-googlevis-13" class="slide section level2">
+<h1>La librería googleVis</h1>
+<!-- ScatterChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataScatterChartID17445008463 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ 2118344,
+-8425 
+],
+[
+ 2126769,
+8250 
+],
+[
+ 2118519,
+14527 
+],
+[
+ 2103992,
+28024 
+],
+[
+ 2075968,
+50017 
+],
+[
+ 2025951,
+30118 
+],
+[
+ 1995833,
+27553 
+],
+[
+ 1968280,
+52740 
+],
+[
+ 1915540,
+20672 
+],
+[
+ 1894868,
+51113 
+],
+[
+ 1843755,
+62389 
+],
+[
+ 1781366,
+65090 
+],
+[
+ 1716276,
+null 
+] 
+];
+data.addColumn('number','CIFRAS_ABSOLUTAS');
+data.addColumn('number','VAR_INTERANUAL');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartScatterChartID17445008463() {
+  var data = gvisDataScatterChartID17445008463();
+  var options = {};
+options["allowHtml"] = true;
+options["legend"] = "none";
+options["lineWidth"] =      2;
+options["pointSize"] =      0;
+options["vAxis"] = {title:'Variacion interanual'};
+options["hAxis"] = {title:'Poblacion absoluta'};
+options["title"] = "Comparacion de poblacion absoluta y var. inter.";
+options["width"] =    400;
+options["height"] =    400;
+
+     var chart = new google.visualization.ScatterChart(
+       document.getElementById('ScatterChartID17445008463')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartScatterChartID17445008463);
+})();
+function displayChartScatterChartID17445008463() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartScatterChartID17445008463"></script>
+ 
+<!-- divChart -->
+  
+<div id="ScatterChartID17445008463"
+  style="width: 400px; height: 400px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-14" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.canarias2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CIFRAS_ABSOLUTAS =</span> data.pob.canarias[data.pob.canarias$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Cifras absolutas&quot;</span>, <span class="st">&quot;Valor&quot;</span>], <span class="dt">VAR_INTERANUAL =</span> data.pob.canarias[data.pob.canarias$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Valor&quot;</span>], <span class="dt">ANIO =</span> data.pob.canarias[data.pob.canarias$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Anio&quot;</span>])
+
+## Bubble chart
+bubble.canarias &lt;-<span class="st"> </span><span class="kw">gvisBubbleChart</span>(data.pob.canarias2, <span class="dt">idvar =</span> <span class="st">&quot;ANIO&quot;</span>, <span class="dt">xvar =</span> <span class="st">&quot;CIFRAS_ABSOLUTAS&quot;</span>, 
+    <span class="dt">yvar =</span> <span class="st">&quot;VAR_INTERANUAL&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">600</span>))
+
+<span class="kw">plot</span>(bubble.canarias)</code></pre>
+<!-- BubbleChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataBubbleChartID1744d2a1ae1 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "2012",
+2118344,
+-8425 
+],
+[
+ "2011",
+2126769,
+8250 
+],
+[
+ "2010",
+2118519,
+14527 
+],
+[
+ "2009",
+2103992,
+28024 
+],
+[
+ "2008",
+2075968,
+50017 
+],
+[
+ "2007",
+2025951,
+30118 
+],
+[
+ "2006",
+1995833,
+27553 
+],
+[
+ "2005",
+1968280,
+52740 
+],
+[
+ "2004",
+1915540,
+20672 
+],
+[
+ "2003",
+1894868,
+51113 
+],
+[
+ "2002",
+1843755,
+62389 
+],
+[
+ "2001",
+1781366,
+65090 
+],
+[
+ "2000",
+1716276,
+null 
+] 
+];
+data.addColumn('string','ANIO');
+data.addColumn('number','CIFRAS_ABSOLUTAS');
+data.addColumn('number','VAR_INTERANUAL');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartBubbleChartID1744d2a1ae1() {
+  var data = gvisDataBubbleChartID1744d2a1ae1();
+  var options = {};
+options["width"] =    300;
+options["height"] =    300;
+
+     var chart = new google.visualization.BubbleChart(
+       document.getElementById('BubbleChartID1744d2a1ae1')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartBubbleChartID1744d2a1ae1);
+})();
+function displayChartBubbleChartID1744d2a1ae1() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBubbleChartID1744d2a1ae1"></script>
+ 
+<!-- divChart -->
+  
+<div id="BubbleChartID1744d2a1ae1"
+  style="width: 300px; height: 300px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-15" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.capitales &lt;-<span class="st"> </span>data.pob.municipios[data.pob.municipios$Indicador %in%<span class="st"> </span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;Cifras absolutas&quot;</span>, <span class="st">&quot;Variación interanual&quot;</span>) &amp;<span class="st"> </span>data.pob.municipios$CodMunicipio %in%<span class="st"> </span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;ES705&quot;</span>, <span class="st">&quot;ES709&quot;</span>) &amp;<span class="st"> </span>data.pob.municipios$Anio %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2010&quot;</span>, <span class="st">&quot;2011&quot;</span>, <span class="st">&quot;2012&quot;</span>), 
+    ]
+
+data.pob.capitales2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">CIFRAS_ABSOLUTAS =</span> data.pob.capitales[data.pob.capitales$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Cifras absolutas&quot;</span>, <span class="st">&quot;Valor&quot;</span>], <span class="dt">VAR_INTERANUAL =</span> data.pob.capitales[data.pob.capitales$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Valor&quot;</span>], <span class="dt">ANIO =</span> data.pob.capitales[data.pob.capitales$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Anio&quot;</span>], <span class="dt">ISLA =</span> data.pob.capitales[data.pob.capitales$Indicador ==<span class="st"> </span>
+<span class="st">    &quot;Variación interanual&quot;</span>, <span class="st">&quot;Municipio&quot;</span>])
+
+bubble.canarias &lt;-<span class="st"> </span><span class="kw">gvisBubbleChart</span>(data.pob.capitales2, <span class="dt">idvar =</span> <span class="st">&quot;ISLA&quot;</span>, <span class="dt">xvar =</span> <span class="st">&quot;CIFRAS_ABSOLUTAS&quot;</span>, 
+    <span class="dt">yvar =</span> <span class="st">&quot;VAR_INTERANUAL&quot;</span>, <span class="dt">colorvar =</span> <span class="st">&quot;ANIO&quot;</span>, <span class="dt">sizevar =</span> <span class="st">&quot;VAR_INTERANUAL&quot;</span>, 
+    <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">300</span>, <span class="dt">height =</span> <span class="dv">300</span>))
+
+<span class="kw">plot</span>(bubble.canarias)</code></pre>
+</div><div id="la-librería-googlevis-16" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.pob.canarias &lt;-<span class="st"> </span>data.pob.municipios[data.pob.municipios$Indicador %in%<span class="st"> </span>
+<span class="st">    </span><span class="kw">c</span>(<span class="st">&quot;Cifras absolutas&quot;</span>) &amp;<span class="st"> </span>data.pob.municipios$CodMunicipio %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ES70&quot;</span>) &amp;<span class="st"> </span>
+<span class="st">    </span>data.pob.municipios$Anio %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2010&quot;</span>, <span class="st">&quot;2011&quot;</span>, <span class="st">&quot;2012&quot;</span>), ]
+
+data.pob.canarias2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ANIO =</span> <span class="kw">as.character</span>(data.pob.canarias[, <span class="st">&quot;Anio&quot;</span>]), 
+    <span class="dt">CIFRAS_ABSOLUTAS =</span> data.pob.canarias[, <span class="st">&quot;Valor&quot;</span>])
+
+## Pie chart
+pie.canarias &lt;-<span class="st"> </span><span class="kw">gvisPieChart</span>(data.pob.canarias2, <span class="dt">labelvar =</span> <span class="st">&quot;ANIO&quot;</span>, <span class="dt">numvar =</span> <span class="st">&quot;CIFRAS_ABSOLUTAS&quot;</span>, 
+    <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">400</span>))
+<span class="kw">plot</span>(pie.canarias)</code></pre>
+<!-- PieChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:02 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataPieChartID174479cd6943 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "2012",
+2118344 
+],
+[
+ "2011",
+2126769 
+],
+[
+ "2010",
+2118519 
+] 
+];
+data.addColumn('string','ANIO');
+data.addColumn('number','CIFRAS_ABSOLUTAS');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartPieChartID174479cd6943() {
+  var data = gvisDataPieChartID174479cd6943();
+  var options = {};
+options["allowHtml"] = true;
+options["width"] =    300;
+options["height"] =    200;
+
+     var chart = new google.visualization.PieChart(
+       document.getElementById('PieChartID174479cd6943')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "corechart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartPieChartID174479cd6943);
+})();
+function displayChartPieChartID174479cd6943() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID174479cd6943"></script>
+ 
+<!-- divChart -->
+  
+<div id="PieChartID174479cd6943"
+  style="width: 300px; height: 200px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-17" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## Gauge
+gauge.canarias &lt;-<span class="st"> </span><span class="kw">gvisGauge</span>(data.pob.canarias2, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">fontSize =</span> <span class="dv">9</span>, 
+    <span class="dt">min =</span> <span class="fl">2e+06</span>, <span class="dt">max =</span> <span class="dv">2200000</span>, <span class="dt">redFrom =</span> <span class="fl">2e+06</span>, <span class="dt">redTo =</span> <span class="dv">2100000</span>, <span class="dt">yellowFrom =</span> <span class="dv">2100000</span>, 
+    <span class="dt">yellowTo =</span> <span class="dv">2150000</span>, <span class="dt">greenFrom =</span> <span class="dv">2150000</span>, <span class="dt">greenTo =</span> <span class="dv">2200000</span>, <span class="dt">width =</span> <span class="dv">800</span>, 
+    <span class="dt">height =</span> <span class="dv">320</span>))
+<span class="kw">plot</span>(gauge.canarias)</code></pre>
+<!-- Gauge generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:03 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataGaugeID1744e07609f () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "2012",
+2118344 
+],
+[
+ "2011",
+2126769 
+],
+[
+ "2010",
+2118519 
+] 
+];
+data.addColumn('string','ANIO');
+data.addColumn('number','CIFRAS_ABSOLUTAS');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartGaugeID1744e07609f() {
+  var data = gvisDataGaugeID1744e07609f();
+  var options = {};
+options["allowHtml"] = true;
+options["fontSize"] =      9;
+options["min"] =  2e+06;
+options["max"] = 2.2e+06;
+options["redFrom"] =  2e+06;
+options["redTo"] = 2.1e+06;
+options["yellowFrom"] = 2.1e+06;
+options["yellowTo"] = 2.15e+06;
+options["greenFrom"] = 2.15e+06;
+options["greenTo"] = 2.2e+06;
+options["width"] =    400;
+options["height"] =    160;
+
+     var chart = new google.visualization.Gauge(
+       document.getElementById('GaugeID1744e07609f')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "gauge";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartGaugeID1744e07609f);
+})();
+function displayChartGaugeID1744e07609f() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGaugeID1744e07609f"></script>
+ 
+<!-- divChart -->
+  
+<div id="GaugeID1744e07609f"
+  style="width: 400px; height: 160px;">
+</div>
+
+
+</div><div id="la-librería-googlevis-18" class="slide section level2">
+<h1>La librería googleVis</h1>
+<pre class="sourceCode r"><code class="sourceCode r">data.org.canarias &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ISLA =</span> <span class="kw">c</span>(<span class="st">&quot;CANARIAS&quot;</span>, <span class="st">&quot;LANZAROTE&quot;</span>, <span class="st">&quot;FUERTEVENTURA&quot;</span>, 
+    <span class="st">&quot;GRAN CANARIA&quot;</span>, <span class="st">&quot;TENERIFE&quot;</span>, <span class="st">&quot;LA GOMERA&quot;</span>, <span class="st">&quot;LA PALMA&quot;</span>, <span class="st">&quot;EL HIERRO&quot;</span>), <span class="dt">PARENT =</span> <span class="kw">c</span>(<span class="ot">NA</span>, 
+    <span class="st">&quot;GRAN CANARIA&quot;</span>, <span class="st">&quot;GRAN CANARIA&quot;</span>, <span class="st">&quot;CANARIAS&quot;</span>, <span class="st">&quot;CANARIAS&quot;</span>, <span class="st">&quot;TENERIFE&quot;</span>, <span class="st">&quot;TENERIFE&quot;</span>, 
+    <span class="st">&quot;TENERIFE&quot;</span>), <span class="dt">CODE =</span> <span class="kw">c</span>(<span class="st">&quot;ES70&quot;</span>, <span class="st">&quot;ES708&quot;</span>, <span class="st">&quot;ES704&quot;</span>, <span class="st">&quot;ES705&quot;</span>, <span class="st">&quot;ES709&quot;</span>, <span class="st">&quot;ES706&quot;</span>, 
+    <span class="st">&quot;ES707&quot;</span>, <span class="st">&quot;ES703&quot;</span>))
+
+## Org chart
+org.canarias &lt;-<span class="st"> </span><span class="kw">gvisOrgChart</span>(data.org.canarias, <span class="dt">idvar =</span> <span class="st">&quot;ISLA&quot;</span>, <span class="dt">parentvar =</span> <span class="st">&quot;PARENT&quot;</span>, 
+    <span class="dt">tipvar =</span> <span class="st">&quot;CODE&quot;</span>, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">600</span>, <span class="dt">height =</span> <span class="dv">210</span>, <span class="dt">size =</span> <span class="st">&quot;large&quot;</span>, 
+        <span class="dt">allowCollapse =</span> <span class="ot">TRUE</span>))
+
+<span class="kw">plot</span>(org.canarias)</code></pre>
+<!-- OrgChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<!-- Mon May 06 13:58:03 2013 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataOrgChartID174426e61ea9 () {
+  var data = new google.visualization.DataTable();
+  var datajson =
+[
+ [
+ "CANARIAS",
+null,
+"ES70" 
+],
+[
+ "LANZAROTE",
+"GRAN CANARIA",
+"ES708" 
+],
+[
+ "FUERTEVENTURA",
+"GRAN CANARIA",
+"ES704" 
+],
+[
+ "GRAN CANARIA",
+"CANARIAS",
+"ES705" 
+],
+[
+ "TENERIFE",
+"CANARIAS",
+"ES709" 
+],
+[
+ "LA GOMERA",
+"TENERIFE",
+"ES706" 
+],
+[
+ "LA PALMA",
+"TENERIFE",
+"ES707" 
+],
+[
+ "EL HIERRO",
+"TENERIFE",
+"ES703" 
+] 
+];
+data.addColumn('string','ISLA');
+data.addColumn('string','PARENT');
+data.addColumn('string','CODE');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartOrgChartID174426e61ea9() {
+  var data = gvisDataOrgChartID174426e61ea9();
+  var options = {};
+options["width"] =    200;
+options["height"] =     80;
+options["size"] = "small";
+options["allowCollapse"] = true;
+
+     var chart = new google.visualization.OrgChart(
+       document.getElementById('OrgChartID174426e61ea9')
+     );
+     chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  var chartid = "orgchart";
+
+  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+  var i, newPackage = true;
+  for (i = 0; newPackage && i < pkgs.length; i++) {
+    if (pkgs[i] === chartid)
+      newPackage = false;
+  }
+  if (newPackage)
+    pkgs.push(chartid);
+
+  // Add the drawChart function to the global list of callbacks
+  callbacks.push(drawChartOrgChartID174426e61ea9);
+})();
+function displayChartOrgChartID174426e61ea9() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+    var pkgCount = pkgs.length;
+    google.load("visualization", "1", { packages:pkgs, callback: function() {
+      if (pkgCount != pkgs.length) {
+        // Race condition where another setTimeout call snuck in after us; if
+        // that call added a package, we must not shift its callback
+        return;
+      }
+      while (callbacks.length > 0)
+        callbacks.shift()();
+    } });
+  }, 100);
+}
+ 
+// jsFooter
+ </script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartOrgChartID174426e61ea9"></script>
+ 
+<!-- divChart -->
+  
+<div id="OrgChartID174426e61ea9"
+  style="width: 200px; height: 80px;">
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>
