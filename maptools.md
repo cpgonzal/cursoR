@@ -27,14 +27,8 @@ Website (blog): http://rspatialtips.org.uk/
 Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
 
 
-``` {r loadmap01, echo=FALSE, message=FALSE }
-#getwd()
-setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
-load("dataCursoR.RData")
-library(maptools)
-canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
-#setwd("D:\\Mis documentos\\Gist_repos\\cursoR")
-```
+
+
 
 ---
 
@@ -43,24 +37,19 @@ canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
 Cargamos los archivos de las 27 comarcas de canarias:
 
 
-``` {r loadmap02, echo=TRUE, message=FALSE, eval=FALSE}
+
+```r
 library(maptools)
-canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
-plot(canary.counties, axes=TRUE, col="red")
+canary.counties <- readShapeLines(fn = "ISTAC_comarcas27_R.shp")
+plot(canary.counties, axes = TRUE, col = "red")
 ```
 
-``` {r loadmap03, echo=FALSE, message=FALSE, fig.height=4}
-plot(canary.counties, axes=TRUE, col="red")
-```
 
-``` {r loadmap04, echo=FALSE, message=FALSE}
-#getwd()
-setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
-load("dataCursoR.RData")
-library(maptools)
-canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
-#setwd("D:\\Mis documentos\\Gist_repos\\cursoR")
-```
+![plot of chunk loadmap03](figure/loadmap03.png) 
+
+
+
+
 
 ---
 
@@ -69,14 +58,15 @@ canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
 Vamos a cargar el mapa en forma de polígonos (Poly Shape):
 
 
-``` {r loadmap05, echo=TRUE, message=FALSE,eval=FALSE}
-canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
-plot(canary.counties, axes=TRUE, col="red")
+
+```r
+canary.counties <- readShapePoly(fn = "ISTAC_comarcas27_R.shp")
+plot(canary.counties, axes = TRUE, col = "red")
 ```
 
-``` {r loadmap06, echo=FALSE, message=FALSE, fig.height=4}
-plot(canary.counties, axes=TRUE, col="red")
-```
+
+![plot of chunk loadmap06](figure/loadmap06.png) 
+
 
 
 ---
@@ -85,7 +75,8 @@ plot(canary.counties, axes=TRUE, col="red")
 
 Para examinar el objeto canary.counties que hemos cargado:
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+
+```r
 canary.counties
 summary(canary.counties)
 
@@ -94,33 +85,254 @@ canary.counties@data
 canary.counties@polygons[[1]]
 ```
 
+
 Observamos que los ejes representados no corresponden a las escalas de latitud y longitud de un mapa:
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+
+```r
 print(proj4string(canary.counties))
 proj4string(canary.counties) <- "+proj=longlat +datum=WGS84"
 print(proj4string(canary.counties))
-plot(canary.counties, axes=TRUE)
+plot(canary.counties, axes = TRUE)
 ```
 
+
 ---
 
 ## La librería maptools
 
-Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:
+Para representar una variable en un mapa, lo más común es asociar al slot "data" los valores de la variable utilizando el comando merge(). Por ejemplo:
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 
+```r
+censal.hombres <- data.comarcas.censal[data.comarcas.censal$sexo == "men", ]
+canary.tmp <- merge(canary.counties@data, censal.hombres, by.x = "CODCOM", by.y = "comarca", 
+    sort = FALSE)
+canary.counties@data$sexoH <- canary.tmp$sexo
+canary.counties@data$censoH <- canary.tmp$censo
 ```
 
+
+Tambien se puede utilizar el comando match(). Por ejemplo:
+
+```r
+censal.mujeres <- data.comarcas.censal[data.comarcas.censal$sexo == "women", 
+    ]
+idx <- match(canary.counties@data$CODCOM, censal.mujeres$comarca)
+canary.counties@data$sexoM <- censal.mujeres$sexo[idx]
+canary.counties@data$censoM <- censal.mujeres$censo[idx]
+```
+
+
 ---
 
 ## La librería maptools
 
+Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();
+
+
+```r
+library(classInt)
+library(RColorBrewer)
+n = 7
+# obtener una paleta de 7 colores
+pal <- brewer.pal(n, "Blues")
+# obtener intervalos de clase para 7 colores
+int <- classIntervals(canary.counties@data$censoH, n, style = "jenks")
+
+p <- spplot(canary.counties["censoH"], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = "black")
+p
+```
+
+![plot of chunk loadmap10](figure/loadmap10.png) 
+
+
 ---
 
 ## La librería maptools
 
+La comarca con menor valor del censo se puede quedar de color blanco: 
+
+
+```r
+# corrección del primer color de la escala
+int$brks[1] <- 1000
+# comprobar el orden de representación
+canary.counties@data[order(canary.counties@data$censoH), ]
+```
+
+
+Podemos utilizar otras paletas:
+
+
+```r
+# Paletas
+
+# display.brewer.pal(n, 'Blues')
+pie(rep(1, n), col = brewer.pal(n, "Blues"))
+pie(rep(1, n), col = brewer.pal(n, "YlOrRd"))
+pie(rep(1, n), col = heat.colors(n))
+pie(rep(1, n), col = terrain.colors(n))
+```
+
+
+---
+
+## La librería maptools
+
+
+```r
+pal <- heat.colors(n)
+p <- spplot(canary.counties["censoH"], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = "black")
+p
+```
+
+![plot of chunk loadmap12a](figure/loadmap12a.png) 
+
+
+---
+
+## La librería maptools
+
+Se pueden utilizar otros métodos para los intervalos de clase:
+
+
+```r
+# Intervalos de clase
+int <- classIntervals(canary.counties@data$censoH, n, style = "quantile")
+int <- classIntervals(canary.counties@data$censoH, n, style = "pretty")
+int <- classIntervals(canary.counties@data$censoH, n, style = "jenks")
+```
+
+
+---
+
+## La librería maptools
+
+Podemos utilizar otros métodos de representación, plot() + legend():
+
+
+```r
+# Representaciones alternativas
+plot(canary.counties, col = pal[findInterval(canary.counties@data$censoH, int$brks, 
+    all.inside = TRUE)], axes = TRUE)
+legend(x = -18, y = 30.5, legend = leglabs(round(int$brks)), cex = 0.9, fill = pal, 
+    bty = "n", x.intersp = 0.5)
+```
+
+![plot of chunk loadmap13a](figure/loadmap13a.png) 
+
+
+---
+
+## La librería maptools
+
+Otros métodos de representación, fortify()+ggplot2():
+ 
+
+```r
+# Otra mas
+library(ggplot2)
+
+# convertir el objeto 'SpatialPolygons' en data.frame
+canary.fort <- fortify(canary.counties, region = "IDCOM27")
+head(canary.fort)
+
+canary.fort <- merge(canary.fort, canary.counties@data[, c("IDCOM27", "censoH")], 
+    by.x = "id", by.y = "IDCOM27", sort = FALSE)
+
+ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour = "black", 
+    fill = "white")
+```
+
+
+---
+
+## La librería maptools
+
+Entonces:
+
+
+
+ 
+
+```r
+map <- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH)) + 
+    geom_polygon() + geom_path(color = "white")
+map
+```
+
+![plot of chunk loadmap14a](figure/loadmap14a.png) 
+
+
+
+---
+
+## La librería maptools
+
+Otras variantes con ggplot2():
+
+
+```r
+map + scale_fill_gradient(low = "white", high = "black")
+
+map + scale_fill_gradient(name = "censo", breaks = c(10000, 50000, 90000))
+
+map + scale_fill_gradientn(colours = brewer.pal(7, "Blues"), limits = c(1000, 
+    1e+05))
+```
+
+
+
+---
+
+## La librería maptools
+
+Podemos utilizar escalas discretas en el gráfico:
+
+
+```r
+canary.fort$censoH.discreto <- cut(canary.fort$censoH, breaks = c(1000, 3000, 
+    6000, 9000, 12000, 15000, 18000, 21000, Inf), labels = c("1000-3000", "3000-6000", 
+    "6000-9000", "9000-12000", "12000-15000", "15000-18000", "18000-21000", 
+    ">21000"), include.lowest = TRUE)
+
+head(canary.fort)
+```
+
+
+
+
+
+---
+
+## La librería maptools
+
+Entonces:
+
+
+```r
+map <- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+
+map + scale_fill_brewer("Censo hombres total")
+```
+
+![plot of chunk loadmap15a](figure/loadmap15a1.png) 
+
+```r
+map
+```
+
+![plot of chunk loadmap15a](figure/loadmap15a2.png) 
+
+
+
+---
+
+## La librería maptools
 
 
 
@@ -145,12 +357,8 @@ Tutorial:
 http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
 
 
-``` {r loadgp02, echo=FALSE, message=FALSE}
-#getwd()
-setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
-load("dataCursoR.RData")
-setwd("D:\\Mis documentos\\Gist_repos\\cursoR")
-```
+
+
 
 --- &twocol w1:50% w2:50%
 
@@ -158,13 +366,17 @@ setwd("D:\\Mis documentos\\Gist_repos\\cursoR")
     
 *** =left
 
-``` {r plot01, message=FALSE, fig.height=4.7, tidy=FALSE}
+
+```r
 #cargar la librería 
 library(ggplot2)
 #un gráfico sencillo
 qplot(data=data.geo.municipios, x=Isla,   
       main="Municipios por isla")
 ```
+
+![plot of chunk plot01](figure/plot01.png) 
+
 
 *** =right
 
@@ -179,7 +391,8 @@ Los comandos gráficos disponibles en ggplot2 son:
 
 Veamos algunos ejemplos:
 
-``` {r plot02, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios,x=Superficie,main="Histograma de superficie",binwidth=50)
 
 qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud")
@@ -191,6 +404,7 @@ qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie v
 xlab="Superficie de la isla", ylab="Altitud de la isla",
 xlim=c(0,2500),ylim=c(0,1500))
 ```
+
 
 
 --- &twocol w1:45% w2:50%
@@ -211,28 +425,34 @@ En qplot() se puede especificar varios argumentos: colour, size, shape
 
 <!--- #### la vida en color
 -->
-``` {r plot04a, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.islas,x=Superficie,y=Altitud, colour = Isla,
 main="Gráfico de superficie vs. altitud", 
 xlab="Superficie", ylab="Altitud") 
 ```
 
+
 <!--- #### el tamaño sí importa
 -->
-``` {r plot04b, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.islas,x=Superficie,y=Altitud, size = Isla,
 main="Gráfico de superficie vs. altitud", 
 xlab="Superficie", ylab="Altitud") 
 ```
 
+
 <!--- #### sin perder las formas
 -->
-``` {r plot04c, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.islas,x=Superficie,y=Altitud, shape = Isla,
 main="Gráfico de superficie vs. altitud", 
 xlab="Superficie", ylab="Altitud") +
 scale_shape_manual(values=1:7)
 ```
+
 
 ---
 
@@ -260,7 +480,8 @@ error estándar. Esta opción se combina con un argumento method %in% c("loess",
 
 Vemos algunos ejemplos:
 
-``` {r plot05a, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "point")
 
 qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "boxplot", colour = Isla)    # cuidado con el tipo de variables
@@ -276,6 +497,7 @@ qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
 qplot(data=data.geo.municipios, x=Superficie, geom = "density")
 ```
+
 
 ---
 
@@ -350,18 +572,22 @@ unique | Remove duplicates
 
 Un scatterplot:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE, size="tiny"}
+
+```r
 ejemplo1<-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, colour = Isla)
 ```
+
 se compone de (http://docs.ggplot2.org/current/index.html): 
 
 * Un conjunto de datos por defecto (data).
 
 * Una asignación de variables del conjunto de datos a atributos gráficos (aesthetics).
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
 ```
+
 
 --- 
 
@@ -371,21 +597,23 @@ Y de las siguientes capas o layers:
 
 * El tipo de objeto geométrico (punto, línea, barra, ...) utilizado para la representación (geom). 
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1 + layer(geom="point")  # o tambien: ejemplo1 + geom_point() 
 ```
 
+
 * Una transformación estadística (suma, densidad, boxplot,..) de los datos (stat).
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1 + layer(geom="point", stat="identity" ) # o tambien: ejemplo1 + geom_point(stat="identity")  
 # o tambien: ejemplo1 + geom_point()  
 ```
 
-``` {r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=2.5, out.extra='style="display:block; margin:auto;"'}
-  ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
-  ejemplo1 + layer(geom="point", stat="identity" )
-```
+
+<img src="figure/unnamed-chunk-17.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display:block; margin:auto;" />
+
 
 ---
 
@@ -396,13 +624,15 @@ Además, se puede
 * Controlar cómo se asignan las variables del conjunto de datos a los atributos aesthetics (scales). 
 Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar según el valor de las variables. 
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
 
   ejemplo1 + geom_point(mapping=aes(shape=Provincia) ) + scale_shape(solid = FALSE)  # cambiar la forma
   
   ejemplo1 + geom_point(mapping=aes(size=Provincia) ) + scale_size_discrete(range = c(2, 4) ) # cambiar el tamaño
 ```
+
 
 
 ---
@@ -413,14 +643,18 @@ Además, se puede
 
 * Cambiar el sistema de representación de coordenadas (coord)
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1 + geom_point() + coord_polar()
 ```
+
 * Especificar la visualización de subconjuntos de los datos en diferentes paneles (facet)
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo1 + geom_point() + facet_grid(. ~ Provincia)
 ```
+
 
 ---
 
@@ -428,21 +662,27 @@ Además, se puede
 
 Un diagrama de barras:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 ```
 
+
 * La asignación o mapping de variables (atributos aesthetics):
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}  
+
+```r
   ejemplo2<-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia, fill=Isla))
 ```
 
+
 * El tipo de objeto geom: 
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}   
+
+```r
   ejemplo2 + layer(geom="bar")    # o tambien: ejemplo2 + geom_bar()  
 ```
+
 
 ---
 
@@ -450,17 +690,21 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 * La transformación estadística stat:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo2 + layer(geom="bar", stat="bin" )  
   # o tambien:  ejemplo2 + geom_bar(stat="bin")  
   # o tambien: ejemplo2 + geom_bar()
-```  
+```
+
 * El ajuste de posición en el gráfico (position):  
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
   ejemplo2 + layer(geom="bar", stat="bin", position="dodge")  
   # o tambien:  ejemplo2 + geom_bar(position=position_dodge() )   
-```   
+```
+
 
 ---
 
@@ -468,26 +712,32 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 Algunos ejemplos mas (densidad e histograma):
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   
 # las densidades son superpuestas
  
 ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_density()
 ```
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+
+```r
 qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) 
 # los histogramas son apilados y se colorea el borde
 
 ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_histogram()
 ```
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+
+```r
 qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   
 # los histogramas son apilados y se colorea el interior
 
 ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histogram()
 ```
+
 
 ---
 
@@ -496,36 +746,44 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histog
 Algunos ejemplos mas (gráficos de barras):
 
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) 
 # también los gráficos de barras son apilados
 
 ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar(position=position_dodge() )
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+```
+
+```r
 qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
 # barras colocadas unas al lado de otras
 
 ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar()
 ```
 
+
 ---
 
 ## Introducción a la librería ggplot2
 
 Algunos ejemplos mas:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
 
 ggplot(data=data.geo.municipios, mapping=aes(x=Provincia)) +geom_bar()
 ```
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+
+```r
 qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
 
 ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar()
 ```
+
 
 ---
 
@@ -533,7 +791,8 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar
 
 Algunos ejemplos mas:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
 
 ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_histogram()
@@ -545,7 +804,8 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_density()
 qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
 
 ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) +geom_density()
-```   
+```
+
 
 ---
 
@@ -553,7 +813,8 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) 
 
 Algunos ejemplos mas:
 
-``` {r eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia)  
 # los histogramas son apilados y se colorea el borde
        
@@ -564,7 +825,8 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
 # las barras se pueden representar sin apilar
        
-```  
+```
+
 
 
 ---
@@ -580,15 +842,20 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 ## Introducción a la librería ggplot2
 
 #cargar la librería 
-``` {r load ggplot2a}
+
+```r
 library(ggplot2)
 ```
 
+
 #cargar los datos utilizando read.table (en local)
-``` {r load data, eval=FALSE}
+
+```r
 setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
-data.espacios.nat<-read.table(file="superficie_espacios_naturales.txt",header=T,sep=";")
+data.espacios.nat <- read.table(file = "superficie_espacios_naturales.txt", 
+    header = T, sep = ";")
 ```
+
 
 --- .class1 #id1
 
@@ -596,12 +863,24 @@ data.espacios.nat<-read.table(file="superficie_espacios_naturales.txt",header=T,
 
 Slide Contents
 
-``` {r example}
-x <- 1+1+3
+
+```r
+x <- 1 + 1 + 3
 x
-rnorm(5)
+```
 
 ```
+## [1] 5
+```
+
+```r
+rnorm(5)
+```
+
+```
+## [1]  0.5899  1.8558  1.8339 -0.9237  0.9370
+```
+
 
 
 --- &radio
@@ -640,7 +919,8 @@ Otros argumentos de geom para gráficos 1D (de una variable) son:
 * geom = "density"   representa un gráfico de densidad.
 * geom = "bar"       representa un gráfico de barras.
 
-``` {r plot06a, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.espacios.nat, x=Superficie, geom = "histogram")
 qplot(data=data.espacios.nat, x=Superficie, geom = "density")
 
@@ -654,13 +934,15 @@ qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, posi
 qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", stat="identity", fill = Isla, position="dodge") 
 ```
 
+
 ---
 
 ## Introducción a la librería ggplot2
 
 Veamos otros ejemplos con estos tipos de objetos geométricos
 
-``` {r plot07a, eval=FALSE, message=FALSE, tidy=FALSE}
+
+```r
 qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
 qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
 
@@ -675,4 +957,5 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
 
 ```
+
 

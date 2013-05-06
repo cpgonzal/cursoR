@@ -49,7 +49,7 @@ canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
 plot(canary.counties, axes=TRUE, col="red")
 ```
 
-``` {r loadmap03, echo=FALSE, message=FALSE, fig.height=4}
+``` {r loadmap03, echo=FALSE, message=FALSE, fig.height=4, fig.cap=""}
 plot(canary.counties, axes=TRUE, col="red")
 ```
 
@@ -74,7 +74,7 @@ canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
 plot(canary.counties, axes=TRUE, col="red")
 ```
 
-``` {r loadmap06, echo=FALSE, message=FALSE, fig.height=4}
+``` {r loadmap06, echo=FALSE, message=FALSE, fig.height=4, fig.cap=""}
 plot(canary.counties, axes=TRUE, col="red")
 ```
 
@@ -107,9 +107,88 @@ plot(canary.counties, axes=TRUE)
 
 ## La librería maptools
 
-Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:
+Para representar una variable en un mapa, lo más común es asociar al slot "data" los valores de la variable utilizando el comando merge(). Por ejemplo:
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+censal.hombres<-data.comarcas.censal[data.comarcas.censal$sexo=="men",]
+canary.tmp<-merge(canary.counties@data,censal.hombres,by.x="CODCOM",by.y="comarca",sort=FALSE)
+canary.counties@data$sexoH<-canary.tmp$sexo
+canary.counties@data$censoH<-canary.tmp$censo
+```
+
+Tambien se puede utilizar el comando match(). Por ejemplo:
+``` {r , echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE}
+censal.mujeres<-data.comarcas.censal[data.comarcas.censal$sexo=="women", ]  
+idx<-match(canary.counties@data$CODCOM,censal.mujeres$comarca)
+canary.counties@data$sexoM<-censal.mujeres$sexo[idx]
+canary.counties@data$censoM<-censal.mujeres$censo[idx]
+```
+
+---
+
+## La librería maptools
+
+Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();
+
+``` {r loadmap10, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=3, fig.cap=""}
+library(classInt)
+library(RColorBrewer) 
+n=7  
+#obtener una paleta de 7 colores
+pal <- brewer.pal(n, 'Blues')
+#obtener intervalos de clase para 7 colores
+int <- classIntervals(canary.counties@data$censoH, n, style='jenks')  
+  
+p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digits=2), lwd=.4, col="black")
+p
+```
+
+---
+
+## La librería maptools
+
+La comarca con menor valor del censo se puede quedar de color blanco: 
+
+``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
+# corrección del primer color de la escala
+int$brks[1]<-1000
+# comprobar el orden de representación
+canary.counties@data[ order(canary.counties@data$censoH),]
+```
+
+Podemos utilizar otras paletas:
+
+``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
+# Paletas
+
+#display.brewer.pal(n, 'Blues')  
+pie(rep(1, n), col = brewer.pal(n, 'Blues') )
+pie(rep(1, n), col = brewer.pal(n, 'YlOrRd') )
+pie(rep(1, n), col = heat.colors(n)  )
+pie(rep(1, n), col = terrain.colors(n)  )
+```
+
+---
+
+## La librería maptools
+
+``` {r loadmap12a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=3, fig.cap=""}
+pal <- heat.colors(n) 
+p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digits=2), lwd=.4, col="black")
+p 
+```
+
+---
+
+## La librería maptools
+
+Se pueden utilizar otros métodos para los intervalos de clase:
+
+``` {r echo=TRUE, message=FALSE,tidy=TRUE,split=FALSE, fig.height=3}
+# Intervalos de clase 
+int<-classIntervals(canary.counties@data$censoH, n, style="quantile")
+int<-classIntervals(canary.counties@data$censoH, n, style="pretty")
+int<-classIntervals(canary.counties@data$censoH, n, style="jenks")
 
 ```
 
@@ -117,10 +196,114 @@ Representar una variable en un mapa es algo que se puede hacer de múltiples for
 
 ## La librería maptools
 
+Podemos utilizar otros métodos de representación, plot() + legend():
+
+``` {r loadmap13a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=5, fig.cap=""}
+# Representaciones alternativas
+plot(canary.counties, 
+col=pal[findInterval(canary.counties@data$censoH, int$brks,all.inside=TRUE)], 
+axes=TRUE)
+legend(x=-18, y=30.5, legend=leglabs(round(int$brks)), cex=0.9, fill=pal, bty="n",x.intersp = .5)
+```
+
 ---
 
 ## La librería maptools
 
+Otros métodos de representación, fortify()+ggplot2():
+ 
+``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE, fig.height=5, fig.cap=""}
+# Otra mas
+library(ggplot2)
+
+# convertir el objeto "SpatialPolygons" en data.frame
+canary.fort<-fortify(canary.counties,region='IDCOM27')
+head(canary.fort)
+
+canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
+
+ggplot(data=canary.fort, aes(long, lat, group=group)) + 
+      geom_polygon(colour='black', fill='white') 
+```
+
+---
+
+## La librería maptools
+
+Entonces:
+
+``` {r echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE}
+# Otra mas
+library(ggplot2)
+
+# convertir el objeto "SpatialPolygons" en data.frame
+canary.fort<-fortify(canary.counties,region='IDCOM27')
+canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
+```
+ 
+``` {r loadmap14a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap=""}
+map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH) )+
+geom_polygon() +
+geom_path(color="white") 
+map
+```
+
+
+---
+
+## La librería maptools
+
+Otras variantes con ggplot2():
+
+``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
+map + scale_fill_gradient(low="white", high="black")
+
+map + scale_fill_gradient(name="censo", breaks = c(10000,50000,90000))
+
+map + scale_fill_gradientn(colours=brewer.pal(7, "Blues"), limits=c(1000, 100000))
+```
+
+
+---
+
+## La librería maptools
+
+Podemos utilizar escalas discretas en el gráfico:
+
+``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
+canary.fort$censoH.discreto <- cut(canary.fort$censoH, 
+breaks=c(1000,3000,6000,9000,12000,15000,18000,21000,Inf), 
+labels=c("1000-3000", "3000-6000", "6000-9000", "9000-12000","12000-15000", "15000-18000", "18000-21000",">21000"), 
+include.lowest=TRUE)
+
+head(canary.fort)
+```
+
+``` {r echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE}
+canary.fort$censoH.discreto <- cut(canary.fort$censoH, 
+breaks=c(1000,3000,6000,9000,12000,15000,18000,21000,Inf), 
+labels=c("1000-3000", "3000-6000", "6000-9000", "9000-12000","12000-15000", "15000-18000", "18000-21000",">21000"), 
+include.lowest=TRUE)
+```
+
+---
+
+## La librería maptools
+
+Entonces:
+
+``` {r loadmap15a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
+map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH.discreto)) +
+geom_polygon() + geom_path(color="white") 
+
+map + scale_fill_brewer("Censo hombres total")
+map
+```
+
+
+---
+
+## La librería maptools
 
 
 
