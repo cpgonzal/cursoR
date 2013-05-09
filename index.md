@@ -16,463 +16,199 @@ github:
  
 ---  
 
-## La librería googleVis  
+## El entorno de R
 
+R es un lenguaje de alto nivel y un entorno para la manipulación de datos, cálculo y gráficos.
 
-> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
-> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
-> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+> 1. Almacenamiento y manipulación efectiva de datos
+> 2. Operadores para cálculo sobre variables indexadas y matrices
+> 3. Amplia, coherente e integrada colección de herramientas para análisis de
+datos
+> 4. Grandes posibilidades gráficas
+> 5. Lenguaje de programación orientado a objetos bien desarrollado, simple y efectivo
+> 6. Lenguaje interpretado, no compilado. Posibilidad de usar scripts
+> 7. Es de código abierto: se distribuye bajo la GPL (General Public License), que no impone ninguna restricción al uso de R (tanto académico como comercial). 
 <br>
-Website : http://code.google.com/p/google-motion-charts-with-r/
+Website: http://www.r-project.org/
 <br>
-Website (blog): http://www.r-bloggers.com/search/googlevis  
 
 
+---
+
+## ¿Por qué R?
+
+Para alumnos:
+> 1. Dispone de las herramientas clásicas de la estadistica
+> 2. Es multiplataforma y gratis
+> 3. Ofertas de trabajo
+
+Para investigadores:
+> 1. Desarrollos estadísticos avanzados
+> 2. Proliferación de código R en muchos trabajos científicos
+
+Para universidades:
+> 1. Ahorro de licencias campus de software propietario (SPSS)
+> 2. Implica menos problemas de soporte técnico
+
+---
+
+## Ventajas de R
+
+> 1. Posibilidad de combinar análisis "empaquetados" en librerías con desarrollos propios "ad-hoc"
+> 2. Gráficos de alta calidad exportables a distintos formatos
+> 3. Consume pocos recursos informáticos
+> 4. Puede ejecutarse remotamente y conectarse con otros programa (llamar a librerías de R desde PROC IML)
+
+## Desventajas de R
+
+> 1. Interfaz gráfica limitada (aunque se dispone de varios GUI que suplen esta deficiencia desde el punto de vista docente)
+
+> 2. No hay soporte comercial 
+
+> 3. El lenguaje de comandos es un lenguaje de programación
 
 
+---
 
---- 
+## Estructura de un sistema R
 
-## La librería googleVis
+R consta de un sistema base (instalación primaria) pero se pueden extender las funcionalidades mediante librerías o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:
 
+mva: Classical multivariate analysis
 
+maptools: Herramientas para el manejo de objetos geoespaciales
 
-```r
-library(googleVis)
-data.pob.capitales <- data.pob.municipios[data.pob.municipios$Indicador == "Cifras absolutas" & 
-    data.pob.municipios$CodMunicipio %in% c("ES705", "ES709"), ]
-motion.capitales <- gvisMotionChart(data.pob.capitales, idvar = "Municipio", 
-    timevar = "Anio", options = list(height = 350, width = 400))
-plot(motion.capitales)
-# print(motion.capitales,tag='chart')
-```
+googleVis: Librería que sirve de interfaz entre R y Google chart tools
+
+....
 
 
+---
 
-<!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Fri May 03 22:36:24 2013 -->
+## Sesión de R
 
 
-<!-- jsHeader -->
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataMotionChartID20ec79642003 () {
-  var data = new google.visualization.DataTable();
-  var datajson =
-[
- [
- " GRAN CANARIA",
-2012,
-"2012",
-"ES705",
-"000000",
-"Cifras absolutas",
-852225 
-],
-[
- " GRAN CANARIA",
-2011,
-"2011",
-"ES705",
-"000000",
-"Cifras absolutas",
-850391 
-],
-[
- " GRAN CANARIA",
-2010,
-"2010",
-"ES705",
-"000000",
-"Cifras absolutas",
-845676 
-],
-[
- " GRAN CANARIA",
-2009,
-"2009",
-"ES705",
-"000000",
-"Cifras absolutas",
-838397 
-],
-[
- " GRAN CANARIA",
-2008,
-"2008",
-"ES705",
-"000000",
-"Cifras absolutas",
-829597 
-],
-[
- " GRAN CANARIA",
-2007,
-"2007",
-"ES705",
-"000000",
-"Cifras absolutas",
-815379 
-],
-[
- " GRAN CANARIA",
-2006,
-"2006",
-"ES705",
-"000000",
-"Cifras absolutas",
-807049 
-],
-[
- " GRAN CANARIA",
-2005,
-"2005",
-"ES705",
-"000000",
-"Cifras absolutas",
-802247 
-],
-[
- " GRAN CANARIA",
-2004,
-"2004",
-"ES705",
-"000000",
-"Cifras absolutas",
-790360 
-],
-[
- " GRAN CANARIA",
-2003,
-"2003",
-"ES705",
-"000000",
-"Cifras absolutas",
-789908 
-],
-[
- " GRAN CANARIA",
-2002,
-"2002",
-"ES705",
-"000000",
-"Cifras absolutas",
-771333 
-],
-[
- " GRAN CANARIA",
-2001,
-"2001",
-"ES705",
-"000000",
-"Cifras absolutas",
-755489 
-],
-[
- " GRAN CANARIA",
-2000,
-"2000",
-"ES705",
-"000000",
-"Cifras absolutas",
-741161 
-],
-[
- " TENERIFE",
-2012,
-"2012",
-"ES709",
-"000000",
-"Cifras absolutas",
-898680 
-],
-[
- " TENERIFE",
-2011,
-"2011",
-"ES709",
-"000000",
-"Cifras absolutas",
-908555 
-],
-[
- " TENERIFE",
-2010,
-"2010",
-"ES709",
-"000000",
-"Cifras absolutas",
-906854 
-],
-[
- " TENERIFE",
-2009,
-"2009",
-"ES709",
-"000000",
-"Cifras absolutas",
-899833 
-],
-[
- " TENERIFE",
-2008,
-"2008",
-"ES709",
-"000000",
-"Cifras absolutas",
-886033 
-],
-[
- " TENERIFE",
-2007,
-"2007",
-"ES709",
-"000000",
-"Cifras absolutas",
-865070 
-],
-[
- " TENERIFE",
-2006,
-"2006",
-"ES709",
-"000000",
-"Cifras absolutas",
-852945 
-],
-[
- " TENERIFE",
-2005,
-"2005",
-"ES709",
-"000000",
-"Cifras absolutas",
-838877 
-],
-[
- " TENERIFE",
-2004,
-"2004",
-"ES709",
-"000000",
-"Cifras absolutas",
-812839 
-],
-[
- " TENERIFE",
-2003,
-"2003",
-"ES709",
-"000000",
-"Cifras absolutas",
-799889 
-],
-[
- " TENERIFE",
-2002,
-"2002",
-"ES709",
-"000000",
-"Cifras absolutas",
-778071 
-],
-[
- " TENERIFE",
-2001,
-"2001",
-"ES709",
-"000000",
-"Cifras absolutas",
-744076 
-],
-[
- " TENERIFE",
-2000,
-"2000",
-"ES709",
-"000000",
-"Cifras absolutas",
-709365 
-] 
-];
-data.addColumn('string','Municipio');
-data.addColumn('number','Anio');
-data.addColumn('string','CodAnio');
-data.addColumn('string','CodMunicipio');
-data.addColumn('string','CodIndicador');
-data.addColumn('string','Indicador');
-data.addColumn('number','Valor');
-data.addRows(datajson);
-return(data);
+Se puede iniciar una sesión de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows). 
+
+La interfaz de R para windows proporciona un menú muy básico para gestionar algunos aspectos de sesión de R:
+
+> 1. El histórico de comandos (.Rhistory)
+> 2. El espacio de trabajo de la sesión (.RData)
+> 3. La instalación de librerías desde un repositorio CRAN
+
+
+---
+
+## Uso básico de R
+
+<style>
+pre {
+  margin-bottom: -10px;
 }
- 
-// jsDrawChart
-function drawChartMotionChartID20ec79642003() {
-  var data = gvisDataMotionChartID20ec79642003();
-  var options = {};
-options["width"] =    350;
-options["height"] =    250;
-
-     var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID20ec79642003')
-     );
-     chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  var chartid = "motionchart";
-
-  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-  var i, newPackage = true;
-  for (i = 0; newPackage && i < pkgs.length; i++) {
-    if (pkgs[i] === chartid)
-      newPackage = false;
-  }
-  if (newPackage)
-    pkgs.push(chartid);
-
-  // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID20ec79642003);
-})();
-function displayChartMotionChartID20ec79642003() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-    var pkgCount = pkgs.length;
-    google.load("visualization", "1", { packages:pkgs, callback: function() {
-      if (pkgCount != pkgs.length) {
-        // Race condition where another setTimeout call snuck in after us; if
-        // that call added a package, we must not shift its callback
-        return;
-      }
-      while (callbacks.length > 0)
-        callbacks.shift()();
-    } });
-  }, 100);
-}
- 
-// jsFooter
- </script>
- 
-<!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20ec79642003"></script>
- 
-<!-- divChart -->
-  
-<div id="MotionChartID20ec79642003"
-  style="width: 350px; height: 250px;">
-</div>
-
-
---- 
-
-## La librería googleVis
-
+</style>
 
 
 ```r
-# create gagdet
-cat(createGoogleGadget(motion.capitales), file = "motionchart.xml")
-# se sube el gadget a algún repositorio y se vincula en alguna página
-# https://sites.google.com/site/cpgonzal/
+(4 - 3) * 2/3
 ```
 
+```
+## [1] 0.6667
+```
 
+```r
+sqrt(9)
+```
 
+```
+## [1] 3
+```
 
+```r
+sin(pi/2)
+```
 
+```
+## [1] 1
+```
 
----   
+```r
+factorial(3)
+```
 
-
-## La librería maptools
-
-> 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
-> 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
-> 3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
-<br>
-Website (blog): http://rspatialtips.org.uk/
-<br>
-Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
-
-
-
+```
+## [1] 6
+```
 
 
 ---
 
-## La librería maptools
-
-Cargamos los archivos de las 27 comarcas de canarias:
-
+## Uso básico de R
 
 
 ```r
-library(maptools)
-canary.counties <- readShapeLines(fn = "ISTAC_comarcas27_R.shp")
-plot(canary.counties, axes = TRUE, col = "red")
+1/0
 ```
 
+```
+## [1] Inf
+```
 
-![plot of chunk loadmap03](figure/loadmap03.png) 
+```r
+0/0
+```
 
+```
+## [1] NaN
+```
 
+```r
+log(-1)
+```
 
+```
+## Warning: Se han producido NaNs
+```
+
+```
+## [1] NaN
+```
+
+```r
+sqrt(-9)
+```
+
+```
+## Warning: Se han producido NaNs
+```
+
+```
+## [1] NaN
+```
 
 
 ---
 
-## La librería maptools
+## Almacenar resultados en variables
 
-Vamos a cargar el mapa en forma de polígonos (Poly Shape):
-
-
+El operador de asignación (<-) permite almacenar valores:
 
 ```r
-canary.counties <- readShapePoly(fn = "ISTAC_comarcas27_R.shp")
-plot(canary.counties, axes = TRUE, col = "red")
+a <- log(10)
+a <- log(10)
+a = log(10)  #¿cual usar: = o <-?
+a <- rnorm(4, mean = 10, sd = 1)  # en R se utiliza = para asignar valores a los argumentos de las funciones
 ```
 
 
-![plot of chunk loadmap06](figure/loadmap06.png) 
-
-
-
----
-
-## La librería maptools
-
-Para examinar el objeto canary.counties que hemos cargado:
-
+Al introducir los comandos anteriores, hemos creado un objeto en R: la variable "a". Este objeto se almacena en una zona de memoria llamada "espacio de trabajo".
 
 ```r
-canary.counties
-summary(canary.counties)
-
-slotNames(canary.counties)
-canary.counties@data
-canary.counties@polygons[[1]]
+ls()
 ```
 
-
-Observamos que los ejes representados no corresponden a las escalas de latitud y longitud de un mapa:
-
-
-```r
-print(proj4string(canary.counties))
-proj4string(canary.counties) <- "+proj=longlat +datum=WGS84"
-print(proj4string(canary.counties))
-plot(canary.counties, axes = TRUE)
+```
+## [1] "a"
 ```
 
 
@@ -480,642 +216,465 @@ plot(canary.counties, axes = TRUE)
 
 ## La librería maptools
 
-Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:
-
-
-
-
----
-
-## La librería maptools
-
----
-
-## La librería maptools
-
-
-
-
-
-
-
-
----
-
-## La librería ggplot2
-
-> 1. Es un paquete que permite generar gráficos estadísticos.
-> 2. Se diferencia de otras librerías en el aspecto de controlar una gran número de componentes gráficos ("gramática de gráficos").
-> 3. Los gráficos se pueden construir añadiéndole sucesivamente más atributos o capas ("layers").  
-<br>
-Libro: <cite>H.Wickham (2009). ggplot2: Elegant Graphics for Data Analysis
-123, Use R!, Springer</cite>
-<br>
-Website: http://had.co.nz/ggplot2
-<br>
-Tutorial: 
-http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
-
-
-
-
-
---- &twocol w1:50% w2:50%
-
-## Introducción a la librería ggplot2   
-    
-*** =left
+Para representar una variable en un mapa, lo más común es asociar al slot "data" los valores de la variable utilizando el comando merge(). Por ejemplo:
 
 
 ```r
-#cargar la librería 
+censal.hombres <- data.comarcas.censal[data.comarcas.censal$sexo == "men", ]
+```
+
+```
+## Error: objeto 'data.comarcas.censal' no encontrado
+```
+
+```r
+canary.tmp <- merge(canary.counties@data, censal.hombres, by.x = "CODCOM", by.y = "comarca", 
+    sort = FALSE)
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+canary.counties@data$sexoH <- canary.tmp$sexo
+```
+
+```
+## Error: objeto 'canary.tmp' no encontrado
+```
+
+```r
+canary.counties@data$censoH <- canary.tmp$censo
+```
+
+```
+## Error: objeto 'canary.tmp' no encontrado
+```
+
+
+Tambien se puede utilizar el comando match(). Por ejemplo:
+
+```r
+censal.mujeres <- data.comarcas.censal[data.comarcas.censal$sexo == "women", 
+    ]
+```
+
+```
+## Error: objeto 'data.comarcas.censal' no encontrado
+```
+
+```r
+idx <- match(canary.counties@data$CODCOM, censal.mujeres$comarca)
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+canary.counties@data$sexoM <- censal.mujeres$sexo[idx]
+```
+
+```
+## Error: objeto 'censal.mujeres' no encontrado
+```
+
+```r
+canary.counties@data$censoM <- censal.mujeres$censo[idx]
+```
+
+```
+## Error: objeto 'censal.mujeres' no encontrado
+```
+
+
+---
+
+## La librería maptools
+
+Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();
+
+
+```r
+library(classInt)
+library(RColorBrewer)
+n = 7
+# obtener una paleta de 7 colores
+pal <- brewer.pal(n, "Blues")
+# obtener intervalos de clase para 7 colores
+int <- classIntervals(canary.counties@data$censoH, n, style = "jenks")
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+
+p <- spplot(canary.counties["censoH"], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = "black")
+```
+
+```
+## Error: no se pudo encontrar la función "spplot"
+```
+
+```r
+p
+```
+
+```
+## Error: objeto 'p' no encontrado
+```
+
+
+---
+
+## La librería maptools
+
+La comarca con menor valor del censo se puede quedar de color blanco: 
+
+
+```r
+# corrección del primer color de la escala
+int$brks[1] <- 1000
+# comprobar el orden de representación
+canary.counties@data[order(canary.counties@data$censoH), ]
+```
+
+
+Podemos utilizar otras paletas:
+
+
+```r
+# Paletas
+
+# display.brewer.pal(n, 'Blues')
+pie(rep(1, n), col = brewer.pal(n, "Blues"))
+pie(rep(1, n), col = brewer.pal(n, "YlOrRd"))
+pie(rep(1, n), col = heat.colors(n))
+pie(rep(1, n), col = terrain.colors(n))
+```
+
+
+---
+
+## La librería maptools
+
+
+```r
+pal <- heat.colors(n)
+p <- spplot(canary.counties["censoH"], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = "black")
+```
+
+```
+## Error: no se pudo encontrar la función "spplot"
+```
+
+```r
+p
+```
+
+```
+## Error: objeto 'p' no encontrado
+```
+
+
+---
+
+## La librería maptools
+
+Se pueden utilizar otros métodos para los intervalos de clase:
+
+
+```r
+# Intervalos de clase
+int <- classIntervals(canary.counties@data$censoH, n, style = "quantile")
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+int <- classIntervals(canary.counties@data$censoH, n, style = "pretty")
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+int <- classIntervals(canary.counties@data$censoH, n, style = "jenks")
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+
+---
+
+## La librería maptools
+
+Podemos utilizar otros métodos de representación, plot() + legend():
+
+
+```r
+# Representaciones alternativas
+plot(canary.counties, col = pal[findInterval(canary.counties@data$censoH, int$brks, 
+    all.inside = TRUE)], axes = TRUE)
+```
+
+```
+## Error: objeto 'canary.counties' no encontrado
+```
+
+```r
+legend(x = -18, y = 30.5, legend = leglabs(round(int$brks)), cex = 0.9, fill = pal, 
+    bty = "n", x.intersp = 0.5)
+```
+
+```
+## Error: no se pudo encontrar la función "leglabs"
+```
+
+
+---
+
+## La librería maptools
+
+Otros métodos de representación, fortify()+ggplot2():
+ 
+
+```r
+# Otra mas
 library(ggplot2)
-#un gráfico sencillo
-qplot(data=data.geo.municipios, x=Isla,   
-      main="Municipios por isla")
-```
 
-![plot of chunk plot01](figure/plot01.png) 
+# convertir el objeto 'SpatialPolygons' en data.frame
+canary.fort <- fortify(canary.counties, region = "IDCOM27")
+head(canary.fort)
 
+canary.fort <- merge(canary.fort, canary.counties@data[, c("IDCOM27", "censoH")], 
+    by.x = "id", by.y = "IDCOM27", sort = FALSE)
 
-*** =right
-
-Los comandos gráficos disponibles en ggplot2 son:
-* qplot() - para "quick plots" 
-* ggplot() - para mejor ajuste y control de todo
-
-
----
-
-## Introducción a la librería ggplot2
-
-Veamos algunos ejemplos:
-
-
-```r
-qplot(data=data.geo.municipios,x=Superficie,main="Histograma de superficie",binwidth=50)
-
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud")
-
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud", 
-xlab="Superficie de la isla", ylab="Altitud de la isla")
-
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud", 
-xlab="Superficie de la isla", ylab="Altitud de la isla",
-xlim=c(0,2500),ylim=c(0,1500))
-```
-
-
-
---- &twocol w1:45% w2:50%
-
-## Introducción a la librería ggplot2   
-    
-*** =left
-
-### Color, tamaño, forma (aspectos estéticos)
-
-Con el comando clásico plot(), si queremos representar  variables categóricas (e.g. una variable de tipo sexo, "Hombre","Mujer") con colores, debemos realizar nosotros mismos la 
-correspondencia entre categoría y color.
-
-En qplot() se puede especificar varios argumentos: colour, size, shape 
-
-
-*** =right
-
-<!--- #### la vida en color
--->
-
-```r
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, colour = Isla,
-main="Gráfico de superficie vs. altitud", 
-xlab="Superficie", ylab="Altitud") 
-```
-
-
-<!--- #### el tamaño sí importa
--->
-
-```r
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, size = Isla,
-main="Gráfico de superficie vs. altitud", 
-xlab="Superficie", ylab="Altitud") 
-```
-
-
-<!--- #### sin perder las formas
--->
-
-```r
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, shape = Isla,
-main="Gráfico de superficie vs. altitud", 
-xlab="Superficie", ylab="Altitud") +
-scale_shape_manual(values=1:7)
+ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour = "black", 
+    fill = "white")
 ```
 
 
 ---
 
-## Introducción a la librería ggplot2
+## La librería maptools
 
-### Objetos geométricos
-
-qplot no está limitado a gráficos de dispersión (scatterplot), 
-sino que puede producir casi cualquier tipo de gráfico variando 
-el argumento geom.
+Entonces:
 
 
-* geom = "point" representa puntos para producir un scatterplot. Esta es la opción por 
-defecto cuando se pasan argumentos x e y a qplot().
-* geom = "boxplot" produce un gráfico box-and-whisker plot de resumen de la distribución
-de un conjunto de puntos.
-* geom = "smooth" ajusta una curva suavizada a los datos (smoother) y su
-error estándar. Esta opción se combina con un argumento method %in% c("loess","gam","lm","rlm")
-(ver http://docs.ggplot2.org/0.9.3/stat_smooth.html)
-* geom = "path" and geom = "line" representa lineas entre los puntos.
-
----
-
-## Introducción a la librería ggplot2
-
-Vemos algunos ejemplos:
-
-
-```r
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "point")
-
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "boxplot", colour = Isla)    # cuidado con el tipo de variables
-qplot(data=data.geo.municipios,x=Isla,y=Altitud, geom = "boxplot")
-
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "smooth", method="loess")
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = c("point", "smooth"), method="lm")
-
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "path")
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "line")
-
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
-qplot(data=data.geo.municipios, x=Superficie, geom = "density")
+```
+## Error: objeto 'canary.counties' no encontrado
 ```
 
-
----
-
-## Introducción a la librería ggplot2
-
-### Comprensión de la gramática de capas
-
-* Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de 
-los gráficos por capas (gramática de capas) mediante ggplot(). 
-
-* El qplot recorta bastantes detalles de ggplot() a pesar que permite una sintaxis 
-más familiar y cercana al plot().
-
-* Con ggplot(), sin embargo, es posible incorporar a un gráfico diferentes niveles de detalle
-mediante sucesivas capas (layers).
-
-                        ggplot(data, mapping) +
-                        layer( 
-                              geom = "",  
-                              stat = "",  
-                              position = "", ....  
-                             )
-
-
----
-
-## Introducción a la librería ggplot2
-
-
-### Algunos objetos geométricos en ggplot2
-
-Name | Description  
-------------- | -------------
-abline | Line, specified by slope and intercept 
-area | Area plots  
-bar | Bars, rectangles with bases on y-axis  
-boxplot | Box-and-whisker plot  
-contour | Display contours of a 3d surface in 2d  
-errorbar | Error bars  
-histogram | Histogram  
-line | Connect observations, in order of x value  
-point | Points, as for a scatterplot  
-polygon | Polygon, a filled path  
-step | Connect observations by stairs  
-text | Textual annotations  
-
-
----
-
-## Introducción a la librería ggplot2
-
-### Algunas transformaciones estadísticas en ggplot2
-
-Name | Description  
-------------- | -------------
-bin | Bin data
-boxplot | Calculate components of box-and-whisker plot
-contour | Contours of 3d data
-density | Density estimation
-function | Superimpose a function
-identity | Don’t transform data
-quantile | Continuous quantiles
-smooth | Add a smoother
-step | Create stair steps
-sum | Sum unique values. Useful for overplotting on scatterplots
-summary | Summarise y values at every unique x
-unique | Remove duplicates  
-
---- 
-
-## Introducción a la librería ggplot2
-
-Un scatterplot:
-
-
-```r
-ejemplo1<-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, colour = Isla)
+```
+## Error: objeto 'canary.fort' no encontrado
 ```
 
-se compone de (http://docs.ggplot2.org/current/index.html): 
-
-* Un conjunto de datos por defecto (data).
-
-* Una asignación de variables del conjunto de datos a atributos gráficos (aesthetics).
-
-
-```r
-  ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
-```
-
-
---- 
-
-## Introducción a la librería ggplot2
-
-Y de las siguientes capas o layers:
-
-* El tipo de objeto geométrico (punto, línea, barra, ...) utilizado para la representación (geom). 
-
-
-```r
-  ejemplo1 + layer(geom="point")  # o tambien: ejemplo1 + geom_point() 
-```
-
-
-* Una transformación estadística (suma, densidad, boxplot,..) de los datos (stat).
-
-
-```r
-  ejemplo1 + layer(geom="point", stat="identity" ) # o tambien: ejemplo1 + geom_point(stat="identity")  
-# o tambien: ejemplo1 + geom_point()  
-```
-
-
-<img src="figure/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display:block; margin:auto;" />
-
-
----
-
-## Introducción a la librería ggplot2
-
-Además, se puede
-
-* Controlar cómo se asignan las variables del conjunto de datos a los atributos aesthetics (scales). 
-Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar según el valor de las variables. 
-
-
-```r
-  ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
-
-  ejemplo1 + geom_point(mapping=aes(shape=Provincia) ) + scale_shape(solid = FALSE)  # cambiar la forma
-  
-  ejemplo1 + geom_point(mapping=aes(size=Provincia) ) + scale_size_discrete(range = c(2, 4) ) # cambiar el tamaño
-```
-
-
-
----
-
-## Introducción a la librería ggplot2
-
-Además, se puede
-
-* Cambiar el sistema de representación de coordenadas (coord)
-
-
-```r
-  ejemplo1 + geom_point() + coord_polar()
-```
-
-* Especificar la visualización de subconjuntos de los datos en diferentes paneles (facet)
-
-
-```r
-  ejemplo1 + geom_point() + facet_grid(. ~ Provincia)
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Un diagrama de barras:
-
-
-```r
-ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
-```
-
-
-* La asignación o mapping de variables (atributos aesthetics):
-
-
-```r
-  ejemplo2<-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia, fill=Isla))
-```
-
-
-* El tipo de objeto geom: 
-
-
-```r
-  ejemplo2 + layer(geom="bar")    # o tambien: ejemplo2 + geom_bar()  
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-* La transformación estadística stat:
-
-
-```r
-  ejemplo2 + layer(geom="bar", stat="bin" )  
-  # o tambien:  ejemplo2 + geom_bar(stat="bin")  
-  # o tambien: ejemplo2 + geom_bar()
-```
-
-* El ajuste de posición en el gráfico (position):  
-
-
-```r
-  ejemplo2 + layer(geom="bar", stat="bin", position="dodge")  
-  # o tambien:  ejemplo2 + geom_bar(position=position_dodge() )   
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Algunos ejemplos mas (densidad e histograma):
-
-
-```r
-qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   
-# las densidades son superpuestas
  
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_density()
-```
-
-
 
 ```r
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) 
-# los histogramas son apilados y se colorea el borde
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_histogram()
+map <- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH)) + 
+    geom_polygon() + geom_path(color = "white")
 ```
 
-
-
-```r
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   
-# los histogramas son apilados y se colorea el interior
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histogram()
 ```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Algunos ejemplos mas (gráficos de barras):
-
-
-
-```r
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) 
-# también los gráficos de barras son apilados
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar(position=position_dodge() )
-
+## Error: objeto 'canary.fort' no encontrado
 ```
 
 ```r
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
-# barras colocadas unas al lado de otras
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar()
+map
 ```
 
-
----
-
-## Introducción a la librería ggplot2
-
-Algunos ejemplos mas:
-
-
-```r
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia)) +geom_bar()
 ```
-
-
-
-```r
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar()
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Algunos ejemplos mas:
-
-
-```r
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_histogram()
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "density")
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_density()
-       
-qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) +geom_density()
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Algunos ejemplos mas:
-
-
-```r
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia)  
-# los histogramas son apilados y se colorea el borde
-       
-       
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia)  
-# los histogramas son apilados y se colorea el interior
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
-# las barras se pueden representar sin apilar
-       
+## Error: objeto 'map' no encontrado
 ```
 
 
 
 ---
 
-## Introducción a la librería ggplot2
+## La librería maptools
+
+Otras variantes con ggplot2():
 
 
+```r
+map + scale_fill_gradient(low = "white", high = "black")
+
+map + scale_fill_gradient(name = "censo", breaks = c(10000, 50000, 90000))
+
+map + scale_fill_gradientn(colours = brewer.pal(7, "Blues"), limits = c(1000, 
+    1e+05))
+```
 
 
 
 ---
 
-## Introducción a la librería ggplot2
+## La librería maptools
 
-#cargar la librería 
-
-```r
-library(ggplot2)
-```
-
-
-#cargar los datos utilizando read.table (en local)
-
-```r
-setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
-data.espacios.nat <- read.table(file = "superficie_espacios_naturales.txt", 
-    header = T, sep = ";")
-```
-
-
---- .class1 #id1
-
-## Slide 2
-
-Slide Contents
+Podemos utilizar escalas discretas en el gráfico:
 
 
 ```r
-x <- 1 + 1 + 3
-x
-```
+canary.fort$censoH.discreto <- cut(canary.fort$censoH, breaks = c(1000, 3000, 
+    6000, 9000, 12000, 15000, 18000, 21000, Inf), labels = c("1000-3000", "3000-6000", 
+    "6000-9000", "9000-12000", "12000-15000", "15000-18000", "18000-21000", 
+    ">21000"), include.lowest = TRUE)
 
-```
-## [1] 5
-```
-
-```r
-rnorm(5)
-```
-
-```
-## [1]  0.61435  1.39632 -1.80427 -0.03752 -0.20422
+head(canary.fort)
 ```
 
 
 
---- &radio
-
-## Widgets: jQuery-Quiz ##
-
-This is a multiple choice question
-
-1. Choice 1
-2. `Choice 2`
-3. _Choice 3 (correct)_
-4. Choice 4
-
-*** .hint
-
-This is a hint
-
-*** .explanation
-
-This is the explanation
-
-## La librería ggplot2
-
-..ul: build
-
-* Point 1
-* Point 2
-* Point 3
-
----
-
-## Introducción a la librería ggplot2
-
-Otros argumentos de geom para gráficos 1D (de una variable) son:
-* geom = "histogram" representa un histograma.
-* geom = "density"   representa un gráfico de densidad.
-* geom = "bar"       representa un gráfico de barras.
-
-
-```r
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram")
-qplot(data=data.espacios.nat, x=Superficie, geom = "density")
-
-qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   # las densidades son superpuestas
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) # los histogramas son apilados y se colorea el borde
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   # los histogramas son apilados y se colorea el interior
-
-
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) # también los gráficos de barras son apilados
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", stat="identity", fill = Isla, position="dodge") 
+```
+## Error: objeto 'canary.fort' no encontrado
 ```
 
 
 ---
 
-## Introducción a la librería ggplot2
+## La librería maptools
 
-Veamos otros ejemplos con estos tipos de objetos geométricos
+Entonces:
 
 
 ```r
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
-qplot(data=data.geo.municipios, x=Superficie, geom = "density")
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia) # los hist. son apilados y se colorea el borde
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia)   # los hist. son apilados y se colorea el interior
-
-# las barras se pueden representar sin apilar  
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
+map <- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+```
 
 ```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+
+map
+```
+
+```
+## Error: objeto 'map' no encontrado
+```
+
+```r
+# map + scale_fill_brewer('Censo hombres total')
+```
+
+
+
+---
+
+## La librería maptools
+
+Podemos representar las comarcas de una isla:
+
+
+```r
+# canary.counties@data[canary.counties@data$CODISLA=='GC',]
+idx <- canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA == 
+    "GC", "IDCOM27"]
+```
+
+```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+canary.fort2 <- canary.fort[idx, ]
+```
+
+```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+
+map <- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+```
+
+```
+## Error: objeto 'canary.fort2' no encontrado
+```
+
+```r
+
+map
+```
+
+```
+## Error: objeto 'map' no encontrado
+```
+
+
+---
+
+## La librería maptools
+
+Podemos representar con ggplot:
+
+
+```r
+canary.fort <- merge(canary.fort, canary.counties@data[, c("IDCOM27", "IDPROV", 
+    "PROV", "CODISLA", "ISLA")], by.x = "id", by.y = "IDCOM27", sort = FALSE)
+```
+
+```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+
+idx <- canary.fort$id %in% canary.counties@data[canary.counties@data$PROV == 
+    "Santa Cruz de Tenerife", "IDCOM27"]
+```
+
+```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+
+canary.fort2 <- canary.fort[idx, ]
+```
+
+```
+## Error: objeto 'canary.fort' no encontrado
+```
+
+```r
+
+map <- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+```
+
+```
+## Error: objeto 'canary.fort2' no encontrado
+```
+
+```r
+
+map + facet_grid(PROV ~ ISLA, scales = "free_x")
+```
+
+```
+## Error: objeto 'map' no encontrado
+```
+
+
+
+
+
 
 

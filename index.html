@@ -51,17 +51,23 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>La librería googleVis</h2>
+    <h2>El entorno de R</h2>
   </hgroup>
   <article data-timings="">
-    <ol class = "build incremental">
-<li>googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.<br></li>
-<li>Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un &quot;upload&quot; de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.<br></li>
-<li>La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.<br>
+    <p>R es un lenguaje de alto nivel y un entorno para la manipulación de datos, cálculo y gráficos.</p>
+
+<ol class = "build incremental">
+<li>Almacenamiento y manipulación efectiva de datos</li>
+<li>Operadores para cálculo sobre variables indexadas y matrices</li>
+<li>Amplia, coherente e integrada colección de herramientas para análisis de
+datos</li>
+<li>Grandes posibilidades gráficas</li>
+<li>Lenguaje de programación orientado a objetos bien desarrollado, simple y efectivo</li>
+<li>Lenguaje interpretado, no compilado. Posibilidad de usar scripts</li>
+<li>Es de código abierto: se distribuye bajo la GPL (General Public License), que no impone ninguna restricción al uso de R (tanto académico como comercial). 
 <br>
-Website : <a href="http://code.google.com/p/google-motion-charts-with-r/">http://code.google.com/p/google-motion-charts-with-r/</a>
-<br>
-Website (blog): <a href="http://www.r-bloggers.com/search/googlevis">http://www.r-bloggers.com/search/googlevis</a><br></li>
+Website: <a href="http://www.r-project.org/">http://www.r-project.org/</a>
+<br></li>
 </ol>
 
   </article>
@@ -85,345 +91,30 @@ Website (blog): <a href="http://www.r-bloggers.com/search/googlevis">http://www.
 
 <slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>La librería googleVis</h2>
+    <h2>¿Por qué R?</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">library(googleVis)
-data.pob.capitales &lt;- data.pob.municipios[data.pob.municipios$Indicador == &quot;Cifras absolutas&quot; &amp; 
-    data.pob.municipios$CodMunicipio %in% c(&quot;ES705&quot;, &quot;ES709&quot;), ]
-motion.capitales &lt;- gvisMotionChart(data.pob.capitales, idvar = &quot;Municipio&quot;, 
-    timevar = &quot;Anio&quot;, options = list(height = 350, width = 400))
-plot(motion.capitales)
-# print(motion.capitales,tag=&#39;chart&#39;)
-</code></pre>
+    <p>Para alumnos:</p>
 
-<!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
+<ol class = "build incremental">
+<li>Dispone de las herramientas clásicas de la estadistica</li>
+<li>Es multiplataforma y gratis</li>
+<li>Ofertas de trabajo</li>
+</ol>
 
-<!-- Fri May 03 22:36:24 2013 -->
+<p>Para investigadores:</p>
 
-<!-- jsHeader -->
+<ol class = "build incremental">
+<li>Desarrollos estadísticos avanzados</li>
+<li>Proliferación de código R en muchos trabajos científicos</li>
+</ol>
 
-<script type="text/javascript">
- 
-// jsData 
-function gvisDataMotionChartID20ec79642003 () {
-  var data = new google.visualization.DataTable();
-  var datajson =
-[
- [
- " GRAN CANARIA",
-2012,
-"2012",
-"ES705",
-"000000",
-"Cifras absolutas",
-852225 
-],
-[
- " GRAN CANARIA",
-2011,
-"2011",
-"ES705",
-"000000",
-"Cifras absolutas",
-850391 
-],
-[
- " GRAN CANARIA",
-2010,
-"2010",
-"ES705",
-"000000",
-"Cifras absolutas",
-845676 
-],
-[
- " GRAN CANARIA",
-2009,
-"2009",
-"ES705",
-"000000",
-"Cifras absolutas",
-838397 
-],
-[
- " GRAN CANARIA",
-2008,
-"2008",
-"ES705",
-"000000",
-"Cifras absolutas",
-829597 
-],
-[
- " GRAN CANARIA",
-2007,
-"2007",
-"ES705",
-"000000",
-"Cifras absolutas",
-815379 
-],
-[
- " GRAN CANARIA",
-2006,
-"2006",
-"ES705",
-"000000",
-"Cifras absolutas",
-807049 
-],
-[
- " GRAN CANARIA",
-2005,
-"2005",
-"ES705",
-"000000",
-"Cifras absolutas",
-802247 
-],
-[
- " GRAN CANARIA",
-2004,
-"2004",
-"ES705",
-"000000",
-"Cifras absolutas",
-790360 
-],
-[
- " GRAN CANARIA",
-2003,
-"2003",
-"ES705",
-"000000",
-"Cifras absolutas",
-789908 
-],
-[
- " GRAN CANARIA",
-2002,
-"2002",
-"ES705",
-"000000",
-"Cifras absolutas",
-771333 
-],
-[
- " GRAN CANARIA",
-2001,
-"2001",
-"ES705",
-"000000",
-"Cifras absolutas",
-755489 
-],
-[
- " GRAN CANARIA",
-2000,
-"2000",
-"ES705",
-"000000",
-"Cifras absolutas",
-741161 
-],
-[
- " TENERIFE",
-2012,
-"2012",
-"ES709",
-"000000",
-"Cifras absolutas",
-898680 
-],
-[
- " TENERIFE",
-2011,
-"2011",
-"ES709",
-"000000",
-"Cifras absolutas",
-908555 
-],
-[
- " TENERIFE",
-2010,
-"2010",
-"ES709",
-"000000",
-"Cifras absolutas",
-906854 
-],
-[
- " TENERIFE",
-2009,
-"2009",
-"ES709",
-"000000",
-"Cifras absolutas",
-899833 
-],
-[
- " TENERIFE",
-2008,
-"2008",
-"ES709",
-"000000",
-"Cifras absolutas",
-886033 
-],
-[
- " TENERIFE",
-2007,
-"2007",
-"ES709",
-"000000",
-"Cifras absolutas",
-865070 
-],
-[
- " TENERIFE",
-2006,
-"2006",
-"ES709",
-"000000",
-"Cifras absolutas",
-852945 
-],
-[
- " TENERIFE",
-2005,
-"2005",
-"ES709",
-"000000",
-"Cifras absolutas",
-838877 
-],
-[
- " TENERIFE",
-2004,
-"2004",
-"ES709",
-"000000",
-"Cifras absolutas",
-812839 
-],
-[
- " TENERIFE",
-2003,
-"2003",
-"ES709",
-"000000",
-"Cifras absolutas",
-799889 
-],
-[
- " TENERIFE",
-2002,
-"2002",
-"ES709",
-"000000",
-"Cifras absolutas",
-778071 
-],
-[
- " TENERIFE",
-2001,
-"2001",
-"ES709",
-"000000",
-"Cifras absolutas",
-744076 
-],
-[
- " TENERIFE",
-2000,
-"2000",
-"ES709",
-"000000",
-"Cifras absolutas",
-709365 
-] 
-];
-data.addColumn('string','Municipio');
-data.addColumn('number','Anio');
-data.addColumn('string','CodAnio');
-data.addColumn('string','CodMunicipio');
-data.addColumn('string','CodIndicador');
-data.addColumn('string','Indicador');
-data.addColumn('number','Valor');
-data.addRows(datajson);
-return(data);
-}
- 
-// jsDrawChart
-function drawChartMotionChartID20ec79642003() {
-  var data = gvisDataMotionChartID20ec79642003();
-  var options = {};
-options["width"] =    350;
-options["height"] =    250;
+<p>Para universidades:</p>
 
-     var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID20ec79642003')
-     );
-     chart.draw(data,options);
-    
-
-}
-  
- 
-// jsDisplayChart
-(function() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  var chartid = "motionchart";
-
-  // Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
-  var i, newPackage = true;
-  for (i = 0; newPackage && i < pkgs.length; i++) {
-    if (pkgs[i] === chartid)
-      newPackage = false;
-  }
-  if (newPackage)
-    pkgs.push(chartid);
-
-  // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID20ec79642003);
-})();
-function displayChartMotionChartID20ec79642003() {
-  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
-  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
-  window.clearTimeout(window.__gvisLoad);
-  // The timeout is set to 100 because otherwise the container div we are
-  // targeting might not be part of the document yet
-  window.__gvisLoad = setTimeout(function() {
-    var pkgCount = pkgs.length;
-    google.load("visualization", "1", { packages:pkgs, callback: function() {
-      if (pkgCount != pkgs.length) {
-        // Race condition where another setTimeout call snuck in after us; if
-        // that call added a package, we must not shift its callback
-        return;
-      }
-      while (callbacks.length > 0)
-        callbacks.shift()();
-    } });
-  }, 100);
-}
- 
-// jsFooter
- </script>
- 
-
-<!-- jsChart -->  
-
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID20ec79642003"></script>
- 
-
-<!-- divChart -->
-
-<div id="MotionChartID20ec79642003"
-  style="width: 350px; height: 250px;">
-</div>
+<ol class = "build incremental">
+<li>Ahorro de licencias campus de software propietario (SPSS)</li>
+<li>Implica menos problemas de soporte técnico</li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -446,14 +137,23 @@ function displayChartMotionChartID20ec79642003() {
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>La librería googleVis</h2>
+    <h2>Ventajas de R</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r"># create gagdet
-cat(createGoogleGadget(motion.capitales), file = &quot;motionchart.xml&quot;)
-# se sube el gadget a algún repositorio y se vincula en alguna página
-# https://sites.google.com/site/cpgonzal/
-</code></pre>
+    <ol class = "build incremental">
+<li>Posibilidad de combinar análisis &quot;empaquetados&quot; en librerías con desarrollos propios &quot;ad-hoc&quot;</li>
+<li>Gráficos de alta calidad exportables a distintos formatos</li>
+<li>Consume pocos recursos informáticos</li>
+<li>Puede ejecutarse remotamente y conectarse con otros programa (llamar a librerías de R desde PROC IML)</li>
+</ol>
+
+<h2>Desventajas de R</h2>
+
+<ol class = "build incremental">
+<li><p>Interfaz gráfica limitada (aunque se dispone de varios GUI que suplen esta deficiencia desde el punto de vista docente)</p></li>
+<li><p>No hay soporte comercial </p></li>
+<li><p>El lenguaje de comandos es un lenguaje de programación</p></li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -476,20 +176,20 @@ cat(createGoogleGadget(motion.capitales), file = &quot;motionchart.xml&quot;)
 
 <slide class="" id="slide-4" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Estructura de un sistema R</h2>
   </hgroup>
   <article data-timings="">
-    <ol class = "build incremental">
-<li>Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. </li>
-<li>En particular, permite cargar archivos ESRI shapefiles (.shp).</li>
-<li>Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
-<br>
-Website (blog): <a href="http://rspatialtips.org.uk/">http://rspatialtips.org.uk/</a>
-<br>
-Tutorial: <a href="https://dl.dropbox.com/u/9577903/broomspatial.pdf">https://dl.dropbox.com/u/9577903/broomspatial.pdf</a></li>
-</ol>
+    <p>R consta de un sistema base (instalación primaria) pero se pueden extender las funcionalidades mediante librerías o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:</p>
 
-  </article>
+<p>mva: Classical multivariate analysis</p>
+
+<p>maptools: Herramientas para el manejo de objetos geoespaciales</p>
+
+<p>googleVis: Librería que sirve de interfaz entre R y Google chart tools</p>
+
+<p class='...</p>
+
+ '></article>
   <!-- Presenter Notes -->
 <footer>
   <div id="pie_datos">
@@ -510,17 +210,18 @@ Tutorial: <a href="https://dl.dropbox.com/u/9577903/broomspatial.pdf">https://dl
 
 <slide class="" id="slide-5" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Sesión de R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Cargamos los archivos de las 27 comarcas de canarias:</p>
+    <p>Se puede iniciar una sesión de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows). </p>
 
-<pre><code class="r">library(maptools)
-canary.counties &lt;- readShapeLines(fn = &quot;ISTAC_comarcas27_R.shp&quot;)
-plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
-</code></pre>
+<p>La interfaz de R para windows proporciona un menú muy básico para gestionar algunos aspectos de sesión de R:</p>
 
-<p><img src="figure/loadmap03.png" alt="plot of chunk loadmap03"> </p>
+<ol class = "build incremental">
+<li>El histórico de comandos (.Rhistory)</li>
+<li>El espacio de trabajo de la sesión (.RData)</li>
+<li>La instalación de librerías desde un repositorio CRAN</li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -543,16 +244,38 @@ plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
 
 <slide class="" id="slide-6" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Uso básico de R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Vamos a cargar el mapa en forma de polígonos (Poly Shape):</p>
+    <style>
+pre {
+  margin-bottom: -10px;
+}
+</style>
 
-<pre><code class="r">canary.counties &lt;- readShapePoly(fn = &quot;ISTAC_comarcas27_R.shp&quot;)
-plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
+<pre><code class="r">(4 - 3) * 2/3
 </code></pre>
 
-<p><img src="figure/loadmap06.png" alt="plot of chunk loadmap06"> </p>
+<pre><code>## [1] 0.6667
+</code></pre>
+
+<pre><code class="r">sqrt(9)
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<pre><code class="r">sin(pi/2)
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<pre><code class="r">factorial(3)
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -575,25 +298,37 @@ plot(canary.counties, axes = TRUE, col = &quot;red&quot;)
 
 <slide class="" id="slide-7" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Uso básico de R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Para examinar el objeto canary.counties que hemos cargado:</p>
-
-<pre><code class="r">canary.counties
-summary(canary.counties)
-
-slotNames(canary.counties)
-canary.counties@data
-canary.counties@polygons[[1]]
+    <pre><code class="r">1/0
 </code></pre>
 
-<p>Observamos que los ejes representados no corresponden a las escalas de latitud y longitud de un mapa:</p>
+<pre><code>## [1] Inf
+</code></pre>
 
-<pre><code class="r">print(proj4string(canary.counties))
-proj4string(canary.counties) &lt;- &quot;+proj=longlat +datum=WGS84&quot;
-print(proj4string(canary.counties))
-plot(canary.counties, axes = TRUE)
+<pre><code class="r">0/0
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">log(-1)
+</code></pre>
+
+<pre><code>## Warning: Se han producido NaNs
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">sqrt(-9)
+</code></pre>
+
+<pre><code>## Warning: Se han producido NaNs
+</code></pre>
+
+<pre><code>## [1] NaN
 </code></pre>
 
   </article>
@@ -617,10 +352,24 @@ plot(canary.counties, axes = TRUE)
 
 <slide class="" id="slide-8" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Almacenar resultados en variables</h2>
   </hgroup>
   <article data-timings="">
-    <p>Representar una variable en un mapa es algo que se puede hacer de múltiples formas. Por ejemplo:</p>
+    <p>El operador de asignación (&lt;-) permite almacenar valores:</p>
+
+<pre><code class="r">a &lt;- log(10)
+a &lt;- log(10)
+a = log(10)  #¿cual usar: = o &lt;-?
+a &lt;- rnorm(4, mean = 10, sd = 1)  # en R se utiliza = para asignar valores a los argumentos de las funciones
+</code></pre>
+
+<p>Al introducir los comandos anteriores, hemos creado un objeto en R: la variable &quot;a&quot;. Este objeto se almacena en una zona de memoria llamada &quot;espacio de trabajo&quot;.</p>
+
+<pre><code class="r">ls()
+</code></pre>
+
+<pre><code>## [1] &quot;a&quot;
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -646,7 +395,60 @@ plot(canary.counties, axes = TRUE)
     <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>Para representar una variable en un mapa, lo más común es asociar al slot &quot;data&quot; los valores de la variable utilizando el comando merge(). Por ejemplo:</p>
+
+<pre><code class="r">censal.hombres &lt;- data.comarcas.censal[data.comarcas.censal$sexo == &quot;men&quot;, ]
+</code></pre>
+
+<pre><code>## Error: objeto &#39;data.comarcas.censal&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">canary.tmp &lt;- merge(canary.counties@data, censal.hombres, by.x = &quot;CODCOM&quot;, by.y = &quot;comarca&quot;, 
+    sort = FALSE)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">canary.counties@data$sexoH &lt;- canary.tmp$sexo
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.tmp&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">canary.counties@data$censoH &lt;- canary.tmp$censo
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.tmp&#39; no encontrado
+</code></pre>
+
+<p>Tambien se puede utilizar el comando match(). Por ejemplo:</p>
+
+<pre><code class="r">censal.mujeres &lt;- data.comarcas.censal[data.comarcas.censal$sexo == &quot;women&quot;, 
+    ]
+</code></pre>
+
+<pre><code>## Error: objeto &#39;data.comarcas.censal&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">idx &lt;- match(canary.counties@data$CODCOM, censal.mujeres$comarca)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">canary.counties@data$sexoM &lt;- censal.mujeres$sexo[idx]
+</code></pre>
+
+<pre><code>## Error: objeto &#39;censal.mujeres&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">canary.counties@data$censoM &lt;- censal.mujeres$censo[idx]
+</code></pre>
+
+<pre><code>## Error: objeto &#39;censal.mujeres&#39; no encontrado
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 <footer>
@@ -671,7 +473,34 @@ plot(canary.counties, axes = TRUE)
     <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    
+    <p>Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();</p>
+
+<pre><code class="r">library(classInt)
+library(RColorBrewer)
+n = 7
+# obtener una paleta de 7 colores
+pal &lt;- brewer.pal(n, &quot;Blues&quot;)
+# obtener intervalos de clase para 7 colores
+int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;jenks&quot;)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">
+p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = &quot;black&quot;)
+</code></pre>
+
+<pre><code>## Error: no se pudo encontrar la función &quot;spplot&quot;
+</code></pre>
+
+<pre><code class="r">p
+</code></pre>
+
+<pre><code>## Error: objeto &#39;p&#39; no encontrado
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 <footer>
@@ -693,22 +522,27 @@ plot(canary.counties, axes = TRUE)
 
 <slide class="" id="slide-11" style="background:;">
   <hgroup>
-    <h2>La librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <ol class = "build incremental">
-<li>Es un paquete que permite generar gráficos estadísticos.</li>
-<li>Se diferencia de otras librerías en el aspecto de controlar una gran número de componentes gráficos (&quot;gramática de gráficos&quot;).</li>
-<li>Los gráficos se pueden construir añadiéndole sucesivamente más atributos o capas (&quot;layers&quot;).<br>
-<br>
-Libro: <cite>H.Wickham (2009). ggplot2: Elegant Graphics for Data Analysis
-123, Use R!, Springer</cite>
-<br>
-Website: <a href="http://had.co.nz/ggplot2">http://had.co.nz/ggplot2</a>
-<br>
-Tutorial: 
-<a href="http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf">http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf</a></li>
-</ol>
+    <p>La comarca con menor valor del censo se puede quedar de color blanco: </p>
+
+<pre><code class="r"># corrección del primer color de la escala
+int$brks[1] &lt;- 1000
+# comprobar el orden de representación
+canary.counties@data[order(canary.counties@data$censoH), ]
+</code></pre>
+
+<p>Podemos utilizar otras paletas:</p>
+
+<pre><code class="r"># Paletas
+
+# display.brewer.pal(n, &#39;Blues&#39;)
+pie(rep(1, n), col = brewer.pal(n, &quot;Blues&quot;))
+pie(rep(1, n), col = brewer.pal(n, &quot;YlOrRd&quot;))
+pie(rep(1, n), col = heat.colors(n))
+pie(rep(1, n), col = terrain.colors(n))
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -731,30 +565,22 @@ Tutorial:
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    
-<div class='left' style='float:left;width:50%'>
- <pre><code class="r">#cargar la librería 
-library(ggplot2)
-#un gráfico sencillo
-qplot(data=data.geo.municipios, x=Isla,   
-      main=&quot;Municipios por isla&quot;)
+    <pre><code class="r">pal &lt;- heat.colors(n)
+p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = signif(int$brks, 
+    digits = 2), lwd = 0.4, col = &quot;black&quot;)
 </code></pre>
 
-<p><img src="figure/plot01.png" alt="plot of chunk plot01"> </p>
+<pre><code>## Error: no se pudo encontrar la función &quot;spplot&quot;
+</code></pre>
 
-</div>    
-<div class='right' style='float:right;width:50%'>
- <p>Los comandos gráficos disponibles en ggplot2 son:</p>
+<pre><code class="r">p
+</code></pre>
 
-<ul>
-<li>qplot() - para &quot;quick plots&quot; </li>
-<li>ggplot() - para mejor ajuste y control de todo</li>
-</ul>
-
-</div>
+<pre><code>## Error: objeto &#39;p&#39; no encontrado
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -777,21 +603,28 @@ qplot(data=data.geo.municipios, x=Isla,
 
 <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <p>Veamos algunos ejemplos:</p>
+    <p>Se pueden utilizar otros métodos para los intervalos de clase:</p>
 
-<pre><code class="r">qplot(data=data.geo.municipios,x=Superficie,main=&quot;Histograma de superficie&quot;,binwidth=50)
+<pre><code class="r"># Intervalos de clase
+int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;quantile&quot;)
+</code></pre>
 
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;)
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
 
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;, 
-xlab=&quot;Superficie de la isla&quot;, ylab=&quot;Altitud de la isla&quot;)
+<pre><code class="r">int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;pretty&quot;)
+</code></pre>
 
-qplot(data=data.geo.islas,x=Superficie,y=Altitud, main=&quot;Gráfico de superficie vs. altitud&quot;, 
-xlab=&quot;Superficie de la isla&quot;, ylab=&quot;Altitud de la isla&quot;,
-xlim=c(0,2500),ylim=c(0,1500))
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;jenks&quot;)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
 </code></pre>
 
   </article>
@@ -815,46 +648,25 @@ xlim=c(0,2500),ylim=c(0,1500))
 
 <slide class="" id="slide-14" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    
-<div class='left' style='float:left;width:45%'>
- <h3>Color, tamaño, forma (aspectos estéticos)</h3>
+    <p>Podemos utilizar otros métodos de representación, plot() + legend():</p>
 
-<p>Con el comando clásico plot(), si queremos representar  variables categóricas (e.g. una variable de tipo sexo, &quot;Hombre&quot;,&quot;Mujer&quot;) con colores, debemos realizar nosotros mismos la 
-correspondencia entre categoría y color.</p>
-
-<p>En qplot() se puede especificar varios argumentos: colour, size, shape </p>
-
-</div>    
-<div class='right' style='float:right;width:50%'>
- <!--- #### la vida en color
--->
-
-<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, colour = Isla,
-main=&quot;Gráfico de superficie vs. altitud&quot;, 
-xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) 
+<pre><code class="r"># Representaciones alternativas
+plot(canary.counties, col = pal[findInterval(canary.counties@data$censoH, int$brks, 
+    all.inside = TRUE)], axes = TRUE)
 </code></pre>
 
-<!--- #### el tamaño sí importa
--->
-
-<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, size = Isla,
-main=&quot;Gráfico de superficie vs. altitud&quot;, 
-xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) 
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
 </code></pre>
 
-<!--- #### sin perder las formas
--->
-
-<pre><code class="r">qplot(data=data.geo.islas,x=Superficie,y=Altitud, shape = Isla,
-main=&quot;Gráfico de superficie vs. altitud&quot;, 
-xlab=&quot;Superficie&quot;, ylab=&quot;Altitud&quot;) +
-scale_shape_manual(values=1:7)
+<pre><code class="r">legend(x = -18, y = 30.5, legend = leglabs(round(int$brks)), cex = 0.9, fill = pal, 
+    bty = &quot;n&quot;, x.intersp = 0.5)
 </code></pre>
 
-</div>
+<pre><code>## Error: no se pudo encontrar la función &quot;leglabs&quot;
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -877,25 +689,24 @@ scale_shape_manual(values=1:7)
 
 <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <h3>Objetos geométricos</h3>
+    <p>Otros métodos de representación, fortify()+ggplot2():</p>
 
-<p>qplot no está limitado a gráficos de dispersión (scatterplot), 
-sino que puede producir casi cualquier tipo de gráfico variando 
-el argumento geom.</p>
+<pre><code class="r"># Otra mas
+library(ggplot2)
 
-<ul>
-<li>geom = &quot;point&quot; representa puntos para producir un scatterplot. Esta es la opción por 
-defecto cuando se pasan argumentos x e y a qplot().</li>
-<li>geom = &quot;boxplot&quot; produce un gráfico box-and-whisker plot de resumen de la distribución
-de un conjunto de puntos.</li>
-<li>geom = &quot;smooth&quot; ajusta una curva suavizada a los datos (smoother) y su
-error estándar. Esta opción se combina con un argumento method %in% c(&quot;loess&quot;,&quot;gam&quot;,&quot;lm&quot;,&quot;rlm&quot;)
-(ver <a href="http://docs.ggplot2.org/0.9.3/stat_smooth.html">http://docs.ggplot2.org/0.9.3/stat_smooth.html</a>)</li>
-<li>geom = &quot;path&quot; and geom = &quot;line&quot; representa lineas entre los puntos.</li>
-</ul>
+# convertir el objeto &#39;SpatialPolygons&#39; en data.frame
+canary.fort &lt;- fortify(canary.counties, region = &quot;IDCOM27&quot;)
+head(canary.fort)
+
+canary.fort &lt;- merge(canary.fort, canary.counties@data[, c(&quot;IDCOM27&quot;, &quot;censoH&quot;)], 
+    by.x = &quot;id&quot;, by.y = &quot;IDCOM27&quot;, sort = FALSE)
+
+ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour = &quot;black&quot;, 
+    fill = &quot;white&quot;)
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -918,25 +729,28 @@ error estándar. Esta opción se combina con un argumento method %in% c(&quot;lo
 
 <slide class="" id="slide-16" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <p>Vemos algunos ejemplos:</p>
+    <p>Entonces:</p>
 
-<pre><code class="r">qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;point&quot;)
+<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+</code></pre>
 
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;boxplot&quot;, colour = Isla)    # cuidado con el tipo de variables
-qplot(data=data.geo.municipios,x=Isla,y=Altitud, geom = &quot;boxplot&quot;)
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
 
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;smooth&quot;, method=&quot;loess&quot;)
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = c(&quot;point&quot;, &quot;smooth&quot;), method=&quot;lm&quot;)
+<pre><code class="r">map &lt;- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH)) + 
+    geom_polygon() + geom_path(color = &quot;white&quot;)
+</code></pre>
 
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;path&quot;)
-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = &quot;line&quot;)
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
 
-qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;)
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;)
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
+<pre><code class="r">map
+</code></pre>
+
+<pre><code>## Error: objeto &#39;map&#39; no encontrado
 </code></pre>
 
   </article>
@@ -960,27 +774,18 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
 
 <slide class="" id="slide-17" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <h3>Comprensión de la gramática de capas</h3>
+    <p>Otras variantes con ggplot2():</p>
 
-<ul>
-<li><p>Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de 
-los gráficos por capas (gramática de capas) mediante ggplot(). </p></li>
-<li><p>El qplot recorta bastantes detalles de ggplot() a pesar que permite una sintaxis 
-más familiar y cercana al plot().</p></li>
-<li><p>Con ggplot(), sin embargo, es posible incorporar a un gráfico diferentes niveles de detalle
-mediante sucesivas capas (layers).</p>
+<pre><code class="r">map + scale_fill_gradient(low = &quot;white&quot;, high = &quot;black&quot;)
 
-<pre><code>                ggplot(data, mapping) +
-                layer( 
-                      geom = &quot;&quot;,  
-                      stat = &quot;&quot;,  
-                      position = &quot;&quot;, ....  
-                     )
-</code></pre></li>
-</ul>
+map + scale_fill_gradient(name = &quot;censo&quot;, breaks = c(10000, 50000, 90000))
+
+map + scale_fill_gradientn(colours = brewer.pal(7, &quot;Blues&quot;), limits = c(1000, 
+    1e+05))
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -1003,66 +808,21 @@ mediante sucesivas capas (layers).</p>
 
 <slide class="" id="slide-18" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <h3>Algunos objetos geométricos en ggplot2</h3>
+    <p>Podemos utilizar escalas discretas en el gráfico:</p>
 
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>abline</td>
-<td>Line, specified by slope and intercept</td>
-</tr>
-<tr>
-<td>area</td>
-<td>Area plots</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>Bars, rectangles with bases on y-axis</td>
-</tr>
-<tr>
-<td>boxplot</td>
-<td>Box-and-whisker plot</td>
-</tr>
-<tr>
-<td>contour</td>
-<td>Display contours of a 3d surface in 2d</td>
-</tr>
-<tr>
-<td>errorbar</td>
-<td>Error bars</td>
-</tr>
-<tr>
-<td>histogram</td>
-<td>Histogram</td>
-</tr>
-<tr>
-<td>line</td>
-<td>Connect observations, in order of x value</td>
-</tr>
-<tr>
-<td>point</td>
-<td>Points, as for a scatterplot</td>
-</tr>
-<tr>
-<td>polygon</td>
-<td>Polygon, a filled path</td>
-</tr>
-<tr>
-<td>step</td>
-<td>Connect observations by stairs</td>
-</tr>
-<tr>
-<td>text</td>
-<td>Textual annotations</td>
-</tr>
-</tbody></table>
+<pre><code class="r">canary.fort$censoH.discreto &lt;- cut(canary.fort$censoH, breaks = c(1000, 3000, 
+    6000, 9000, 12000, 15000, 18000, 21000, Inf), labels = c(&quot;1000-3000&quot;, &quot;3000-6000&quot;, 
+    &quot;6000-9000&quot;, &quot;9000-12000&quot;, &quot;12000-15000&quot;, &quot;15000-18000&quot;, &quot;18000-21000&quot;, 
+    &quot;&gt;21000&quot;), include.lowest = TRUE)
+
+head(canary.fort)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -1085,66 +845,27 @@ mediante sucesivas capas (layers).</p>
 
 <slide class="" id="slide-19" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <h3>Algunas transformaciones estadísticas en ggplot2</h3>
+    <p>Entonces:</p>
 
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bin</td>
-<td>Bin data</td>
-</tr>
-<tr>
-<td>boxplot</td>
-<td>Calculate components of box-and-whisker plot</td>
-</tr>
-<tr>
-<td>contour</td>
-<td>Contours of 3d data</td>
-</tr>
-<tr>
-<td>density</td>
-<td>Density estimation</td>
-</tr>
-<tr>
-<td>function</td>
-<td>Superimpose a function</td>
-</tr>
-<tr>
-<td>identity</td>
-<td>Don’t transform data</td>
-</tr>
-<tr>
-<td>quantile</td>
-<td>Continuous quantiles</td>
-</tr>
-<tr>
-<td>smooth</td>
-<td>Add a smoother</td>
-</tr>
-<tr>
-<td>step</td>
-<td>Create stair steps</td>
-</tr>
-<tr>
-<td>sum</td>
-<td>Sum unique values. Useful for overplotting on scatterplots</td>
-</tr>
-<tr>
-<td>summary</td>
-<td>Summarise y values at every unique x</td>
-</tr>
-<tr>
-<td>unique</td>
-<td>Remove duplicates</td>
-</tr>
-</tbody></table>
+<pre><code class="r">map &lt;- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = &quot;white&quot;)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">
+map
+</code></pre>
+
+<pre><code>## Error: objeto &#39;map&#39; no encontrado
+</code></pre>
+
+<pre><code class="r"># map + scale_fill_brewer(&#39;Censo hombres total&#39;)
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -1167,22 +888,38 @@ mediante sucesivas capas (layers).</p>
 
 <slide class="" id="slide-20" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <p>Un scatterplot:</p>
+    <p>Podemos representar las comarcas de una isla:</p>
 
-<pre><code class="r">ejemplo1&lt;-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, colour = Isla)
+<pre><code class="r"># canary.counties@data[canary.counties@data$CODISLA==&#39;GC&#39;,]
+idx &lt;- canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA == 
+    &quot;GC&quot;, &quot;IDCOM27&quot;]
 </code></pre>
 
-<p>se compone de (<a href="http://docs.ggplot2.org/current/index.html):">http://docs.ggplot2.org/current/index.html):</a> </p>
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
 
-<ul>
-<li><p>Un conjunto de datos por defecto (data).</p></li>
-<li><p>Una asignación de variables del conjunto de datos a atributos gráficos (aesthetics).</p></li>
-</ul>
+<pre><code class="r">canary.fort2 &lt;- canary.fort[idx, ]
+</code></pre>
 
-<pre><code class="r">  ejemplo1&lt;-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">
+map &lt;- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = &quot;white&quot;)
+</code></pre>
+
+<pre><code>## Error: objeto &#39;canary.fort2&#39; no encontrado
+</code></pre>
+
+<pre><code class="r">
+map
+</code></pre>
+
+<pre><code>## Error: objeto &#39;map&#39; no encontrado
 </code></pre>
 
   </article>
@@ -1206,629 +943,46 @@ mediante sucesivas capas (layers).</p>
 
 <slide class="" id="slide-21" style="background:;">
   <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
+    <h2>La librería maptools</h2>
   </hgroup>
   <article data-timings="">
-    <p>Y de las siguientes capas o layers:</p>
+    <p>Podemos representar con ggplot:</p>
 
-<ul>
-<li>El tipo de objeto geométrico (punto, línea, barra, ...) utilizado para la representación (geom). </li>
-</ul>
-
-<pre><code class="r">  ejemplo1 + layer(geom=&quot;point&quot;)  # o tambien: ejemplo1 + geom_point() 
+<pre><code class="r">canary.fort &lt;- merge(canary.fort, canary.counties@data[, c(&quot;IDCOM27&quot;, &quot;IDPROV&quot;, 
+    &quot;PROV&quot;, &quot;CODISLA&quot;, &quot;ISLA&quot;)], by.x = &quot;id&quot;, by.y = &quot;IDCOM27&quot;, sort = FALSE)
 </code></pre>
 
-<ul>
-<li>Una transformación estadística (suma, densidad, boxplot,..) de los datos (stat).</li>
-</ul>
-
-<pre><code class="r">  ejemplo1 + layer(geom=&quot;point&quot;, stat=&quot;identity&quot; ) # o tambien: ejemplo1 + geom_point(stat=&quot;identity&quot;)  
-# o tambien: ejemplo1 + geom_point()  
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display:block; margin:auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-22" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Además, se puede</p>
-
-<ul>
-<li>Controlar cómo se asignan las variables del conjunto de datos a los atributos aesthetics (scales). 
-Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar según el valor de las variables. </li>
-</ul>
-
-<pre><code class="r">  ejemplo1&lt;-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
-
-  ejemplo1 + geom_point(mapping=aes(shape=Provincia) ) + scale_shape(solid = FALSE)  # cambiar la forma
-
-  ejemplo1 + geom_point(mapping=aes(size=Provincia) ) + scale_size_discrete(range = c(2, 4) ) # cambiar el tamaño
+<pre><code class="r">
+idx &lt;- canary.fort$id %in% canary.counties@data[canary.counties@data$PROV == 
+    &quot;Santa Cruz de Tenerife&quot;, &quot;IDCOM27&quot;]
 </code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-23" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Además, se puede</p>
-
-<ul>
-<li>Cambiar el sistema de representación de coordenadas (coord)</li>
-</ul>
-
-<pre><code class="r">  ejemplo1 + geom_point() + coord_polar()
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
 </code></pre>
 
-<ul>
-<li>Especificar la visualización de subconjuntos de los datos en diferentes paneles (facet)</li>
-</ul>
-
-<pre><code class="r">  ejemplo1 + geom_point() + facet_grid(. ~ Provincia)
+<pre><code class="r">
+canary.fort2 &lt;- canary.fort[idx, ]
 </code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-24" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Un diagrama de barras:</p>
-
-<pre><code class="r">ejemplo2&lt;-qplot(data=data.geo.municipios,x=Provincia, geom = &quot;bar&quot;, fill = Isla)
+<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
 </code></pre>
 
-<ul>
-<li>La asignación o mapping de variables (atributos aesthetics):</li>
-</ul>
-
-<pre><code class="r">  ejemplo2&lt;-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia, fill=Isla))
+<pre><code class="r">
+map &lt;- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = &quot;white&quot;)
 </code></pre>
 
-<ul>
-<li>El tipo de objeto geom: </li>
-</ul>
-
-<pre><code class="r">  ejemplo2 + layer(geom=&quot;bar&quot;)    # o tambien: ejemplo2 + geom_bar()  
+<pre><code>## Error: objeto &#39;canary.fort2&#39; no encontrado
 </code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-25" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>La transformación estadística stat:</li>
-</ul>
-
-<pre><code class="r">  ejemplo2 + layer(geom=&quot;bar&quot;, stat=&quot;bin&quot; )  
-  # o tambien:  ejemplo2 + geom_bar(stat=&quot;bin&quot;)  
-  # o tambien: ejemplo2 + geom_bar()
+<pre><code class="r">
+map + facet_grid(PROV ~ ISLA, scales = &quot;free_x&quot;)
 </code></pre>
 
-<ul>
-<li>El ajuste de posición en el gráfico (position):<br></li>
-</ul>
-
-<pre><code class="r">  ejemplo2 + layer(geom=&quot;bar&quot;, stat=&quot;bin&quot;, position=&quot;dodge&quot;)  
-  # o tambien:  ejemplo2 + geom_bar(position=position_dodge() )   
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-26" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Algunos ejemplos mas (densidad e histograma):</p>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Superficie, geom = &quot;density&quot;, colour = Isla)   
-# las densidades son superpuestas
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_density()
-</code></pre>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, colour = Isla) 
-# los histogramas son apilados y se colorea el borde
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_histogram()
-</code></pre>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, fill = Isla)   
-# los histogramas son apilados y se colorea el interior
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histogram()
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-27" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Algunos ejemplos mas (gráficos de barras):</p>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla) 
-# también los gráficos de barras son apilados
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar(position=position_dodge() )
-
-</code></pre>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla, position=&quot;dodge&quot;) 
-# barras colocadas unas al lado de otras
-
-ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar()
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-28" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Algunos ejemplos mas:</p>
-
-<pre><code class="r">qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;)
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia)) +geom_bar()
-</code></pre>
-
-<pre><code class="r">qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;, fill = Isla)
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar()
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-29" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Algunos ejemplos mas:</p>
-
-<pre><code class="r">qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;)
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_histogram()
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_density()
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;, colour = Provincia)   # las densidades son superpuestas
-
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) +geom_density()
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-30" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Algunos ejemplos mas:</p>
-
-<pre><code class="r">qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, colour = Provincia)  
-# los histogramas son apilados y se colorea el borde
-
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia)  
-# los histogramas son apilados y se colorea el interior
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia, position=&quot;dodge&quot;)  
-# las barras se pueden representar sin apilar
-
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-31" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-32" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>#cargar la librería </p>
-
-<pre><code class="r">library(ggplot2)
-</code></pre>
-
-<p>#cargar los datos utilizando read.table (en local)</p>
-
-<pre><code class="r">setwd(&quot;D:\\Mis documentos\\Presentaciones\\CursoR\\data&quot;)
-data.espacios.nat &lt;- read.table(file = &quot;superficie_espacios_naturales.txt&quot;, 
-    header = T, sep = &quot;;&quot;)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="class1" id="id1" style="background:;">
-  <hgroup>
-    <h2>Slide 2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Slide Contents</p>
-
-<pre><code class="r">x &lt;- 1 + 1 + 3
-x
-</code></pre>
-
-<pre><code>## [1] 5
-</code></pre>
-
-<pre><code class="r">rnorm(5)
-</code></pre>
-
-<pre><code>## [1]  0.61435  1.39632 -1.80427 -0.03752 -0.20422
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-34" style="background:;">
-  <hgroup>
-    <h2>Widgets: jQuery-Quiz</h2>
-  </hgroup>
-  <article data-timings="">
-    
-<div class="quiz quiz-single well ">
-  <p>This is a multiple choice question</p>
-
-<ol>
-<li>Choice 1</li>
-<li><code>Choice 2</code></li>
-<li><em>Choice 3 (correct)</em></li>
-<li>Choice 4</li>
-</ol>
-
-  <button class="quiz-submit btn btn-primary">Submit</button>
-  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
-  <button class="quiz-show-answer btn btn-success">Show Answer</button>
-  <button class="quiz-clear btn btn-danger">Clear</button>
-  
-  <div class="quiz-hint">
-  <p>This is a hint</p>
-
-</div>
-<div class="quiz-explanation">
-  <p>This is the explanation</p>
-
-<h2>La librería ggplot2</h2>
-
-<p class='.ul:'>build</p>
-
-<ul>
-<li>Point 1</li>
-<li>Point 2</li>
-<li>Point 3</li>
-</ul>
-
-</div>
-</div>
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-35" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Otros argumentos de geom para gráficos 1D (de una variable) son:</p>
-
-<ul>
-<li>geom = &quot;histogram&quot; representa un histograma.</li>
-<li>geom = &quot;density&quot;   representa un gráfico de densidad.</li>
-<li>geom = &quot;bar&quot;       representa un gráfico de barras.</li>
-</ul>
-
-<pre><code class="r">qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;)
-qplot(data=data.espacios.nat, x=Superficie, geom = &quot;density&quot;)
-
-qplot(data=data.espacios.nat, x=Superficie, geom = &quot;density&quot;, colour = Isla)   # las densidades son superpuestas
-qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, colour = Isla) # los histogramas son apilados y se colorea el borde
-qplot(data=data.espacios.nat, x=Superficie, geom = &quot;histogram&quot;, fill = Isla)   # los histogramas son apilados y se colorea el interior
-
-
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla) # también los gráficos de barras son apilados
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, fill = Isla, position=&quot;dodge&quot;) 
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = &quot;bar&quot;, stat=&quot;identity&quot;, fill = Isla, position=&quot;dodge&quot;) 
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-<footer>
-  <div id="pie_datos">
-  	<div id="pie_datos_interior">
-			<ul>
-				<li class="pie_datos_logo1">
-					<a title="Fundación General de la Universidad de La Laguna">
-						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
-					</a></li>
-				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
-         
-         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-</slide>
-
-<slide class="" id="slide-36" style="background:;">
-  <hgroup>
-    <h2>Introducción a la librería ggplot2</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>Veamos otros ejemplos con estos tipos de objetos geométricos</p>
-
-<pre><code class="r">qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;)
-qplot(data=data.geo.municipios, x=Provincia, geom = &quot;bar&quot;, fill = Isla)
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;)
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;)
-
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;density&quot;, colour = Provincia)   # las densidades son superpuestas
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, colour = Provincia) # los hist. son apilados y se colorea el borde
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia)   # los hist. son apilados y se colorea el interior
-
-# las barras se pueden representar sin apilar  
-qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill = Provincia, position=&quot;dodge&quot;)  
-
+<pre><code>## Error: objeto &#39;map&#39; no encontrado
 </code></pre>
 
   </article>
@@ -1856,49 +1010,49 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='La librería googleVis'>
+        data-slide=1 title='El entorno de R'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='La librería googleVis'>
+        data-slide=2 title='¿Por qué R?'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='La librería googleVis'>
+        data-slide=3 title='Ventajas de R'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='La librería maptools'>
+        data-slide=4 title='Estructura de un sistema R'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='La librería maptools'>
+        data-slide=5 title='Sesión de R'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='La librería maptools'>
+        data-slide=6 title='Uso básico de R'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='La librería maptools'>
+        data-slide=7 title='Uso básico de R'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='La librería maptools'>
+        data-slide=8 title='Almacenar resultados en variables'>
          8
       </a>
     </li>
@@ -1916,158 +1070,68 @@ qplot(data=data.geo.municipios, x=Superficie, geom = &quot;histogram&quot;, fill
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='La librería ggplot2'>
+        data-slide=11 title='La librería maptools'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Introducción a la librería ggplot2'>
+        data-slide=12 title='La librería maptools'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Introducción a la librería ggplot2'>
+        data-slide=13 title='La librería maptools'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Introducción a la librería ggplot2'>
+        data-slide=14 title='La librería maptools'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Introducción a la librería ggplot2'>
+        data-slide=15 title='La librería maptools'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Introducción a la librería ggplot2'>
+        data-slide=16 title='La librería maptools'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Introducción a la librería ggplot2'>
+        data-slide=17 title='La librería maptools'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Introducción a la librería ggplot2'>
+        data-slide=18 title='La librería maptools'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Introducción a la librería ggplot2'>
+        data-slide=19 title='La librería maptools'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Introducción a la librería ggplot2'>
+        data-slide=20 title='La librería maptools'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Introducción a la librería ggplot2'>
+        data-slide=21 title='La librería maptools'>
          21
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Introducción a la librería ggplot2'>
-         22
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Introducción a la librería ggplot2'>
-         23
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Introducción a la librería ggplot2'>
-         24
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Introducción a la librería ggplot2'>
-         25
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Introducción a la librería ggplot2'>
-         26
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Introducción a la librería ggplot2'>
-         27
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Introducción a la librería ggplot2'>
-         28
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Introducción a la librería ggplot2'>
-         29
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Introducción a la librería ggplot2'>
-         30
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='Introducción a la librería ggplot2'>
-         31
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='Introducción a la librería ggplot2'>
-         32
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Slide 2'>
-         33
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Widgets: jQuery-Quiz'>
-         34
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Introducción a la librería ggplot2'>
-         35
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Introducción a la librería ggplot2'>
-         36
       </a>
     </li>
   </ul>

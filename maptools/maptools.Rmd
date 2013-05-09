@@ -283,8 +283,44 @@ Entonces:
 map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH.discreto)) +
 geom_polygon() + geom_path(color="white") 
 
-map + scale_fill_brewer("Censo hombres total")
 map
+#map + scale_fill_brewer("Censo hombres total")
+```
+
+
+---
+
+## La librería maptools
+
+Podemos representar las comarcas de una isla:
+
+``` {r loadmap16a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
+#canary.counties@data[canary.counties@data$CODISLA=='GC',]
+idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA=='GC',"IDCOM27"]
+canary.fort2<-canary.fort[idx,]
+
+map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto) )+ geom_polygon() + geom_path(color="white")  
+
+map
+```
+
+---
+
+## La librería maptools
+
+Podemos representar con ggplot:
+
+``` {r loadmap17a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
+canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','IDPROV','PROV','CODISLA', 'ISLA')], by.x="id",by.y="IDCOM27",sort=FALSE)
+
+idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',"IDCOM27"]
+
+canary.fort2<-canary.fort[idx,]
+
+map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto)) +
+geom_polygon() + geom_path(color="white") 
+
+map + facet_grid(PROV ~ ISLA,scales="free_x")
 ```
 
 
