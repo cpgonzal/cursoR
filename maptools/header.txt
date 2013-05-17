@@ -1,6 +1,6 @@
 ﻿  <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="../Slidy2/styles/slidy.css" />
-  <script src="../Slidy2/scripts/slidy.js.gz"
+  <script src="../Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
 
 <style type="text/css">
