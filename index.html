@@ -352,7 +352,7 @@ pre {
 
 <slide class="" id="slide-8" style="background:;">
   <hgroup>
-    <h2>Almacenar resultados en variables</h2>
+    <h2>Almacenar resultados en variables. El espacio de trabajo</h2>
   </hgroup>
   <article data-timings="">
     <p>El operador de asignación (&lt;-) permite almacenar valores:</p>
@@ -392,61 +392,15 @@ a &lt;- rnorm(4, mean = 10, sd = 1)  # en R se utiliza = para asignar valores a 
 
 <slide class="" id="slide-9" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>La ayuda en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Para representar una variable en un mapa, lo más común es asociar al slot &quot;data&quot; los valores de la variable utilizando el comando merge(). Por ejemplo:</p>
+    <p>Para invocar la ayuda en R, podemos hacerlo de la forma siguiente</p>
 
-<pre><code class="r">censal.hombres &lt;- data.comarcas.censal[data.comarcas.censal$sexo == &quot;men&quot;, ]
-</code></pre>
-
-<pre><code>## Error: objeto &#39;data.comarcas.censal&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">canary.tmp &lt;- merge(canary.counties@data, censal.hombres, by.x = &quot;CODCOM&quot;, by.y = &quot;comarca&quot;, 
-    sort = FALSE)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">canary.counties@data$sexoH &lt;- canary.tmp$sexo
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.tmp&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">canary.counties@data$censoH &lt;- canary.tmp$censo
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.tmp&#39; no encontrado
-</code></pre>
-
-<p>Tambien se puede utilizar el comando match(). Por ejemplo:</p>
-
-<pre><code class="r">censal.mujeres &lt;- data.comarcas.censal[data.comarcas.censal$sexo == &quot;women&quot;, 
-    ]
-</code></pre>
-
-<pre><code>## Error: objeto &#39;data.comarcas.censal&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">idx &lt;- match(canary.counties@data$CODCOM, censal.mujeres$comarca)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">canary.counties@data$sexoM &lt;- censal.mujeres$sexo[idx]
-</code></pre>
-
-<pre><code>## Error: objeto &#39;censal.mujeres&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">canary.counties@data$censoM &lt;- censal.mujeres$censo[idx]
-</code></pre>
-
-<pre><code>## Error: objeto &#39;censal.mujeres&#39; no encontrado
+<pre><code class="r">help(rnorm)
+`?`(rnorm)
+help.search(&quot;pc-axis&quot;)
+help.start()
 </code></pre>
 
   </article>
@@ -470,35 +424,30 @@ a &lt;- rnorm(4, mean = 10, sd = 1)  # en R se utiliza = para asignar valores a 
 
 <slide class="" id="slide-10" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Vectores en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();</p>
+    <p>Crear secuencias de vectores</p>
 
-<pre><code class="r">library(classInt)
-library(RColorBrewer)
-n = 7
-# obtener una paleta de 7 colores
-pal &lt;- brewer.pal(n, &quot;Blues&quot;)
-# obtener intervalos de clase para 7 colores
-int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;jenks&quot;)
+<pre><code class="r">x &lt;- c(1, 2, 3, 4, 5)
+y &lt;- c(1:5)
+`?`(seq)
+# los argumentos con = significa que hay que escribir el nombre los
+# argumentos sin = significa que hay que ponerlos en el mismo orden
+z &lt;- seq(1, 10, by = 2)
+w &lt;- rep(1:5, times = 2)
+w &lt;- rep(1:5, each = 3)
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
+<p>Operaciones con vectores</p>
 
-<pre><code class="r">
-p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = signif(int$brks, 
-    digits = 2), lwd = 0.4, col = &quot;black&quot;)
-</code></pre>
+<pre><code class="r">2 * x
+x + z
+x * z
+# se pueden sumar vectores de distinta longitud pero se produce un efecto
+# cíclico
+x + w
 
-<pre><code>## Error: no se pudo encontrar la función &quot;spplot&quot;
-</code></pre>
-
-<pre><code class="r">p
-</code></pre>
-
-<pre><code>## Error: objeto &#39;p&#39; no encontrado
 </code></pre>
 
   </article>
@@ -522,26 +471,23 @@ p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = sign
 
 <slide class="" id="slide-11" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Vectores como argumentos de funciones en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>La comarca con menor valor del censo se puede quedar de color blanco: </p>
+    <p>Algunas funciones se evalúan sobre un vector y
+devuelven otro vector de la misma longitud. Otras, en cambio, devuelven un escalar</p>
 
-<pre><code class="r"># corrección del primer color de la escala
-int$brks[1] &lt;- 1000
-# comprobar el orden de representación
-canary.counties@data[order(canary.counties@data$censoH), ]
+<pre><code class="r">log(x)
+sum(x)
+range(x)
+length(x)
 </code></pre>
 
-<p>Podemos utilizar otras paletas:</p>
+<p>Incluso al evaluar una condición sobre un vector se obtiene un vector</p>
 
-<pre><code class="r"># Paletas
-
-# display.brewer.pal(n, &#39;Blues&#39;)
-pie(rep(1, n), col = brewer.pal(n, &quot;Blues&quot;))
-pie(rep(1, n), col = brewer.pal(n, &quot;YlOrRd&quot;))
-pie(rep(1, n), col = heat.colors(n))
-pie(rep(1, n), col = terrain.colors(n))
+<pre><code class="r">x &lt; 3
+x &lt; 3 | z &gt; 5
+x &lt; 3 &amp; z &lt; 5
 </code></pre>
 
   </article>
@@ -565,21 +511,24 @@ pie(rep(1, n), col = terrain.colors(n))
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Elementos de los Vectores en R</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">pal &lt;- heat.colors(n)
-p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = signif(int$brks, 
-    digits = 2), lwd = 0.4, col = &quot;black&quot;)
+    <p>Para seleccionar elementos de un vector se utiliza la notación de []:</p>
+
+<pre><code class="r">x &lt;- c(1, 2, 3, 4, 5)
+x[3]  # elementos de un vector
+x[c(1:2)]  # partes de un vector
+x[1:2]  # partes de un vector
+x[-1]  # quitar partes de un vector
+# ¿Cómo seleccionar los elementos de x menores que 2?
 </code></pre>
 
-<pre><code>## Error: no se pudo encontrar la función &quot;spplot&quot;
-</code></pre>
+<p>se pueden modificar los vectores haciendo uso del operador asignación:</p>
 
-<pre><code class="r">p
-</code></pre>
-
-<pre><code>## Error: objeto &#39;p&#39; no encontrado
+<pre><code class="r">x[1:2] &lt;- c(12, 13)
+x[1:2] &lt;- 0
+x[15] &lt;- 0
 </code></pre>
 
   </article>
@@ -603,28 +552,30 @@ p &lt;- spplot(canary.counties[&quot;censoH&quot;], col.regions = pal, at = sign
 
 <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Vectores en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Se pueden utilizar otros métodos para los intervalos de clase:</p>
+    <p>Los vectores en R son objetos con todos sus elementos del mismo tipo</p>
 
-<pre><code class="r"># Intervalos de clase
-int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;quantile&quot;)
+<pre><code class="r">x &lt;- c(1, 2, 3, 4, 5)
+class(x)
+x &lt;- c(1, 2, &quot;hola&quot;)
+class(x)
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+<p>Se pueden asignar nombres a cada componente de un vector</p>
+
+<pre><code class="r">x &lt;- c(1, 2, 3, 4, 5)
+names(x) &lt;- c(&quot;primero&quot;, &quot;segundo&quot;, &quot;tercero&quot;, &quot;cuarto&quot;, &quot;quinto&quot;)
+attributes(x)
+x[2]  # accede al elemento nº2
+x[&quot;segundo&quot;]
+x[segundo]
 </code></pre>
 
-<pre><code class="r">int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;pretty&quot;)
-</code></pre>
+<p>Hay funciones que podemos utilizar para verificar si un objeto es o no un vector</p>
 
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;jenks&quot;)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
+<pre><code class="r">is.vector(x)
 </code></pre>
 
   </article>
@@ -648,24 +599,17 @@ int &lt;- classIntervals(canary.counties@data$censoH, n, style = &quot;quantile&
 
 <slide class="" id="slide-14" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Factores en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Podemos utilizar otros métodos de representación, plot() + legend():</p>
+    <p>Los factores son vectores que alamcenan datos categóricos (variable con varios niveles)</p>
 
-<pre><code class="r"># Representaciones alternativas
-plot(canary.counties, col = pal[findInterval(canary.counties@data$censoH, int$brks, 
-    all.inside = TRUE)], axes = TRUE)
-</code></pre>
+<pre><code class="r">x &lt;- c(&quot;Juan&quot;, &quot;Paco&quot;, &quot;María&quot;, &quot;Arturo&quot;)
+s &lt;- c(&quot;hombre&quot;, &quot;hombre&quot;, &quot;mujer&quot;, &quot;hombre&quot;)
+s &lt;- factor(s)
 
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">legend(x = -18, y = 30.5, legend = leglabs(round(int$brks)), cex = 0.9, fill = pal, 
-    bty = &quot;n&quot;, x.intersp = 0.5)
-</code></pre>
-
-<pre><code>## Error: no se pudo encontrar la función &quot;leglabs&quot;
+attributes(s)
+is.factor(s)
 </code></pre>
 
   </article>
@@ -689,23 +633,22 @@ plot(canary.counties, col = pal[findInterval(canary.counties@data$censoH, int$br
 
 <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Matrices en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Otros métodos de representación, fortify()+ggplot2():</p>
+    <p>Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (más de 2 dimensiones) </p>
 
-<pre><code class="r"># Otra mas
-library(ggplot2)
+<pre><code class="r">m &lt;- matrix(1:6, nrow = 3, ncol = 2)
+m[1, ]
+m[, 2]
 
-# convertir el objeto &#39;SpatialPolygons&#39; en data.frame
-canary.fort &lt;- fortify(canary.counties, region = &quot;IDCOM27&quot;)
-head(canary.fort)
+attributes(m)
+dimnames(m) &lt;- list(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), c(&quot;1&quot;, &quot;2&quot;))
+attributes(m)
+is.matrix(m)
 
-canary.fort &lt;- merge(canary.fort, canary.counties@data[, c(&quot;IDCOM27&quot;, &quot;censoH&quot;)], 
-    by.x = &quot;id&quot;, by.y = &quot;IDCOM27&quot;, sort = FALSE)
-
-ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour = &quot;black&quot;, 
-    fill = &quot;white&quot;)
+m[&quot;A&quot;, ]
+m[, &quot;2&quot;]
 </code></pre>
 
   </article>
@@ -729,28 +672,22 @@ ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour 
 
 <slide class="" id="slide-16" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Listas en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Entonces:</p>
+    <p>Las listas en R son colecciones ordenadas de objetos</p>
 
-<pre><code>## Error: objeto &#39;canary.counties&#39; no encontrado
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">map &lt;- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH)) + 
-    geom_polygon() + geom_path(color = &quot;white&quot;)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">map
-</code></pre>
-
-<pre><code>## Error: objeto &#39;map&#39; no encontrado
+<pre><code class="r">l &lt;- list(padres = c(&quot;Juan&quot;, &quot;María&quot;), num.hijos = 2, edad.hijos = c(3, 7))
+# observar que se emplea = para asignar los nombres a los objetos y no el
+# operador &lt;-
+attributes(l)
+names(l)
+is.list(l)
+l[[1]]  # accede al objeto nº1
+l[[&quot;padres&quot;]]  # accede al objeto &#39;padres&#39;
+l$padres  # accede al objeto &#39;padres&#39;
+l$padres &lt;- c(&quot;Juan Pérez&quot;, &quot;María González&quot;)
+l$padres[2]
 </code></pre>
 
   </article>
@@ -774,17 +711,22 @@ ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour 
 
 <slide class="" id="slide-17" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Hojas de datos en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Otras variantes con ggplot2():</p>
+    <p>Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observación.</p>
 
-<pre><code class="r">map + scale_fill_gradient(low = &quot;white&quot;, high = &quot;black&quot;)
+<pre><code class="r">id &lt;- c(1:6)
+sexo &lt;- rep(c(&quot;HOMBRE&quot;, &quot;MUJER&quot;), each = 3)
+edad &lt;- sample(20:60, size = 6, replace = TRUE)
+d &lt;- data.frame(id = id, sexo = sexo, edad = edad)
 
-map + scale_fill_gradient(name = &quot;censo&quot;, breaks = c(10000, 50000, 90000))
-
-map + scale_fill_gradientn(colours = brewer.pal(7, &quot;Blues&quot;), limits = c(1000, 
-    1e+05))
+attributes(d)
+names(d)
+d[[2]]
+d[[&quot;sexo&quot;]]
+d$sexo
+class(d$sexo)
 </code></pre>
 
   </article>
@@ -808,20 +750,20 @@ map + scale_fill_gradientn(colours = brewer.pal(7, &quot;Blues&quot;), limits = 
 
 <slide class="" id="slide-18" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Paquetes en R</h2>
   </hgroup>
   <article data-timings="">
-    <p>Podemos utilizar escalas discretas en el gráfico:</p>
+    <ol class = "build incremental">
+<li>La gran potencia que proporciona R reside en la gran cantidad de paquetes desarrollados y que se encuentran en repositorios CRAN. </li>
+<li>En la instalación base de R se instalan sólo algunos de ellos. </li>
+<li>A medida que se necesitan nuevas funcionalidades, se pueden instalar fácilmente </li>
+</ol>
 
-<pre><code class="r">canary.fort$censoH.discreto &lt;- cut(canary.fort$censoH, breaks = c(1000, 3000, 
-    6000, 9000, 12000, 15000, 18000, 21000, Inf), labels = c(&quot;1000-3000&quot;, &quot;3000-6000&quot;, 
-    &quot;6000-9000&quot;, &quot;9000-12000&quot;, &quot;12000-15000&quot;, &quot;15000-18000&quot;, &quot;18000-21000&quot;, 
-    &quot;&gt;21000&quot;), include.lowest = TRUE)
+<pre><code class="r">library()  # listar todos los paquetes disponibles en R
+install.packages(&quot;RJSONIO&quot;)
+install.packages(&quot;ggplot&quot;, dependencies = TRUE)
+library(RJSONIO)  # cargar el paquete
 
-head(canary.fort)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
 </code></pre>
 
   </article>
@@ -845,26 +787,52 @@ head(canary.fort)
 
 <slide class="" id="slide-19" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>El directorio de trabajo. La carga de datos</h2>
   </hgroup>
   <article data-timings="">
-    <p>Entonces:</p>
+    <p>Cuando se inicia R, el programa configura por defecto un directorio desde donde se leen o donde se guardan ficheros. Los comandos getwd() y setwd() permiten consultar y cambiar el directorio de trabajo. </p>
 
-<pre><code class="r">map &lt;- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH.discreto)) + 
-    geom_polygon() + geom_path(color = &quot;white&quot;)
+<pre><code class="r">getwd()
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+<pre><code>## [1] &quot;D:/Mis documentos/Gist_repos/cursoR&quot;
 </code></pre>
 
-<pre><code class="r">
-map
+<pre><code class="r">setwd(&quot;D:\\Mis documentos\\Presentaciones\\CursoR\\data&quot;)
 </code></pre>
 
-<pre><code>## Error: objeto &#39;map&#39; no encontrado
+<pre><code>## Error: no es posible cambiar el directorio de trabajo
 </code></pre>
 
-<pre><code class="r"># map + scale_fill_brewer(&#39;Censo hombres total&#39;)
+<p>Si queremos cargar un conjunto de datos desde un archivo situado en el directorio de trabajo, lo podemos hacer mediante el comando read.table() </p>
+
+<pre><code class="r"># cargar los datos utilizando read.table (en local)
+setwd(&quot;D:\\Mis documentos\\Presentaciones\\CursoR\\data&quot;)
+</code></pre>
+
+<pre><code>## Error: no es posible cambiar el directorio de trabajo
+</code></pre>
+
+<pre><code class="r">data.espacios.nat &lt;- read.table(file = &quot;superficie_espacios_naturales.txt&quot;, 
+    header = T, sep = &quot;;&quot;)
+</code></pre>
+
+<pre><code>## Warning: no fue posible abrir el archivo
+## &#39;superficie_espacios_naturales.txt&#39;: No such file or directory
+</code></pre>
+
+<pre><code>## Error: no se puede abrir la conexión
+</code></pre>
+
+<pre><code class="r">data.geo.municipios &lt;- read.table(file = &quot;datos_geograficos_islas.txt&quot;, header = T, 
+    sep = &quot;;&quot;)
+</code></pre>
+
+<pre><code>## Warning: no fue posible abrir el archivo &#39;datos_geograficos_islas.txt&#39;: No
+## such file or directory
+</code></pre>
+
+<pre><code>## Error: no se puede abrir la conexión
 </code></pre>
 
   </article>
@@ -888,38 +856,24 @@ map
 
 <slide class="" id="slide-20" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Otros métodos para la carga de datos</h2>
   </hgroup>
   <article data-timings="">
-    <p>Podemos representar las comarcas de una isla:</p>
+    <p>Se puede utilizar read.table() para cargar datos desde un lugar remoto:</p>
 
-<pre><code class="r"># canary.counties@data[canary.counties@data$CODISLA==&#39;GC&#39;,]
-idx &lt;- canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA == 
-    &quot;GC&quot;, &quot;IDCOM27&quot;]
+<pre><code class="r"># cargar los datos utilizando la función url() (en remoto, por http://)
+data.url &lt;- &quot;http://dl.dropbox.com/u/17677514/datos_geograficos_islas.txt&quot;
+data.geo.municipios &lt;- read.table(file = url(data.url), header = T, sep = &quot;;&quot;)
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+<pre><code class="r"># cargar los datos utilizando la función url() (en remoto, por https://)
+data.url &lt;- &quot;https://raw.github.com/cpgonzal/cursoR/gh-pages/data/datos_geograficos_islas.txt&quot;
+library(RCurl)
+data.geo.municipios &lt;- read.table(textConnection(getURL(data.url, ssl.verifypeer = FALSE)), 
+    header = T, sep = &quot;;&quot;)
 </code></pre>
 
-<pre><code class="r">canary.fort2 &lt;- canary.fort[idx, ]
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">
-map &lt;- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
-    geom_polygon() + geom_path(color = &quot;white&quot;)
-</code></pre>
-
-<pre><code>## Error: objeto &#39;canary.fort2&#39; no encontrado
-</code></pre>
-
-<pre><code class="r">
-map
-</code></pre>
-
-<pre><code>## Error: objeto &#39;map&#39; no encontrado
+<pre><code>## Error: la linea 1 no tiene 2 elementos
 </code></pre>
 
   </article>
@@ -943,46 +897,308 @@ map
 
 <slide class="" id="slide-21" style="background:;">
   <hgroup>
-    <h2>La librería maptools</h2>
+    <h2>Otros métodos para la carga de datos</h2>
   </hgroup>
   <article data-timings="">
-    <p>Podemos representar con ggplot:</p>
+    <p>Podemos completar los data.frames con más variables:</p>
 
-<pre><code class="r">canary.fort &lt;- merge(canary.fort, canary.counties@data[, c(&quot;IDCOM27&quot;, &quot;IDPROV&quot;, 
-    &quot;PROV&quot;, &quot;CODISLA&quot;, &quot;ISLA&quot;)], by.x = &quot;id&quot;, by.y = &quot;IDCOM27&quot;, sort = FALSE)
+<pre><code class="r"># crear factores con etiquetas
+data.geo.municipios$Isla &lt;- factor(data.geo.municipios$Isla, levels = c(&quot;El Hierro&quot;, 
+    &quot;La Palma&quot;, &quot;La Gomera&quot;, &quot;Tenerife&quot;, &quot;Gran Canaria&quot;, &quot;Fuerteventura&quot;, &quot;Lanzarote&quot;))
+
+data.geo.municipios$Provincia &lt;- c(rep(&quot;Las Palmas&quot;, 34), rep(&quot;S/C. de Tenerife&quot;, 
+    54))
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+<p>También podemos crear data.frames con información resumida:</p>
+
+<pre><code class="r"># resumir datos from data frames
+data.geo.islas &lt;- aggregate(data.geo.municipios[, c(3, 5)], by = list(Provincia = data.geo.municipios$Provincia, 
+    Isla = data.geo.municipios$Isla), FUN = sum, na.rm = T)
+
+data.geo.islas$Altitud &lt;- aggregate(data.geo.municipios[, 6], by = list(Provincia = data.geo.municipios$Provincia, 
+    Isla = data.geo.municipios$Isla), FUN = max, na.rm = T)[, 3]
+
+# estructura de los datos
+str(data.geo.islas)
 </code></pre>
 
-<pre><code class="r">
-idx &lt;- canary.fort$id %in% canary.counties@data[canary.counties@data$PROV == 
-    &quot;Santa Cruz de Tenerife&quot;, &quot;IDCOM27&quot;]
+<pre><code>## &#39;data.frame&#39;:    7 obs. of  5 variables:
+##  $ Provincia     : chr  &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; ...
+##  $ Isla          : Factor w/ 7 levels &quot;El Hierro&quot;,&quot;La Palma&quot;,..: 1 2 3 4 5 6 7
+##  $ Superficie    : num  269 708 370 2034 1560 ...
+##  $ Longitud.costa: num  41 155.6 97.5 358 242.9 ...
+##  $ Altitud       : int  571 722 810 1400 1270 395 305
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Otros métodos para la carga de datos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Para cargar datos en formato JSON:</p>
+
+<pre><code class="r"># read en JSON format
+library(RJSONIO)
+data.url &lt;- &quot;http://www.gobiernodecanarias.org/istac/jaxi-istac/tabla.do?accion=jsonMtd&amp;uuidConsulta=7db99ff7-4aab-4a57-a378-fc472aecaeb6&quot;
+data.json &lt;- paste(readLines(data.url, encoding = &quot;UTF-8&quot;)[1], collapse = &quot;&quot;)
 </code></pre>
 
-<pre><code class="r">
-canary.fort2 &lt;- canary.fort[idx, ]
+<pre><code>## Warning: incomplete final line found on
+## &#39;http://www.gobiernodecanarias.org/istac/jaxi-istac/tabla.do?accion=jsonMtd&amp;uuidConsulta=7db99ff7-4aab-4a57-a378-fc472aecaeb6&#39;
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort&#39; no encontrado
+<pre><code class="r">data.json &lt;- fromJSON(data.json, encoding = &quot;UTF-8&quot;)
 </code></pre>
 
-<pre><code class="r">
-map &lt;- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
-    geom_polygon() + geom_path(color = &quot;white&quot;)
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Otros métodos para la carga de datos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Para consultar la estructura que se ha cargado:</p>
+
+<pre><code class="r"># consultar la estructura que se ha cargado
+attributes(data.json)
+data.json$categories
+length(data.json$data)
+head(data.json$data)
+
+data.json$data[[1]]
+data.json$data[[1]]$dimCodes[1]
 </code></pre>
 
-<pre><code>## Error: objeto &#39;canary.fort2&#39; no encontrado
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Otros métodos para la carga de datos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:</p>
+
+<pre><code class="r">data.url &lt;- &quot;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&quot;
+data.json &lt;- paste(readLines(data.url, encoding = &quot;UTF-8&quot;)[1], collapse = &quot;&quot;)
 </code></pre>
 
-<pre><code class="r">
-map + facet_grid(PROV ~ ISLA, scales = &quot;free_x&quot;)
+<pre><code>## Warning: incomplete final line found on
+## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;
 </code></pre>
 
-<pre><code>## Error: objeto &#39;map&#39; no encontrado
+<pre><code class="r">data.json &lt;- fromJSON(data.json, encoding = &quot;UTF-8&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Otros métodos para la carga de datos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:</p>
+
+<pre><code class="r">data.url &lt;- &quot;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&quot;
+data.json &lt;- paste(readLines(data.url, encoding = &quot;UTF-8&quot;)[1], collapse = &quot;&quot;)
+</code></pre>
+
+<pre><code>## Warning: incomplete final line found on
+## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;
+</code></pre>
+
+<pre><code class="r">data.json &lt;- fromJSON(data.json, encoding = &quot;UTF-8&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>El arreglo de los datos cargados en formato JSON</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># pasamos los datos a una estructura temporal manejable
+tmp.json &lt;- do.call(rbind, data.json$data)
+tmp.json.valores &lt;- unlist(tmp.json[, 1])
+tmp.json.cod &lt;- tmp.json[, 2]
+
+# creamos un data.frame para trabajar los datos
+data.from.json &lt;- data.frame(matrix(ncol = 4, nrow = 4992))
+names(data.from.json) &lt;- c(&quot;CodMunicipio&quot;, &quot;CodAnio&quot;, &quot;CodIndicador&quot;, &quot;Valor&quot;)
+
+for (i in 1:4992) {
+    data.from.json$CodMunicipio[i] &lt;- tmp.json.cod[[i]][1]
+    data.from.json$CodAnio[i] &lt;- tmp.json.cod[[i]][2]
+    data.from.json$CodIndicador[i] &lt;- tmp.json.cod[[i]][3]
+    data.from.json$Valor[i] &lt;- as.numeric(tmp.json.valores[[i]])
+}
+
+rm(tmp.json, tmp.json.valores, tmp.json.cod)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>El arreglo de los datos cargados en formato JSON</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># asociamos los códigos a sus valores descriptivos
+idx &lt;- match(data.from.json$CodMunicipio, data.json$categories[[1]]$codes)
+data.from.json$Municipio &lt;- data.json$categories[[1]]$labels[idx]
+
+idx &lt;- match(data.from.json$CodAnio, data.json$categories[[2]]$codes)
+data.from.json$Anio &lt;- data.json$categories[[2]]$labels[idx]
+
+idx &lt;- match(data.from.json$CodIndicador, data.json$categories[[3]]$codes)
+data.from.json$Indicador &lt;- data.json$categories[[3]]$labels[idx]
+
+# reordenamos convenientemente las variables
+data.pob.municipios &lt;- data.from.json[, c(1, 5, 2, 6, 3, 7, 4)]
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+<footer>
+  <div id="pie_datos">
+  	<div id="pie_datos_interior">
+			<ul>
+				<li class="pie_datos_logo1">
+					<a title="Fundación General de la Universidad de La Laguna">
+						<img src="logo_Fundaciongeneral_color.png" width="55%" alt="Fundación General de la Universidad de La Laguna" />
+					</a></li>
+				 <li class="pie_datos_logo2"><a title="ULL - Universidad de La Laguna"><img src="logo_ULL_color.png" width="55%" alt="ULL - Universidad de La Laguna" /></a></li>
+         
+         <li class="pie_datos_logo3"><a title="ISTAC - Instituto Canario de Estadística"><img src="logo_istac.jpg" width="55%" alt="ISTAC - Instituto Canario de Estadística" /></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Otros métodos para la carga de datos</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Para cargar datos en formato PC-AXIS:</p>
+
+<pre><code class="r">library(pxR)
+data.url &lt;- &quot;http://www.gobiernodecanarias.org/istac/jaxi-istac/descarga.do?uripx=urn:uuid:d73bd9de-e6ed-4821-808a-616b34df9655&quot;
+
+data.px &lt;- read.px(data.url)
+
+head(data.px)
+data.px$VALUES
+data.px$CODES
+
+data.from.px &lt;- as.data.frame(data.px)
+names(data.from.px) &lt;- c(&quot;Indicadores&quot;, &quot;Años&quot;, &quot;Municipios&quot;, &quot;Valor&quot;)
+
 </code></pre>
 
   </article>
@@ -1052,86 +1268,128 @@ map + facet_grid(PROV ~ ISLA, scales = &quot;free_x&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Almacenar resultados en variables'>
+        data-slide=8 title='Almacenar resultados en variables. El espacio de trabajo'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='La librería maptools'>
+        data-slide=9 title='La ayuda en R'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='La librería maptools'>
+        data-slide=10 title='Vectores en R'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='La librería maptools'>
+        data-slide=11 title='Vectores como argumentos de funciones en R'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='La librería maptools'>
+        data-slide=12 title='Elementos de los Vectores en R'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='La librería maptools'>
+        data-slide=13 title='Vectores en R'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='La librería maptools'>
+        data-slide=14 title='Factores en R'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='La librería maptools'>
+        data-slide=15 title='Matrices en R'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='La librería maptools'>
+        data-slide=16 title='Listas en R'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='La librería maptools'>
+        data-slide=17 title='Hojas de datos en R'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='La librería maptools'>
+        data-slide=18 title='Paquetes en R'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='La librería maptools'>
+        data-slide=19 title='El directorio de trabajo. La carga de datos'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='La librería maptools'>
+        data-slide=20 title='Otros métodos para la carga de datos'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='La librería maptools'>
+        data-slide=21 title='Otros métodos para la carga de datos'>
          21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Otros métodos para la carga de datos'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Otros métodos para la carga de datos'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Otros métodos para la carga de datos'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Otros métodos para la carga de datos'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='El arreglo de los datos cargados en formato JSON'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='El arreglo de los datos cargados en formato JSON'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Otros métodos para la carga de datos'>
+         28
       </a>
     </li>
   </ul>

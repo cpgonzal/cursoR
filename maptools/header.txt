@@ -1,4 +1,9 @@
-﻿<style type="text/css">
+﻿  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="../Slidy2/styles/slidy.css" />
+  <script src="../Slidy2/scripts/slidy.js.gz"
+    charset="utf-8" type="text/javascript"></script>
+
+<style type="text/css">
 
 
 #head-logo {
@@ -15,7 +20,7 @@
   background: #FFFFFF;
 }
 
-#head-icon {
+#head-icon1 {
   margin-top: 0.5em;
   margin-bottom: 0;
   margin-left: 0;
@@ -49,12 +54,12 @@ div.background {
 
 
 <div class="background"> 
-  <img id="head-icon" alt="graphic with four colored squares" height="15"
-    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+  <img id="head-icon" alt="R logo" height="15"
+    src="../assets/img/Rlogo.jpg" /> 
 			
    <object id="head-logo" >
-        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
-        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
+        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="../assets/img/logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
+        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="../assets/img/logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
 </object>
 
 </div> 

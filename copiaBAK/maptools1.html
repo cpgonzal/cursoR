@@ -33,11 +33,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
     charset="utf-8" type="text/javascript"></script>
 </head>
 <body>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print"
-    href="../Slidy2/styles/slidy.css" />
-  <script src="../Slidy2/scripts/slidy.js.gz"
-    charset="utf-8" type="text/javascript"></script>
-
 <style type="text/css">
 
 
@@ -55,7 +50,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
   background: #FFFFFF;
 }
 
-#head-icon1 {
+#head-icon {
   margin-top: 0.5em;
   margin-bottom: 0;
   margin-left: 0;
@@ -89,12 +84,12 @@ div.background {
 
 
 <div class="background"> 
-  <img id="head-icon" alt="R logo" height="15"
-    src="../assets/img/Rlogo.jpg" /> 
+  <img id="head-icon" alt="graphic with four colored squares" height="15"
+    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
 			
    <object id="head-logo" >
-        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="../assets/img/logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
-        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="../assets/img/logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
+        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
+        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
 </object>
 
 </div> 
@@ -257,43 +252,13 @@ map +<span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span
 <pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH.discreto)) +<span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_polygon</span>() +<span class="st"> </span><span class="kw">geom_path</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)
 
-map</code></pre>
+map +<span class="st"> </span><span class="kw">scale_fill_brewer</span>(<span class="st">&quot;Censo hombres total&quot;</span>)</code></pre>
 <div class="figure">
-<img src="figure/loadmap15a.png" />
+<img src="figure/loadmap15a1.png" />
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># map + scale_fill_brewer(&#39;Censo hombres total&#39;)</span></code></pre>
-</div><div id="la-librería-maptools-15" class="slide section level2">
-<h1>La librería maptools</h1>
-<p>Podemos representar las comarcas de una isla:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canary.counties@data[canary.counties@data$CODISLA==&#39;GC&#39;,]</span>
-idx &lt;-<span class="st"> </span>canary.fort$id %in%<span class="st"> </span>canary.counties@data[canary.counties@data$CODISLA ==<span class="st"> </span>
-<span class="st">    &quot;GC&quot;</span>, <span class="st">&quot;IDCOM27&quot;</span>]
-canary.fort2 &lt;-<span class="st"> </span>canary.fort[idx, ]
-
-map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort2, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH.discreto)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_polygon</span>() +<span class="st"> </span><span class="kw">geom_path</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)
-
-map</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">map</code></pre>
 <div class="figure">
-<img src="figure/loadmap16a.png" />
-</div>
-</div><div id="la-librería-maptools-16" class="slide section level2">
-<h1>La librería maptools</h1>
-<p>Podemos representar con ggplot:</p>
-<pre class="sourceCode r"><code class="sourceCode r">canary.fort &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.fort, canary.counties@data[, <span class="kw">c</span>(<span class="st">&quot;IDCOM27&quot;</span>, <span class="st">&quot;IDPROV&quot;</span>, 
-    <span class="st">&quot;PROV&quot;</span>, <span class="st">&quot;CODISLA&quot;</span>, <span class="st">&quot;ISLA&quot;</span>)], <span class="dt">by.x =</span> <span class="st">&quot;id&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;IDCOM27&quot;</span>, <span class="dt">sort =</span> <span class="ot">FALSE</span>)
-
-idx &lt;-<span class="st"> </span>canary.fort$id %in%<span class="st"> </span>canary.counties@data[canary.counties@data$PROV ==<span class="st"> </span>
-<span class="st">    &quot;Santa Cruz de Tenerife&quot;</span>, <span class="st">&quot;IDCOM27&quot;</span>]
-
-canary.fort2 &lt;-<span class="st"> </span>canary.fort[idx, ]
-
-map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort2, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH.discreto)) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_polygon</span>() +<span class="st"> </span><span class="kw">geom_path</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)
-
-map +<span class="st"> </span><span class="kw">facet_grid</span>(PROV ~<span class="st"> </span>ISLA, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>)</code></pre>
-<div class="figure">
-<img src="figure/loadmap17a.png" />
+<img src="figure/loadmap15a2.png" />
 </div>
 </div>
 </body>

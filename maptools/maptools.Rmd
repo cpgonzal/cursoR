@@ -4,7 +4,6 @@ Curso de introducción y manejo de R
 La librería maptools
 -------------------------------------------------------  
 
-
 > 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
 > 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
 > 3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
@@ -12,7 +11,6 @@ La librería maptools
 Website (blog): http://rspatialtips.org.uk/
 <br>
 Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
-
 
 ``` {r loadmap01, echo=FALSE, message=FALSE }
 #getwd()

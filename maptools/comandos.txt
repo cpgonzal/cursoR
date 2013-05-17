@@ -1,0 +1,4 @@
+cd D:\Mis documentos\Gist_repos\cursoR\maptools
+"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('maptools.Rmd')"
+
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax maptools.md -o maptools.html -B header.txt

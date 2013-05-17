@@ -101,13 +101,15 @@ La interfaz de R para windows proporciona un menú muy básico para gestionar al
 
 ## Uso básico de R
 
+Desde R se pueden realizar sencillas operaciones aritméticas
+
 <style>
 pre {
   margin-bottom: -10px;
 }
 </style>
 
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 (4-3)*2/3
 sqrt(9)
 sin(pi/2)
@@ -118,7 +120,9 @@ factorial(3)
 
 ## Uso básico de R
 
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+R ejecuta ciertas operaciones que, en otros programas, podrían generar mensajes de error
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 1/0
 0/0
 log(-1)
@@ -130,7 +134,7 @@ sqrt(-9)
 ## Almacenar resultados en variables. El espacio de trabajo
 
 El operador de asignación (<-) permite almacenar valores:
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 log(10) -> a 
 a <- log(10)
 a = log (10) #¿cual usar: = o <-?
@@ -138,7 +142,7 @@ a <-rnorm(4,mean=10,sd=1) # en R se utiliza = para asignar valores a los argumen
 ```
 
 Al introducir los comandos anteriores, hemos creado un objeto en R: la variable "a". Este objeto se almacena en una zona de memoria llamada "espacio de trabajo".
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 ls()
 ```
 
@@ -148,12 +152,204 @@ ls()
 
 Para invocar la ayuda en R, podemos hacerlo de la forma siguiente
 
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 help(rnorm)
 ?rnorm
 help.search("pc-axis")
 help.start()
 ```
+
+---
+
+## Vectores en R
+
+Crear secuencias de vectores
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<-c(1,2,3,4,5)
+y<-c(1:5)
+?seq 
+# los argumentos con = significa que hay que escribir el nombre
+# los argumentos sin = significa que hay que ponerlos en el mismo orden
+z<-seq(1,10,by=2)
+w<-rep(1:5,times=2)
+w<-rep(1:5,each=3)
+```
+
+Operaciones con vectores
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+2*x
+x+z
+x*z
+# se pueden sumar vectores de distinta longitud pero se 
+# produce un efecto cíclico 
+x+w
+
+```
+
+
+---
+
+## Vectores como argumentos de funciones en R
+
+Algunas funciones se evalúan sobre un vector y
+devuelven otro vector de la misma longitud. Otras, en cambio, devuelven un escalar
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+log(x)
+sum(x)
+range(x)
+length(x)
+```
+
+Incluso al evaluar una condición sobre un vector se obtiene un vector
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<3
+x<3 | z>5
+x<3 & z<5
+```
+
+
+---
+
+## Elementos de un vector
+
+Para seleccionar elementos de un vector se utiliza la notación de []:
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<-c(1,2,3,4,5) 
+x[3]      # elementos de un vector
+x[c(1:2)] # partes de un vector
+x[1:2]    # partes de un vector
+x[-1]     # quitar partes de un vector
+#¿Cómo seleccionar los elementos de x menores que 2? 
+```
+
+se pueden modificar los vectores haciendo uso del operador asignación:
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x[1:2]<-c(12,13)
+x[1:2]<-0
+x[15]<-0
+```
+
+---
+
+## Tipo de los elementos de un vector
+
+Los vectores en R son objetos con todos sus elementos del mismo tipo
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<-c(1,2,3,4,5)
+class(x)
+x<-c(1,2,"hola")
+class(x)
+```
+
+Se pueden asignar nombres a cada componente de un vector
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<-c(1,2,3,4,5)
+names(x)<-c('primero','segundo','tercero','cuarto','quinto')
+attributes(x)
+x[2]          # accede al elemento nº2
+x['segundo']  # accede al elemento "el segundo"
+x[segundo]    
+```
+
+Hay funciones que podemos utilizar para verificar si un objeto es o no un vector
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+is.vector(x)
+```
+
+---
+
+## Factores en R
+
+Los factores son vectores que alamcenan datos categóricos (variable con varios niveles)
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+x<-c('Juan','Paco','María','Arturo')
+s<-c('hombre','hombre','mujer','hombre')
+s<-factor(s)
+
+attributes(s)
+is.factor(s)
+```
+
+
+---
+
+## Matrices en R
+
+Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (más de 2 dimensiones) 
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+m<-matrix(1:6,nrow=3,ncol=2)
+m[1,]
+m[,2]
+
+attributes(m)
+dimnames(m)<-list(c('A','B','C'),c('1','2'))
+attributes(m)
+is.matrix(m)
+
+ m['A',]
+m[,'2']
+```
+
+---
+
+## Listas en R
+
+Las listas en R son colecciones ordenadas de objetos
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+l<-list(padres=c('Juan','María'),num.hijos=2,edad.hijos=c(3,7))
+# observar que se emplea = para asignar los nombres 
+# a los objetos y no el operador <-
+attributes(l)
+names(l)  
+is.list(l)
+l[[1]]          # accede al objeto nº1
+l[['padres']]   # accede al objeto 'padres'
+l$padres        # accede al objeto 'padres'
+l$padres<-c("Juan Pérez", "María González")
+l$padres[2]
+```
+
+---
+
+## Hojas de datos en R
+
+Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observación.
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+id<-c(1:6)
+sexo<-rep(c("HOMBRE","MUJER"),each=3)
+edad<-sample(20:60,size=6,replace=TRUE)
+d<-data.frame(id=id,sexo=sexo,edad=edad)
+
+attributes(d)
+names(d)
+d[[2]]
+d[['sexo']]
+d$sexo
+class(d$sexo)
+```
+
+
+---
+
+## Paquetes en R
+
+> 1. La gran potencia que proporciona R reside en la gran cantidad de paquetes desarrollados y que se encuentran en repositorios CRAN. 
+> 2. En la instalación base de R se instalan sólo algunos de ellos. 
+> 3. A medida que se necesitan nuevas funcionalidades, se pueden instalar fácilmente 
+
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+library() # listar todos los paquetes disponibles en R
+install.packages("RJSONIO")
+install.packages("ggplot",dependencies=TRUE)
+library(RJSONIO)  # cargar el paquete
+
+```
+
 
 ---
 
@@ -242,7 +438,7 @@ data.json <- fromJSON( data.json, encoding="UTF-8" )
 
 Para consultar la estructura que se ha cargado:
 
-``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 #consultar la estructura que se ha cargado
 attributes(data.json)
 data.json$categories
@@ -266,201 +462,99 @@ data.json <- paste(readLines(data.url, encoding="UTF-8" )[1], collapse="")
 data.json <- fromJSON( data.json, encoding="UTF-8" )
 ```
 
----
-
-## La librería maptools
-
-La comarca con menor valor del censo se puede quedar de color blanco: 
-
-``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
-# corrección del primer color de la escala
-int$brks[1]<-1000
-# comprobar el orden de representación
-canary.counties@data[ order(canary.counties@data$censoH),]
-```
-
-Podemos utilizar otras paletas:
-
-``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
-# Paletas
-
-#display.brewer.pal(n, 'Blues')  
-pie(rep(1, n), col = brewer.pal(n, 'Blues') )
-pie(rep(1, n), col = brewer.pal(n, 'YlOrRd') )
-pie(rep(1, n), col = heat.colors(n)  )
-pie(rep(1, n), col = terrain.colors(n)  )
-```
 
 ---
 
-## La librería maptools
+## Otros métodos para la carga de datos
 
-``` {r loadmap12a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=3, fig.cap=""}
-pal <- heat.colors(n) 
-p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digits=2), lwd=.4, col="black")
-p 
-```
+Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
 
----
-
-## La librería maptools
-
-Se pueden utilizar otros métodos para los intervalos de clase:
-
-``` {r echo=TRUE, message=FALSE,tidy=TRUE,split=FALSE, fig.height=3}
-# Intervalos de clase 
-int<-classIntervals(canary.counties@data$censoH, n, style="quantile")
-int<-classIntervals(canary.counties@data$censoH, n, style="pretty")
-int<-classIntervals(canary.counties@data$censoH, n, style="jenks")
-
-```
-
----
-
-## La librería maptools
-
-Podemos utilizar otros métodos de representación, plot() + legend():
-
-``` {r loadmap13a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=5, fig.cap=""}
-# Representaciones alternativas
-plot(canary.counties, 
-col=pal[findInterval(canary.counties@data$censoH, int$brks,all.inside=TRUE)], 
-axes=TRUE)
-legend(x=-18, y=30.5, legend=leglabs(round(int$brks)), cex=0.9, fill=pal, bty="n",x.intersp = .5)
-```
-
----
-
-## La librería maptools
-
-Otros métodos de representación, fortify()+ggplot2():
- 
-``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE, fig.height=5, fig.cap=""}
-# Otra mas
-library(ggplot2)
-
-# convertir el objeto "SpatialPolygons" en data.frame
-canary.fort<-fortify(canary.counties,region='IDCOM27')
-head(canary.fort)
-
-canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
-
-ggplot(data=canary.fort, aes(long, lat, group=group)) + 
-      geom_polygon(colour='black', fill='white') 
-```
-
----
-
-## La librería maptools
-
-Entonces:
-
-``` {r echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE}
-# Otra mas
-library(ggplot2)
-
-# convertir el objeto "SpatialPolygons" en data.frame
-canary.fort<-fortify(canary.counties,region='IDCOM27')
-canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
-```
- 
-``` {r loadmap14a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap=""}
-map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH) )+
-geom_polygon() +
-geom_path(color="white") 
-map
+``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+data.url<-"http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json"
+data.json <- paste(readLines(data.url, encoding="UTF-8" )[1], collapse="")
+data.json <- fromJSON( data.json, encoding="UTF-8" )
 ```
 
 
 ---
 
-## La librería maptools
+## El arreglo de los datos cargados en formato JSON
 
-Otras variantes con ggplot2():
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+#pasamos los datos a una estructura temporal manejable
+tmp.json<-do.call(rbind,data.json$data)
+tmp.json.valores<-unlist(tmp.json[,1])
+tmp.json.cod<-tmp.json[,2]
 
-``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
-map + scale_fill_gradient(low="white", high="black")
+#creamos un data.frame para trabajar los datos
+data.from.json <- data.frame(matrix(ncol = 4, nrow = 4992))
+names(data.from.json)<-c("CodMunicipio","CodAnio","CodIndicador","Valor")
 
-map + scale_fill_gradient(name="censo", breaks = c(10000,50000,90000))
+for (i in 1:4992) {
+data.from.json$CodMunicipio[i]<-tmp.json.cod[[i]][1];
+data.from.json$CodAnio[i]     <-tmp.json.cod[[i]][2];
+data.from.json$CodIndicador[i]<-tmp.json.cod[[i]][3];
+data.from.json$Valor[i]       <-as.numeric(tmp.json.valores[[i]]);
+}
 
-map + scale_fill_gradientn(colours=brewer.pal(7, "Blues"), limits=c(1000, 100000))
-```
-
-
----
-
-## La librería maptools
-
-Podemos utilizar escalas discretas en el gráfico:
-
-``` {r echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE}
-canary.fort$censoH.discreto <- cut(canary.fort$censoH, 
-breaks=c(1000,3000,6000,9000,12000,15000,18000,21000,Inf), 
-labels=c("1000-3000", "3000-6000", "6000-9000", "9000-12000","12000-15000", "15000-18000", "18000-21000",">21000"), 
-include.lowest=TRUE)
-
-head(canary.fort)
-```
-
-``` {r echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE}
-canary.fort$censoH.discreto <- cut(canary.fort$censoH, 
-breaks=c(1000,3000,6000,9000,12000,15000,18000,21000,Inf), 
-labels=c("1000-3000", "3000-6000", "6000-9000", "9000-12000","12000-15000", "15000-18000", "18000-21000",">21000"), 
-include.lowest=TRUE)
-```
+rm(tmp.json,tmp.json.valores,tmp.json.cod)
+``` 
 
 ---
 
-## La librería maptools
+## El arreglo de los datos cargados en formato JSON
 
-Entonces:
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+#asociamos los códigos a sus valores descriptivos
+idx <- match(data.from.json$CodMunicipio,data.json$categories[[1]]$codes)
+data.from.json$Municipio<-data.json$categories[[1]]$labels[idx]
 
-``` {r loadmap15a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
-map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH.discreto)) +
-geom_polygon() + geom_path(color="white") 
+idx <- match(data.from.json$CodAnio,data.json$categories[[2]]$codes)
+data.from.json$Anio<-data.json$categories[[2]]$labels[idx]
 
-map
-#map + scale_fill_brewer("Censo hombres total")
-```
+idx <- match(data.from.json$CodIndicador,data.json$categories[[3]]$codes)
+data.from.json$Indicador<-data.json$categories[[3]]$labels[idx]
 
+#reordenamos convenientemente las variables
+data.pob.municipios<-data.from.json[,c(1,5,2,6,3,7,4)]
+``` 
 
 ---
 
-## La librería maptools
+## Otros métodos para la carga de datos
 
-Podemos representar las comarcas de una isla:
+Para cargar datos en formato PC-AXIS:
 
-``` {r loadmap16a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
-#canary.counties@data[canary.counties@data$CODISLA=='GC',]
-idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA=='GC',"IDCOM27"]
-canary.fort2<-canary.fort[idx,]
 
-map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto) )+ geom_polygon() + geom_path(color="white")  
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+library(pxR)
+data.url<-"http://www.gobiernodecanarias.org/istac/jaxi-istac/descarga.do?uripx=urn:uuid:d73bd9de-e6ed-4821-808a-616b34df9655"
 
-map
+data.px <- read.px(data.url)
+
+head(data.px)
+data.px$VALUES
+data.px$CODES
+
+data.from.px<-as.data.frame(data.px)
+names(data.from.px)<-c("Indicadores","Años","Municipios","Valor")   
+
 ```
 
 ---
 
-## La librería maptools
+## Programación de funciones en R
 
-Podemos representar con ggplot:
+Es posible programar funciones personalizadas en R:
 
-``` {r loadmap17a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
-canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','IDPROV','PROV','CODISLA', 'ISLA')], by.x="id",by.y="IDCOM27",sort=FALSE)
+``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+myfunction <- function(x) {
+       vec<- rnorm(x)
+       hist(vec)
+       return(mean(vec))
+     }
 
-idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',"IDCOM27"]
-
-canary.fort2<-canary.fort[idx,]
-
-map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto)) +
-geom_polygon() + geom_path(color="white") 
-
-map + facet_grid(PROV ~ ISLA,scales="free_x")
+myfunction(10)
 ```
-
-
-
-
 
 

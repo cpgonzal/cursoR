@@ -4,7 +4,6 @@ Curso de introducción y manejo de R
 La librería maptools
 -------------------------------------------------------  
 
-
 > 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
 > 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
 > 3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
@@ -12,7 +11,6 @@ La librería maptools
 Website (blog): http://rspatialtips.org.uk/
 <br>
 Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
-
 
 
 
@@ -304,16 +302,62 @@ Entonces:
 map <- ggplot(data = canary.fort, aes(long, lat, group = group, fill = censoH.discreto)) + 
     geom_polygon() + geom_path(color = "white")
 
-map + scale_fill_brewer("Censo hombres total")
-```
-
-![](figure/loadmap15a1.png) 
-
-```r
 map
 ```
 
-![](figure/loadmap15a2.png) 
+![](figure/loadmap15a.png) 
+
+```r
+# map + scale_fill_brewer('Censo hombres total')
+```
+
+
+
+---
+
+## La librería maptools
+
+Podemos representar las comarcas de una isla:
+
+
+```r
+# canary.counties@data[canary.counties@data$CODISLA=='GC',]
+idx <- canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA == 
+    "GC", "IDCOM27"]
+canary.fort2 <- canary.fort[idx, ]
+
+map <- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+
+map
+```
+
+![](figure/loadmap16a.png) 
+
+
+---
+
+## La librería maptools
+
+Podemos representar con ggplot:
+
+
+```r
+canary.fort <- merge(canary.fort, canary.counties@data[, c("IDCOM27", "IDPROV", 
+    "PROV", "CODISLA", "ISLA")], by.x = "id", by.y = "IDCOM27", sort = FALSE)
+
+idx <- canary.fort$id %in% canary.counties@data[canary.counties@data$PROV == 
+    "Santa Cruz de Tenerife", "IDCOM27"]
+
+canary.fort2 <- canary.fort[idx, ]
+
+map <- ggplot(data = canary.fort2, aes(long, lat, group = group, fill = censoH.discreto)) + 
+    geom_polygon() + geom_path(color = "white")
+
+map + facet_grid(PROV ~ ISLA, scales = "free_x")
+```
+
+![](figure/loadmap17a.png) 
 
 
 
