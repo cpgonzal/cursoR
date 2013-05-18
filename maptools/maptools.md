@@ -1,9 +1,9 @@
 La librería maptools
 -------------------------------------------------------  
 
-> 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
-> 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
-> 3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
+1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
+2. En particular, permite cargar archivos ESRI shapefiles (.shp).
+3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
 <br>
 Website (blog): http://rspatialtips.org.uk/
 <br>
@@ -174,10 +174,6 @@ p
 ![](figure/loadmap12a.png) 
 
 
----
-
-## La librería maptools
-
 Se pueden utilizar otros métodos para los intervalos de clase:
 
 
@@ -267,10 +263,6 @@ map + scale_fill_gradientn(colours = brewer.pal(7, "Blues"), limits = c(1000,
 ```
 
 
-
----
-
-## La librería maptools
 
 Podemos utilizar escalas discretas en el gráfico:
 

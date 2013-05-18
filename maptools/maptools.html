@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,15 +55,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
   background: #FFFFFF;
 }
 
-#head-icon1 {
+#head-icon {
   margin-top: 0.5em;
   margin-bottom: 0;
   margin-left: 0;
-  margin-right: 1em;
+  margin-right: 0em;
   /*background:  #728ec2;*/
   border-width: 0;
-  height: 1em;
-  max-width: 3em;
+  height: 1.5em;
+  max-width: 4em;
   z-index: 2;
   float: left;
 }
@@ -78,12 +78,45 @@ div.background {
   top: 0;
   bottom: auto;
   height: 4.1em;
-  padding: 0 0 0 0.2em;
-  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  margin: 1 1 1 1;
   border-width: 0;
   background-color: #FFFFFF;
 }
 
+
+
+div.slide h1 {
+  padding-left: 0;
+  padding-right: 20pt;
+  padding-top: 4pt;
+  padding-bottom: 4pt;
+  margin-top: 0;
+  margin-left: 25pt;
+  margin-right: 60pt;
+  margin-bottom: 0.5em;
+  display: block; 
+  font-size: 160%;
+  line-height: 1.2em;
+  background: transparent;
+}
+
+
+ul { list-style-type: none; }
+ul ul { list-style-type: disc; }
+ul ul ul { list-style-type: circle; }
+ul ul ul ul { list-style-type: disc; }
+li { margin-left: 0.5em; margin-top: 0.5em; }
+li li { font-size: 85%; font-style: normal }
+li li li { font-size: 85%; font-style: normal }
+
+
+ul li { 
+  list-style: none;
+  margin: 0.1em 0em 0.6em 0;
+  padding: 0 0 0 0;
+  line-height: 140%;
+}
 
 </style>
 
@@ -198,16 +231,13 @@ p</code></pre>
 <div class="figure">
 <img src="figure/loadmap12a.png" />
 </div>
-</div>
-<div id="la-librería-maptools-8" class="slide section level2">
-<h1>La librería maptools</h1>
 <p>Se pueden utilizar otros métodos para los intervalos de clase:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Intervalos de clase</span>
 int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.counties@data$censoH, n, <span class="dt">style =</span> <span class="st">&quot;quantile&quot;</span>)
 int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.counties@data$censoH, n, <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>)
 int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.counties@data$censoH, n, <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>)</code></pre>
 </div>
-<div id="la-librería-maptools-9" class="slide section level2">
+<div id="la-librería-maptools-8" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Podemos utilizar otros métodos de representación, plot() + legend():</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Representaciones alternativas</span>
@@ -219,7 +249,7 @@ int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.
 <img src="figure/loadmap13a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-10" class="slide section level2">
+<div id="la-librería-maptools-9" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Otros métodos de representación, fortify()+ggplot2():</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Otra mas</span>
@@ -235,7 +265,7 @@ canary.fort &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.f
 <span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, 
     <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</code></pre>
 </div>
-<div id="la-librería-maptools-11" class="slide section level2">
+<div id="la-librería-maptools-10" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Entonces:</p>
 <pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH)) +<span class="st"> </span>
@@ -245,7 +275,7 @@ map</code></pre>
 <img src="figure/loadmap14a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-12" class="slide section level2">
+<div id="la-librería-maptools-11" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Otras variantes con ggplot2():</p>
 <pre class="sourceCode r"><code class="sourceCode r">map +<span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;black&quot;</span>)
@@ -254,9 +284,6 @@ map +<span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span 
 
 map +<span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> <span class="kw">brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;Blues&quot;</span>), <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">1000</span>, 
     <span class="fl">1e+05</span>))</code></pre>
-</div>
-<div id="la-librería-maptools-13" class="slide section level2">
-<h1>La librería maptools</h1>
 <p>Podemos utilizar escalas discretas en el gráfico:</p>
 <pre class="sourceCode r"><code class="sourceCode r">canary.fort$censoH.discreto &lt;-<span class="st"> </span><span class="kw">cut</span>(canary.fort$censoH, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">3000</span>, 
     <span class="dv">6000</span>, <span class="dv">9000</span>, <span class="dv">12000</span>, <span class="dv">15000</span>, <span class="dv">18000</span>, <span class="dv">21000</span>, <span class="ot">Inf</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;1000-3000&quot;</span>, <span class="st">&quot;3000-6000&quot;</span>, 
@@ -265,7 +292,7 @@ map +<span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span
 
 <span class="kw">head</span>(canary.fort)</code></pre>
 </div>
-<div id="la-librería-maptools-14" class="slide section level2">
+<div id="la-librería-maptools-12" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Entonces:</p>
 <pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH.discreto)) +<span class="st"> </span>
@@ -277,7 +304,7 @@ map</code></pre>
 </div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># map + scale_fill_brewer(&#39;Censo hombres total&#39;)</span></code></pre>
 </div>
-<div id="la-librería-maptools-15" class="slide section level2">
+<div id="la-librería-maptools-13" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Podemos representar las comarcas de una isla:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canary.counties@data[canary.counties@data$CODISLA==&#39;GC&#39;,]</span>
@@ -293,7 +320,7 @@ map</code></pre>
 <img src="figure/loadmap16a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-16" class="slide section level2">
+<div id="la-librería-maptools-14" class="slide section level2">
 <h1>La librería maptools</h1>
 <p>Podemos representar con ggplot:</p>
 <pre class="sourceCode r"><code class="sourceCode r">canary.fort &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.fort, canary.counties@data[, <span class="kw">c</span>(<span class="st">&quot;IDCOM27&quot;</span>, <span class="st">&quot;IDPROV&quot;</span>, 

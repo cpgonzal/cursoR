@@ -1,4 +1,9 @@
-﻿<style type="text/css">
+﻿  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="../Slidy2/styles/slidy.css" />
+  <script src="../Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+
+<style type="text/css">
 
 
 #head-logo {
@@ -19,11 +24,11 @@
   margin-top: 0.5em;
   margin-bottom: 0;
   margin-left: 0;
-  margin-right: 1em;
+  margin-right: 0em;
   /*background:  #728ec2;*/
   border-width: 0;
-  height: 1em;
-  max-width: 3em;
+  height: 1.5em;
+  max-width: 4em;
   z-index: 2;
   float: left;
 }
@@ -38,23 +43,56 @@ div.background {
   top: 0;
   bottom: auto;
   height: 4.1em;
-  padding: 0 0 0 0.2em;
-  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  margin: 1 1 1 1;
   border-width: 0;
   background-color: #FFFFFF;
 }
 
 
+
+div.slide h1 {
+  padding-left: 0;
+  padding-right: 20pt;
+  padding-top: 4pt;
+  padding-bottom: 4pt;
+  margin-top: 0;
+  margin-left: 25pt;
+  margin-right: 60pt;
+  margin-bottom: 0.5em;
+  display: block; 
+  font-size: 160%;
+  line-height: 1.2em;
+  background: transparent;
+}
+
+
+ul { list-style-type: none; }
+ul ul { list-style-type: disc; }
+ul ul ul { list-style-type: circle; }
+ul ul ul ul { list-style-type: disc; }
+li { margin-left: 0.5em; margin-top: 0.5em; }
+li li { font-size: 85%; font-style: normal }
+li li li { font-size: 85%; font-style: normal }
+
+
+ul li { 
+  list-style: none;
+  margin: 0.1em 0em 0.6em 0;
+  padding: 0 0 0 0;
+  line-height: 140%;
+}
+
 </style>
 
 
 <div class="background"> 
-  <img id="head-icon" alt="graphic with four colored squares" height="15"
-    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+  <img id="head-icon" alt="R logo" height="15"
+    src="../assets/img/Rlogo.jpg" /> 
 			
    <object id="head-logo" >
-        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
-        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
+        <img id="head-logo" style="height: 0.8em; width: 6.0em;" src="../assets/img/logo_FG_ULL.png" alt="Fundación General de la Universidad de La Laguna" />
+        <img id="head-logo" style="height: 0.6em; width: 3.0em;" src="../assets/img/logo_istac.jpg" alt="ISTAC - Instituto Canario de Estadística" />
 </object>
 
 </div> 

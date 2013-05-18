@@ -1,16 +1,9 @@
-Curso de introducción y manejo de R
-========================================================
-
 La librería googleVis
 -------------------------------------------------------  
  
-
-## La librería googleVis  
-
-
-> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
-> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
-> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
+2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
+3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
 <br>
 Website : http://code.google.com/p/google-motion-charts-with-r/
 <br>
@@ -24,6 +17,8 @@ Website (blog): http://www.r-bloggers.com/search/googlevis
 
 ## La librería googleVis
 
+Para representar un gráfico dinámico que responda a los eventos 
+de usuario:
 
 
 ```r
@@ -39,14 +34,14 @@ plot(motion.capitales)
 
 
 <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:01 2013 -->
+<!-- Sat May 18 15:37:37 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID17444273df2 () {
+function gvisDataMotionChartID16ac74908a0 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -297,14 +292,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID17444273df2() {
-  var data = gvisDataMotionChartID17444273df2();
+function drawChartMotionChartID16ac74908a0() {
+  var data = gvisDataMotionChartID16ac74908a0();
   var options = {};
-options["width"] =    350;
-options["height"] =    250;
+options["width"] =    450;
+options["height"] =    350;
 
      var chart = new google.visualization.MotionChart(
-       document.getElementById('MotionChartID17444273df2')
+       document.getElementById('MotionChartID16ac74908a0')
      );
      chart.draw(data,options);
     
@@ -328,9 +323,9 @@ options["height"] =    250;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMotionChartID17444273df2);
+  callbacks.push(drawChartMotionChartID16ac74908a0);
 })();
-function displayChartMotionChartID17444273df2() {
+function displayChartMotionChartID16ac74908a0() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -354,12 +349,12 @@ function displayChartMotionChartID17444273df2() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID17444273df2"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID16ac74908a0"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID17444273df2"
-  style="width: 350px; height: 250px;">
+<div id="MotionChartID16ac74908a0"
+  style="width: 450px; height: 350px;">
 </div>
 
 
@@ -367,6 +362,7 @@ function displayChartMotionChartID17444273df2() {
 
 ## La librería googleVis
 
+Podemos ver el código XML que contiene este objeto y lo podemos insertar como un widget
 
 
 ```r
@@ -378,10 +374,24 @@ cat(createGoogleGadget(motion.capitales), file = "motionchart.xml")
 
 
 
+```
+## <?xml version="1.0" encoding="UTF-8" ?> 
+## <Module>
+##   <ModulePrefs title="MotionChartID16ac74908a0" />
+##   <Content type="html">
+##   <![CDATA[ 
+##    <!-- MotionChart generated in R 3.0.0 by googleVis 0.4.2 pa
+```
+
+
+
 
 --- 
 
 ## La librería googleVis
+
+
+Podemos representar datos geo-espaciales utilizando las funciones de mapas:
 
 
 
@@ -401,10 +411,14 @@ plot(map.capitales)
 ```
 
 
+Esta función no es muy adecuada para regiones que no estén codificadas como ISO 3166-1 (http://www.iso.org/iso/iso-3166-1_decoding_table.html)
+
+
 --- 
 
 ## La librería googleVis
 
+Podemos mejorar la representación utilizando gvisMap:
 
 
 ```r
@@ -420,14 +434,14 @@ plot(map.capitales)
 
 
 <!-- Map generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:01 2013 -->
+<!-- Sat May 18 15:37:37 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMapID174453bf2d52 () {
+function gvisDataMapID16ac35d61c0e () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -450,8 +464,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMapID174453bf2d52() {
-  var data = gvisDataMapID174453bf2d52();
+function drawChartMapID16ac35d61c0e() {
+  var data = gvisDataMapID16ac35d61c0e();
   var options = {};
 options["showTip"] = true;
 options["enableScrollWheel"] = true;
@@ -459,7 +473,7 @@ options["mapType"] = "terrain";
 options["useMapTypeControl"] = true;
 
      var chart = new google.visualization.Map(
-       document.getElementById('MapID174453bf2d52')
+       document.getElementById('MapID16ac35d61c0e')
      );
      chart.draw(data,options);
     
@@ -483,9 +497,9 @@ options["useMapTypeControl"] = true;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartMapID174453bf2d52);
+  callbacks.push(drawChartMapID16ac35d61c0e);
 })();
-function displayChartMapID174453bf2d52() {
+function displayChartMapID16ac35d61c0e() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -509,11 +523,11 @@ function displayChartMapID174453bf2d52() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMapID174453bf2d52"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMapID16ac35d61c0e"></script>
  
 <!-- divChart -->
   
-<div id="MapID174453bf2d52"
+<div id="MapID16ac35d61c0e"
   style="width: 600px; height: 500px;">
 </div>
 
@@ -522,6 +536,7 @@ function displayChartMapID174453bf2d52() {
 
 ## La librería googleVis
 
+También se puede mostrar una representación tabular de datos
 
 
 ```r
@@ -539,320 +554,158 @@ plot(table.capitales)
 
 
 <!-- Table generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:01 2013 -->
+<!-- Sat May 18 15:37:37 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID17448586acc () {
+function gvisDataTableID16ac38fa124 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
  [
- "ES705",
+ 2000,
 " GRAN CANARIA",
-"2012",
-2012,
-"000000",
-"Cifras absolutas",
-852225,
-"28.1157:-15.4408",
-"Poblacion: 852225" 
+741161 
 ],
 [
- "ES705",
+ 2000,
+" TENERIFE",
+709365 
+],
+[
+ 2001,
 " GRAN CANARIA",
-"2011",
-2011,
-"000000",
-"Cifras absolutas",
-850391,
-"28.1157:-15.4408",
-"Poblacion: 850391" 
+755489 
 ],
 [
- "ES705",
+ 2001,
+" TENERIFE",
+744076 
+],
+[
+ 2002,
 " GRAN CANARIA",
-"2010",
-2010,
-"000000",
-"Cifras absolutas",
-845676,
-"28.1157:-15.4408",
-"Poblacion: 845676" 
+771333 
 ],
 [
- "ES705",
+ 2002,
+" TENERIFE",
+778071 
+],
+[
+ 2003,
 " GRAN CANARIA",
-"2009",
-2009,
-"000000",
-"Cifras absolutas",
-838397,
-"28.1157:-15.4408",
-"Poblacion: 838397" 
+789908 
 ],
 [
- "ES705",
+ 2003,
+" TENERIFE",
+799889 
+],
+[
+ 2004,
 " GRAN CANARIA",
-"2008",
-2008,
-"000000",
-"Cifras absolutas",
-829597,
-"28.1157:-15.4408",
-"Poblacion: 829597" 
+790360 
 ],
 [
- "ES705",
+ 2004,
+" TENERIFE",
+812839 
+],
+[
+ 2005,
 " GRAN CANARIA",
-"2007",
-2007,
-"000000",
-"Cifras absolutas",
-815379,
-"28.1157:-15.4408",
-"Poblacion: 815379" 
+802247 
 ],
 [
- "ES705",
+ 2005,
+" TENERIFE",
+838877 
+],
+[
+ 2006,
 " GRAN CANARIA",
-"2006",
-2006,
-"000000",
-"Cifras absolutas",
-807049,
-"28.1157:-15.4408",
-"Poblacion: 807049" 
+807049 
 ],
 [
- "ES705",
+ 2006,
+" TENERIFE",
+852945 
+],
+[
+ 2007,
 " GRAN CANARIA",
-"2005",
-2005,
-"000000",
-"Cifras absolutas",
-802247,
-"28.1157:-15.4408",
-"Poblacion: 802247" 
+815379 
 ],
 [
- "ES705",
+ 2007,
+" TENERIFE",
+865070 
+],
+[
+ 2008,
 " GRAN CANARIA",
-"2004",
-2004,
-"000000",
-"Cifras absolutas",
-790360,
-"28.1157:-15.4408",
-"Poblacion: 790360" 
+829597 
 ],
 [
- "ES705",
+ 2008,
+" TENERIFE",
+886033 
+],
+[
+ 2009,
 " GRAN CANARIA",
-"2003",
-2003,
-"000000",
-"Cifras absolutas",
-789908,
-"28.1157:-15.4408",
-"Poblacion: 789908" 
+838397 
 ],
 [
- "ES705",
+ 2009,
+" TENERIFE",
+899833 
+],
+[
+ 2010,
 " GRAN CANARIA",
-"2002",
-2002,
-"000000",
-"Cifras absolutas",
-771333,
-"28.1157:-15.4408",
-"Poblacion: 771333" 
+845676 
 ],
 [
- "ES705",
+ 2010,
+" TENERIFE",
+906854 
+],
+[
+ 2011,
 " GRAN CANARIA",
-"2001",
-2001,
-"000000",
-"Cifras absolutas",
-755489,
-"28.1157:-15.4408",
-"Poblacion: 755489" 
+850391 
 ],
 [
- "ES705",
+ 2011,
+" TENERIFE",
+908555 
+],
+[
+ 2012,
 " GRAN CANARIA",
-"2000",
-2000,
-"000000",
-"Cifras absolutas",
-741161,
-"28.1157:-15.4408",
-"Poblacion: 741161" 
+852225 
 ],
 [
- "ES709",
+ 2012,
 " TENERIFE",
-"2012",
-2012,
-"000000",
-"Cifras absolutas",
-898680,
-"28.4687:-16.252",
-"Poblacion: 898680" 
-],
-[
- "ES709",
-" TENERIFE",
-"2011",
-2011,
-"000000",
-"Cifras absolutas",
-908555,
-"28.4687:-16.252",
-"Poblacion: 908555" 
-],
-[
- "ES709",
-" TENERIFE",
-"2010",
-2010,
-"000000",
-"Cifras absolutas",
-906854,
-"28.4687:-16.252",
-"Poblacion: 906854" 
-],
-[
- "ES709",
-" TENERIFE",
-"2009",
-2009,
-"000000",
-"Cifras absolutas",
-899833,
-"28.4687:-16.252",
-"Poblacion: 899833" 
-],
-[
- "ES709",
-" TENERIFE",
-"2008",
-2008,
-"000000",
-"Cifras absolutas",
-886033,
-"28.4687:-16.252",
-"Poblacion: 886033" 
-],
-[
- "ES709",
-" TENERIFE",
-"2007",
-2007,
-"000000",
-"Cifras absolutas",
-865070,
-"28.4687:-16.252",
-"Poblacion: 865070" 
-],
-[
- "ES709",
-" TENERIFE",
-"2006",
-2006,
-"000000",
-"Cifras absolutas",
-852945,
-"28.4687:-16.252",
-"Poblacion: 852945" 
-],
-[
- "ES709",
-" TENERIFE",
-"2005",
-2005,
-"000000",
-"Cifras absolutas",
-838877,
-"28.4687:-16.252",
-"Poblacion: 838877" 
-],
-[
- "ES709",
-" TENERIFE",
-"2004",
-2004,
-"000000",
-"Cifras absolutas",
-812839,
-"28.4687:-16.252",
-"Poblacion: 812839" 
-],
-[
- "ES709",
-" TENERIFE",
-"2003",
-2003,
-"000000",
-"Cifras absolutas",
-799889,
-"28.4687:-16.252",
-"Poblacion: 799889" 
-],
-[
- "ES709",
-" TENERIFE",
-"2002",
-2002,
-"000000",
-"Cifras absolutas",
-778071,
-"28.4687:-16.252",
-"Poblacion: 778071" 
-],
-[
- "ES709",
-" TENERIFE",
-"2001",
-2001,
-"000000",
-"Cifras absolutas",
-744076,
-"28.4687:-16.252",
-"Poblacion: 744076" 
-],
-[
- "ES709",
-" TENERIFE",
-"2000",
-2000,
-"000000",
-"Cifras absolutas",
-709365,
-"28.4687:-16.252",
-"Poblacion: 709365" 
+898680 
 ] 
 ];
-data.addColumn('string','CodMunicipio');
-data.addColumn('string','Municipio');
-data.addColumn('string','CodAnio');
 data.addColumn('number','Anio');
-data.addColumn('string','CodIndicador');
-data.addColumn('string','Indicador');
+data.addColumn('string','Municipio');
 data.addColumn('number','Valor');
-data.addColumn('string','LatLong');
-data.addColumn('string','Tip');
 data.addRows(datajson);
 return(data);
 }
  
 // jsDrawChart
-function drawChartTableID17448586acc() {
-  var data = gvisDataTableID17448586acc();
+function drawChartTableID16ac38fa124() {
+  var data = gvisDataTableID16ac38fa124();
   var options = {};
 options["allowHtml"] = true;
 options["width"] =    800;
@@ -860,7 +713,7 @@ options["height"] =    470;
 options["page"] = "enable";
 
      var chart = new google.visualization.Table(
-       document.getElementById('TableID17448586acc')
+       document.getElementById('TableID16ac38fa124')
      );
      chart.draw(data,options);
     
@@ -884,9 +737,9 @@ options["page"] = "enable";
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartTableID17448586acc);
+  callbacks.push(drawChartTableID16ac38fa124);
 })();
-function displayChartTableID17448586acc() {
+function displayChartTableID16ac38fa124() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -910,11 +763,11 @@ function displayChartTableID17448586acc() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID17448586acc"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID16ac38fa124"></script>
  
 <!-- divChart -->
   
-<div id="TableID17448586acc"
+<div id="TableID16ac38fa124"
   style="width: 800px; height: 470px;">
 </div>
 
@@ -923,6 +776,7 @@ function displayChartTableID17448586acc() {
 
 ## La librería googleVis
 
+Vemos un ejemplo de gráficos con serie temporal o líneas:
 
 
 ```r
@@ -941,14 +795,14 @@ plot(line.capitales)
 
 
 <!-- AnnotatedTimeLine generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:01 2013 -->
+<!-- Sat May 18 15:37:37 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataAnnotatedTimeLineID17446a8d428e () {
+function gvisDataAnnotatedTimeLineID16ac22c65926 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1026,8 +880,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartAnnotatedTimeLineID17446a8d428e() {
-  var data = gvisDataAnnotatedTimeLineID17446a8d428e();
+function drawChartAnnotatedTimeLineID16ac22c65926() {
+  var data = gvisDataAnnotatedTimeLineID16ac22c65926();
   var options = {};
 options["width"] =    600;
 options["height"] =    550;
@@ -1035,7 +889,7 @@ options["legendPosition"] = "newRow";
 options["displayExactValues"] = "TRUE";
 
      var chart = new google.visualization.AnnotatedTimeLine(
-       document.getElementById('AnnotatedTimeLineID17446a8d428e')
+       document.getElementById('AnnotatedTimeLineID16ac22c65926')
      );
      chart.draw(data,options);
     
@@ -1059,9 +913,9 @@ options["displayExactValues"] = "TRUE";
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartAnnotatedTimeLineID17446a8d428e);
+  callbacks.push(drawChartAnnotatedTimeLineID16ac22c65926);
 })();
-function displayChartAnnotatedTimeLineID17446a8d428e() {
+function displayChartAnnotatedTimeLineID16ac22c65926() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1085,11 +939,11 @@ function displayChartAnnotatedTimeLineID17446a8d428e() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAnnotatedTimeLineID17446a8d428e"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAnnotatedTimeLineID16ac22c65926"></script>
  
 <!-- divChart -->
   
-<div id="AnnotatedTimeLineID17446a8d428e"
+<div id="AnnotatedTimeLineID16ac22c65926"
   style="width: 600px; height: 550px;">
 </div>
 
@@ -1099,6 +953,8 @@ function displayChartAnnotatedTimeLineID17446a8d428e() {
 
 ## La librería googleVis
 
+
+Vemos un ejemplo de gráficos de barras:
 
 
 ```r
@@ -1111,14 +967,14 @@ plot(bar.capitales)
 
 
 <!-- BarChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:01 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataBarChartID17441a8611a () {
+function gvisDataBarChartID16ac31273e9 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1196,8 +1052,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartBarChartID17441a8611a() {
-  var data = gvisDataBarChartID17441a8611a();
+function drawChartBarChartID16ac31273e9() {
+  var data = gvisDataBarChartID16ac31273e9();
   var options = {};
 options["allowHtml"] = true;
 options["legend"] = "right";
@@ -1205,7 +1061,7 @@ options["width"] =    600;
 options["height"] =    400;
 
      var chart = new google.visualization.BarChart(
-       document.getElementById('BarChartID17441a8611a')
+       document.getElementById('BarChartID16ac31273e9')
      );
      chart.draw(data,options);
     
@@ -1229,9 +1085,9 @@ options["height"] =    400;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartBarChartID17441a8611a);
+  callbacks.push(drawChartBarChartID16ac31273e9);
 })();
-function displayChartBarChartID17441a8611a() {
+function displayChartBarChartID16ac31273e9() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1255,11 +1111,11 @@ function displayChartBarChartID17441a8611a() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID17441a8611a"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBarChartID16ac31273e9"></script>
  
 <!-- divChart -->
   
-<div id="BarChartID17441a8611a"
+<div id="BarChartID16ac31273e9"
   style="width: 600px; height: 400px;">
 </div>
 
@@ -1268,6 +1124,7 @@ function displayChartBarChartID17441a8611a() {
 
 ## La librería googleVis
 
+Podemos representar gráficos columnas:
 
 
 ```r
@@ -1280,14 +1137,14 @@ plot(col.capitales)
 
 
 <!-- ColumnChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataColumnChartID174437895cff () {
+function gvisDataColumnChartID16ac3ae65768 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1365,8 +1222,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartColumnChartID174437895cff() {
-  var data = gvisDataColumnChartID174437895cff();
+function drawChartColumnChartID16ac3ae65768() {
+  var data = gvisDataColumnChartID16ac3ae65768();
   var options = {};
 options["allowHtml"] = true;
 options["legend"] = "right";
@@ -1374,7 +1231,7 @@ options["width"] =    600;
 options["height"] =    400;
 
      var chart = new google.visualization.ColumnChart(
-       document.getElementById('ColumnChartID174437895cff')
+       document.getElementById('ColumnChartID16ac3ae65768')
      );
      chart.draw(data,options);
     
@@ -1398,9 +1255,9 @@ options["height"] =    400;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartColumnChartID174437895cff);
+  callbacks.push(drawChartColumnChartID16ac3ae65768);
 })();
-function displayChartColumnChartID174437895cff() {
+function displayChartColumnChartID16ac3ae65768() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1424,11 +1281,11 @@ function displayChartColumnChartID174437895cff() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartColumnChartID174437895cff"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartColumnChartID16ac3ae65768"></script>
  
 <!-- divChart -->
   
-<div id="ColumnChartID174437895cff"
+<div id="ColumnChartID16ac3ae65768"
   style="width: 600px; height: 400px;">
 </div>
 
@@ -1437,6 +1294,7 @@ function displayChartColumnChartID174437895cff() {
 
 ## La librería googleVis
 
+Y gráficos de áreas:
 
 
 ```r
@@ -1449,14 +1307,14 @@ plot(area.capitales)
 
 
 <!-- AreaChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataAreaChartID174468ba1777 () {
+function gvisDataAreaChartID16ac622b2d19 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1534,8 +1392,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartAreaChartID174468ba1777() {
-  var data = gvisDataAreaChartID174468ba1777();
+function drawChartAreaChartID16ac622b2d19() {
+  var data = gvisDataAreaChartID16ac622b2d19();
   var options = {};
 options["allowHtml"] = true;
 options["legend"] = "right";
@@ -1543,7 +1401,7 @@ options["width"] =    600;
 options["height"] =    400;
 
      var chart = new google.visualization.AreaChart(
-       document.getElementById('AreaChartID174468ba1777')
+       document.getElementById('AreaChartID16ac622b2d19')
      );
      chart.draw(data,options);
     
@@ -1567,9 +1425,9 @@ options["height"] =    400;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartAreaChartID174468ba1777);
+  callbacks.push(drawChartAreaChartID16ac622b2d19);
 })();
-function displayChartAreaChartID174468ba1777() {
+function displayChartAreaChartID16ac622b2d19() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1593,11 +1451,11 @@ function displayChartAreaChartID174468ba1777() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAreaChartID174468ba1777"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAreaChartID16ac622b2d19"></script>
  
 <!-- divChart -->
   
-<div id="AreaChartID174468ba1777"
+<div id="AreaChartID16ac622b2d19"
   style="width: 600px; height: 400px;">
 </div>
 
@@ -1607,6 +1465,7 @@ function displayChartAreaChartID174468ba1777() {
 
 ## La librería googleVis
 
+Veamos los gráficos de escalera:
 
 
 ```r
@@ -1618,14 +1477,14 @@ plot(step.capitales)
 
 
 <!-- SteppedAreaChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataSteppedAreaChartID1744287922be () {
+function gvisDataSteppedAreaChartID16ac380f3ae6 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1703,8 +1562,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartSteppedAreaChartID1744287922be() {
-  var data = gvisDataSteppedAreaChartID1744287922be();
+function drawChartSteppedAreaChartID16ac380f3ae6() {
+  var data = gvisDataSteppedAreaChartID16ac380f3ae6();
   var options = {};
 options["allowHtml"] = true;
 options["isStacked"] = true;
@@ -1712,7 +1571,7 @@ options["width"] =    600;
 options["height"] =    400;
 
      var chart = new google.visualization.SteppedAreaChart(
-       document.getElementById('SteppedAreaChartID1744287922be')
+       document.getElementById('SteppedAreaChartID16ac380f3ae6')
      );
      chart.draw(data,options);
     
@@ -1736,9 +1595,9 @@ options["height"] =    400;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartSteppedAreaChartID1744287922be);
+  callbacks.push(drawChartSteppedAreaChartID16ac380f3ae6);
 })();
-function displayChartSteppedAreaChartID1744287922be() {
+function displayChartSteppedAreaChartID16ac380f3ae6() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1762,11 +1621,11 @@ function displayChartSteppedAreaChartID1744287922be() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartSteppedAreaChartID1744287922be"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartSteppedAreaChartID16ac380f3ae6"></script>
  
 <!-- divChart -->
   
-<div id="SteppedAreaChartID1744287922be"
+<div id="SteppedAreaChartID16ac380f3ae6"
   style="width: 600px; height: 400px;">
 </div>
 
@@ -1775,6 +1634,8 @@ function displayChartSteppedAreaChartID1744287922be() {
 
 ## La librería googleVis
 
+
+También se pueden representar gráficos de dos variables:
 
 
 ```r
@@ -1788,28 +1649,23 @@ data.pob.canarias2 <- data.frame(CIFRAS_ABSOLUTAS = data.pob.canarias[data.pob.c
 
 ## Scatter chart
 scatter.canarias <- gvisScatterChart(data.pob.canarias2, options = list(legend = "none", 
-    lineWidth = 2, pointSize = 0, vAxis = "{title:'Variacion interanual'}", 
-    hAxis = "{title:'Poblacion absoluta'}", title = "Comparacion de poblacion absoluta y var. inter.", 
-    width = 600, height = 600))
+    pointSize = 2, vAxis = "{title:'Variacion interanual'}", hAxis = "{title:'Poblacion absoluta'}", 
+    title = "Comparacion de poblacion absoluta y var. inter.", width = 600, 
+    height = 600))
 plot(scatter.canarias)
 ```
 
 
 
---- 
-
-## La librería googleVis
-
-
 <!-- ScatterChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataScatterChartID17445008463 () {
+function gvisDataScatterChartID16ac41c91cf6 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -1873,13 +1729,12 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartScatterChartID17445008463() {
-  var data = gvisDataScatterChartID17445008463();
+function drawChartScatterChartID16ac41c91cf6() {
+  var data = gvisDataScatterChartID16ac41c91cf6();
   var options = {};
 options["allowHtml"] = true;
 options["legend"] = "none";
-options["lineWidth"] =      2;
-options["pointSize"] =      0;
+options["pointSize"] =      4;
 options["vAxis"] = {title:'Variacion interanual'};
 options["hAxis"] = {title:'Poblacion absoluta'};
 options["title"] = "Comparacion de poblacion absoluta y var. inter.";
@@ -1887,7 +1742,7 @@ options["width"] =    400;
 options["height"] =    400;
 
      var chart = new google.visualization.ScatterChart(
-       document.getElementById('ScatterChartID17445008463')
+       document.getElementById('ScatterChartID16ac41c91cf6')
      );
      chart.draw(data,options);
     
@@ -1911,9 +1766,9 @@ options["height"] =    400;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartScatterChartID17445008463);
+  callbacks.push(drawChartScatterChartID16ac41c91cf6);
 })();
-function displayChartScatterChartID17445008463() {
+function displayChartScatterChartID16ac41c91cf6() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1937,11 +1792,11 @@ function displayChartScatterChartID17445008463() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartScatterChartID17445008463"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartScatterChartID16ac41c91cf6"></script>
  
 <!-- divChart -->
   
-<div id="ScatterChartID17445008463"
+<div id="ScatterChartID16ac41c91cf6"
   style="width: 400px; height: 400px;">
 </div>
 
@@ -1951,6 +1806,7 @@ function displayChartScatterChartID17445008463() {
 
 ## La librería googleVis
 
+Un gráfico de burbujas:
 
 
 ```r
@@ -1968,14 +1824,14 @@ plot(bubble.canarias)
 
 
 <!-- BubbleChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:38 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataBubbleChartID1744d2a1ae1 () {
+function gvisDataBubbleChartID16ac143a5ea8 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -2053,14 +1909,14 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartBubbleChartID1744d2a1ae1() {
-  var data = gvisDataBubbleChartID1744d2a1ae1();
+function drawChartBubbleChartID16ac143a5ea8() {
+  var data = gvisDataBubbleChartID16ac143a5ea8();
   var options = {};
 options["width"] =    300;
 options["height"] =    300;
 
      var chart = new google.visualization.BubbleChart(
-       document.getElementById('BubbleChartID1744d2a1ae1')
+       document.getElementById('BubbleChartID16ac143a5ea8')
      );
      chart.draw(data,options);
     
@@ -2084,9 +1940,9 @@ options["height"] =    300;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartBubbleChartID1744d2a1ae1);
+  callbacks.push(drawChartBubbleChartID16ac143a5ea8);
 })();
-function displayChartBubbleChartID1744d2a1ae1() {
+function displayChartBubbleChartID16ac143a5ea8() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -2110,11 +1966,11 @@ function displayChartBubbleChartID1744d2a1ae1() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBubbleChartID1744d2a1ae1"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartBubbleChartID16ac143a5ea8"></script>
  
 <!-- divChart -->
   
-<div id="BubbleChartID1744d2a1ae1"
+<div id="BubbleChartID16ac143a5ea8"
   style="width: 300px; height: 300px;">
 </div>
 
@@ -2124,6 +1980,7 @@ function displayChartBubbleChartID1744d2a1ae1() {
 
 ## La librería googleVis
 
+Otro ejemplo del gráfico de burbujas:
 
 
 ```r
@@ -2152,6 +2009,7 @@ plot(bubble.canarias)
 
 ## La librería googleVis
 
+Un gráfico de sectores (o de tarta):
 
 
 ```r
@@ -2171,14 +2029,14 @@ plot(pie.canarias)
 
 
 <!-- PieChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:02 2013 -->
+<!-- Sat May 18 15:37:39 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataPieChartID174479cd6943 () {
+function gvisDataPieChartID16ac20e6466 () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -2202,15 +2060,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartPieChartID174479cd6943() {
-  var data = gvisDataPieChartID174479cd6943();
+function drawChartPieChartID16ac20e6466() {
+  var data = gvisDataPieChartID16ac20e6466();
   var options = {};
 options["allowHtml"] = true;
 options["width"] =    300;
 options["height"] =    200;
 
      var chart = new google.visualization.PieChart(
-       document.getElementById('PieChartID174479cd6943')
+       document.getElementById('PieChartID16ac20e6466')
      );
      chart.draw(data,options);
     
@@ -2234,9 +2092,9 @@ options["height"] =    200;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartPieChartID174479cd6943);
+  callbacks.push(drawChartPieChartID16ac20e6466);
 })();
-function displayChartPieChartID174479cd6943() {
+function displayChartPieChartID16ac20e6466() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -2260,11 +2118,11 @@ function displayChartPieChartID174479cd6943() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID174479cd6943"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartPieChartID16ac20e6466"></script>
  
 <!-- divChart -->
   
-<div id="PieChartID174479cd6943"
+<div id="PieChartID16ac20e6466"
   style="width: 300px; height: 200px;">
 </div>
 
@@ -2274,6 +2132,7 @@ function displayChartPieChartID174479cd6943() {
 
 ## La librería googleVis
 
+Y los gráficos de calibración:
 
 
 ```r
@@ -2287,14 +2146,14 @@ plot(gauge.canarias)
 
 
 <!-- Gauge generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:03 2013 -->
+<!-- Sat May 18 15:37:39 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataGaugeID1744e07609f () {
+function gvisDataGaugeID16ac6795654d () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -2318,8 +2177,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartGaugeID1744e07609f() {
-  var data = gvisDataGaugeID1744e07609f();
+function drawChartGaugeID16ac6795654d() {
+  var data = gvisDataGaugeID16ac6795654d();
   var options = {};
 options["allowHtml"] = true;
 options["fontSize"] =      9;
@@ -2335,7 +2194,7 @@ options["width"] =    400;
 options["height"] =    160;
 
      var chart = new google.visualization.Gauge(
-       document.getElementById('GaugeID1744e07609f')
+       document.getElementById('GaugeID16ac6795654d')
      );
      chart.draw(data,options);
     
@@ -2359,9 +2218,9 @@ options["height"] =    160;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartGaugeID1744e07609f);
+  callbacks.push(drawChartGaugeID16ac6795654d);
 })();
-function displayChartGaugeID1744e07609f() {
+function displayChartGaugeID16ac6795654d() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -2385,11 +2244,11 @@ function displayChartGaugeID1744e07609f() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGaugeID1744e07609f"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGaugeID16ac6795654d"></script>
  
 <!-- divChart -->
   
-<div id="GaugeID1744e07609f"
+<div id="GaugeID16ac6795654d"
   style="width: 400px; height: 160px;">
 </div>
 
@@ -2397,6 +2256,8 @@ function displayChartGaugeID1744e07609f() {
 --- 
 
 ## La librería googleVis
+
+También se pueden representar esquemas organizativos:
 
 
 
@@ -2417,14 +2278,14 @@ plot(org.canarias)
 
 
 <!-- OrgChart generated in R 3.0.0 by googleVis 0.4.2 package -->
-<!-- Mon May 06 13:58:03 2013 -->
+<!-- Sat May 18 15:37:39 2013 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataOrgChartID174426e61ea9 () {
+function gvisDataOrgChartID16ac1a3c5aaf () {
   var data = new google.visualization.DataTable();
   var datajson =
 [
@@ -2477,8 +2338,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartOrgChartID174426e61ea9() {
-  var data = gvisDataOrgChartID174426e61ea9();
+function drawChartOrgChartID16ac1a3c5aaf() {
+  var data = gvisDataOrgChartID16ac1a3c5aaf();
   var options = {};
 options["width"] =    200;
 options["height"] =     80;
@@ -2486,7 +2347,7 @@ options["size"] = "small";
 options["allowCollapse"] = true;
 
      var chart = new google.visualization.OrgChart(
-       document.getElementById('OrgChartID174426e61ea9')
+       document.getElementById('OrgChartID16ac1a3c5aaf')
      );
      chart.draw(data,options);
     
@@ -2510,9 +2371,9 @@ options["allowCollapse"] = true;
     pkgs.push(chartid);
 
   // Add the drawChart function to the global list of callbacks
-  callbacks.push(drawChartOrgChartID174426e61ea9);
+  callbacks.push(drawChartOrgChartID16ac1a3c5aaf);
 })();
-function displayChartOrgChartID174426e61ea9() {
+function displayChartOrgChartID16ac1a3c5aaf() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -2536,11 +2397,11 @@ function displayChartOrgChartID174426e61ea9() {
  </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartOrgChartID174426e61ea9"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartOrgChartID16ac1a3c5aaf"></script>
  
 <!-- divChart -->
   
-<div id="OrgChartID174426e61ea9"
+<div id="OrgChartID16ac1a3c5aaf"
   style="width: 200px; height: 80px;">
 </div>
 

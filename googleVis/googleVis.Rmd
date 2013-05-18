@@ -1,16 +1,9 @@
-Curso de introducción y manejo de R
-========================================================
-
 La librería googleVis
 -------------------------------------------------------  
  
-
-## La librería googleVis  
-
-
-> 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
-> 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
-> 3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
+1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
+2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
+3. La salida de las funciones googleVis es un código html que contiene los datos y referencias a las funciones javascript. Por tanto, para ver la salida se necesita un navegador con Flash y conexión a internet para renderizar el gráfico.  
 <br>
 Website : http://code.google.com/p/google-motion-charts-with-r/
 <br>
@@ -31,6 +24,8 @@ data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras a
 
 ## La librería googleVis
 
+Para representar un gráfico dinámico que responda a los eventos 
+de usuario:
 
 ``` {r loadgoog02, echo=TRUE, message=FALSE, eval=FALSE, out.width=4, tidy=TRUE}
 library(googleVis)
@@ -44,7 +39,7 @@ plot(motion.capitales)
 ``` {r loadgoog03, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
 data.pob.municipios$Anio<-as.numeric(data.pob.municipios$Anio)
 data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" & data.pob.municipios$CodMunicipio %in% c("ES705","ES709"),]
-motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=250, width=350))
+motion.capitales<-gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=450))
 print(motion.capitales,tag='chart') 
 ```
 
@@ -52,6 +47,7 @@ print(motion.capitales,tag='chart')
 
 ## La librería googleVis
 
+Podemos ver el código XML que contiene este objeto y lo podemos insertar como un widget
 
 ``` {r loadgoog04, echo=TRUE, message=FALSE, eval=FALSE, out.width=4, tidy=TRUE}
 # create gagdet
@@ -60,11 +56,18 @@ cat(createGoogleGadget(motion.capitales), file="motionchart.xml")
 # https://sites.google.com/site/cpgonzal/
 ```
 
+``` {r loadgoog04b, echo=FALSE, message=FALSE, eval=TRUE, out.width=4, tidy=TRUE}
+cat(substr(createGoogleGadget(motion.capitales),1,200))
+```
+
 
 
 --- 
 
 ## La librería googleVis
+
+
+Podemos representar datos geo-espaciales utilizando las funciones de mapas:
 
 
 ``` {r loadgoog05, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
@@ -79,10 +82,14 @@ map.capitales<-gvisGeoMap(data.pob.capitales[data.pob.capitales$Anio=='2012',], 
 plot(map.capitales) 
 ```
 
+Esta función no es muy adecuada para regiones que no estén codificadas como ISO 3166-1 (http://www.iso.org/iso/iso-3166-1_decoding_table.html)
+
+
 --- 
 
 ## La librería googleVis
 
+Podemos mejorar la representación utilizando gvisMap:
 
 ``` {r loadgoog06a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 data.pob.capitales$Tip<-paste("Poblacion:",data.pob.capitales$Valor)
@@ -108,6 +115,7 @@ print(map.capitales,tag='chart')
 
 ## La librería googleVis
 
+También se puede mostrar una representación tabular de datos
 
 ``` {r loadgoog07a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 table.capitales <- gvisTable(data.pob.capitales, options=list(width=800, height=470))
@@ -121,7 +129,8 @@ plot(table.capitales)
 
 
 ``` {r loadgoog07b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
-table.capitales <- gvisTable(data.pob.capitales, options=list(width=800, height=470,page='enable'))
+table.capitales <- gvisTable(data.pob.capitales[order(data.pob.capitales[,4]),c(4,2,7)]
+, options=list(width=800, height=470,page='enable'))
 
 print(table.capitales,tag='chart') 
 ```
@@ -130,6 +139,7 @@ print(table.capitales,tag='chart')
 
 ## La librería googleVis
 
+Vemos un ejemplo de gráficos con serie temporal o líneas:
 
 ``` {r loadgoog08a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 data.pob.capitales$Date<-as.Date(paste(data.pob.capitales$Anio,"-01-01",sep=""))
@@ -159,6 +169,8 @@ print(line.capitales,tag='chart')
 ## La librería googleVis
 
 
+Vemos un ejemplo de gráficos de barras:
+
 ``` {r loadgoog09a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 ## Bar chart
 bar.capitales <- gvisBarChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE","GRAN_CANARIA"),options=list(legend='right', width=600, height=400))
@@ -179,6 +191,7 @@ print(bar.capitales,tag='chart')
 
 ## La librería googleVis
 
+Podemos representar gráficos columnas:
 
 ``` {r loadgoog10a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 ## Column chart
@@ -197,6 +210,7 @@ print(col.capitales,tag='chart')
 
 ## La librería googleVis
 
+Y gráficos de áreas:
 
 ``` {r loadgoog11a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 ## Area chart
@@ -216,6 +230,7 @@ print(area.capitales,tag='chart')
 
 ## La librería googleVis
 
+Veamos los gráficos de escalera:
 
 ``` {r loadgoog12a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 ## Stepped Area Chart
@@ -237,7 +252,9 @@ print(step.capitales,tag='chart')
 ## La librería googleVis
 
 
-``` {r loadgoog13a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
+También se pueden representar gráficos de dos variables:
+
+``` {r loadgoog13a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE, fig.height=3, fig.align='center', out.extra='style="display:block; margin:auto;"'}
 data.pob.canarias<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas","Variación interanual") & data.pob.municipios$CodMunicipio %in% c("ES70"),]
 
 data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],
@@ -245,19 +262,13 @@ VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador=="Variación intera
 
 ## Scatter chart
 scatter.canarias <- gvisScatterChart(data.pob.canarias2, 
-options=list(legend="none",
-             lineWidth=2, pointSize=0, 
+options=list(legend="none", pointSize=2, 
              vAxis="{title:'Variacion interanual'}",
              hAxis="{title:'Poblacion absoluta'}", 
              title="Comparacion de poblacion absoluta y var. inter.",                                                   
              width=600, height=600))
 plot(scatter.canarias)
 ```
-
-
---- 
-
-## La librería googleVis
 
 
 ``` {r loadgoog13b, echo=FALSE, results='asis', message=FALSE, fig.height=2, fig.align='center', out.extra='style="display:block; margin:auto;"'}
@@ -268,8 +279,7 @@ VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador!="Cifras absolutas"
 
 ## Scatter chart
 scatter.canarias <- gvisScatterChart(data.pob.canarias2, 
-options=list(legend="none",
-             lineWidth=2, pointSize=0, 
+options=list(legend="none", pointSize=4, 
              vAxis="{title:'Variacion interanual'}",
              hAxis="{title:'Poblacion absoluta'}", 
              title="Comparacion de poblacion absoluta y var. inter.",                                                   
@@ -283,6 +293,7 @@ print(scatter.canarias,tag='chart')
 
 ## La librería googleVis
 
+Un gráfico de burbujas:
 
 ``` {r loadgoog14a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 data.pob.canarias2<-data.frame(CIFRAS_ABSOLUTAS=data.pob.canarias[data.pob.canarias$Indicador=="Cifras absolutas","Valor"],	VAR_INTERANUAL=data.pob.canarias[data.pob.canarias$Indicador=="Variación interanual","Valor"], ANIO=data.pob.canarias[data.pob.canarias$Indicador=="Variación interanual","Anio"])
@@ -309,6 +320,7 @@ print(bubble.canarias,tag='chart')
 
 ## La librería googleVis
 
+Otro ejemplo del gráfico de burbujas:
 
 ``` {r loadgoog15a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas","Variación interanual") & data.pob.municipios$CodMunicipio %in% c("ES705","ES709") & data.pob.municipios$Anio %in% c("2010","2011","2012"),]
@@ -328,6 +340,7 @@ plot(bubble.canarias)
 
 ## La librería googleVis
 
+Un gráfico de sectores (o de tarta):
 
 ``` {r loadgoog16a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 data.pob.canarias<-data.pob.municipios[data.pob.municipios$Indicador %in% c("Cifras absolutas") & data.pob.municipios$CodMunicipio %in% c("ES70") & data.pob.municipios$Anio %in% c("2010","2011","2012"),]
@@ -358,6 +371,7 @@ print(pie.canarias,tag='chart')
 
 ## La librería googleVis
 
+Y los gráficos de calibración:
 
 ``` {r loadgoog17a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}
 ## Gauge
@@ -386,6 +400,8 @@ print(gauge.canarias,tag='chart')
 --- 
 
 ## La librería googleVis
+
+También se pueden representar esquemas organizativos:
 
 
 ``` {r loadgoog18a, echo=TRUE, message=FALSE, eval=FALSE, out.width=4,tidy=TRUE}

@@ -1,9 +1,9 @@
 La librería maptools
 -------------------------------------------------------  
 
-> 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
-> 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
-> 3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
+1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
+2. En particular, permite cargar archivos ESRI shapefiles (.shp).
+3. Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica).
 <br>
 Website (blog): http://rspatialtips.org.uk/
 <br>
@@ -160,10 +160,6 @@ p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digi
 p 
 ```
 
----
-
-## La librería maptools
-
 Se pueden utilizar otros métodos para los intervalos de clase:
 
 ``` {r echo=TRUE, message=FALSE,tidy=TRUE,split=FALSE, fig.height=3}
@@ -180,7 +176,7 @@ int<-classIntervals(canary.counties@data$censoH, n, style="jenks")
 
 Podemos utilizar otros métodos de representación, plot() + legend():
 
-``` {r loadmap13a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=5, fig.cap=""}
+``` {r loadmap13a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=7, fig.cap=""}
 # Representaciones alternativas
 plot(canary.counties, 
 col=pal[findInterval(canary.counties@data$censoH, int$brks,all.inside=TRUE)], 
@@ -223,7 +219,7 @@ canary.fort<-fortify(canary.counties,region='IDCOM27')
 canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
 ```
  
-``` {r loadmap14a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap=""}
+``` {r loadmap14a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=6, fig.width=12, fig.cap=""}
 map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH) )+
 geom_polygon() +
 geom_path(color="white") 
@@ -245,10 +241,6 @@ map + scale_fill_gradient(name="censo", breaks = c(10000,50000,90000))
 map + scale_fill_gradientn(colours=brewer.pal(7, "Blues"), limits=c(1000, 100000))
 ```
 
-
----
-
-## La librería maptools
 
 Podemos utilizar escalas discretas en el gráfico:
 
@@ -274,7 +266,7 @@ include.lowest=TRUE)
 
 Entonces:
 
-``` {r loadmap15a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
+``` {r loadmap15a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
 map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH.discreto)) +
 geom_polygon() + geom_path(color="white") 
 
@@ -305,7 +297,7 @@ map
 
 Podemos representar con ggplot:
 
-``` {r loadmap17a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.cap="" }
+``` {r loadmap17a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
 canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','IDPROV','PROV','CODISLA', 'ISLA')], by.x="id",by.y="IDCOM27",sort=FALSE)
 
 idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',"IDCOM27"]
