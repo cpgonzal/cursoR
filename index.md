@@ -101,6 +101,8 @@ La interfaz de R para windows proporciona un menú muy básico para gestionar al
 
 ## Uso básico de R
 
+Desde R se pueden realizar sencillas operaciones aritméticas
+
 <style>
 pre {
   margin-bottom: -10px;
@@ -110,34 +112,9 @@ pre {
 
 ```r
 (4 - 3) * 2/3
-```
-
-```
-## [1] 0.6667
-```
-
-```r
 sqrt(9)
-```
-
-```
-## [1] 3
-```
-
-```r
 sin(pi/2)
-```
-
-```
-## [1] 1
-```
-
-```r
 factorial(3)
-```
-
-```
-## [1] 6
 ```
 
 
@@ -145,45 +122,14 @@ factorial(3)
 
 ## Uso básico de R
 
+R ejecuta ciertas operaciones que, en otros programas, podrían generar mensajes de error
+
 
 ```r
 1/0
-```
-
-```
-## [1] Inf
-```
-
-```r
 0/0
-```
-
-```
-## [1] NaN
-```
-
-```r
 log(-1)
-```
-
-```
-## Warning: Se han producido NaNs
-```
-
-```
-## [1] NaN
-```
-
-```r
 sqrt(-9)
-```
-
-```
-## Warning: Se han producido NaNs
-```
-
-```
-## [1] NaN
 ```
 
 
@@ -205,10 +151,6 @@ Al introducir los comandos anteriores, hemos creado un objeto en R: la variable 
 
 ```r
 ls()
-```
-
-```
-## [1] "a"
 ```
 
 
@@ -290,7 +232,7 @@ x < 3 & z < 5
 
 ---
 
-## Elementos de los Vectores en R
+## Elementos de un vector
 
 Para seleccionar elementos de un vector se utiliza la notación de []:
 
@@ -316,7 +258,7 @@ x[15] <- 0
 
 ---
 
-## Vectores en R
+## Tipo de los elementos de un vector
 
 Los vectores en R son objetos con todos sus elementos del mismo tipo
 
@@ -744,6 +686,22 @@ names(data.from.px) <- c("Indicadores", "Años", "Municipios", "Valor")
 ```
 
 
+---
+
+## Programación de funciones en R
+
+Es posible programar funciones personalizadas en R:
+
+
+```r
+myfunction <- function(x) {
+    vec <- rnorm(x)
+    hist(vec)
+    return(mean(vec))
+}
+
+myfunction(10)
+```
 
 
 
