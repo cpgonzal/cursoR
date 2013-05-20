@@ -533,29 +533,6 @@ data.json <- fromJSON(data.json, encoding = "UTF-8")
 
 ---
 
-# Otros métodos para la carga de datos
-
-Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
-
-
-```r
-data.url <- "http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json"
-data.json <- paste(readLines(data.url, encoding = "UTF-8")[1], collapse = "")
-```
-
-```
-## Warning: incomplete final line found on
-## 'http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json'
-```
-
-```r
-data.json <- fromJSON(data.json, encoding = "UTF-8")
-```
-
-
-
----
-
 # El arreglo de los datos cargados en formato JSON
 
 

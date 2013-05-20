@@ -457,15 +457,6 @@ data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span clas
 ## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">data.json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(data.json, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre>
 </div>
-<div id="otros-métodos-para-la-carga-de-datos-5" class="slide section level1">
-<h1>Otros métodos para la carga de datos</h1>
-<p>Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:</p>
-<pre class="sourceCode r"><code class="sourceCode r">data.url &lt;-<span class="st"> &quot;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&quot;</span>
-data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">readLines</span>(data.url, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)[<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</code></pre>
-<pre><code>## Warning: incomplete final line found on
-## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">data.json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(data.json, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre>
-</div>
 <div id="el-arreglo-de-los-datos-cargados-en-formato-json" class="slide section level1">
 <h1>El arreglo de los datos cargados en formato JSON</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pasamos los datos a una estructura temporal manejable</span>
@@ -501,7 +492,7 @@ data.from.json$Indicador &lt;-<span class="st"> </span>data.json$categories[[<sp
 <span class="co"># reordenamos convenientemente las variables</span>
 data.pob.municipios &lt;-<span class="st"> </span>data.from.json[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">4</span>)]</code></pre>
 </div>
-<div id="otros-métodos-para-la-carga-de-datos-6" class="slide section level1">
+<div id="otros-métodos-para-la-carga-de-datos-5" class="slide section level1">
 <h1>Otros métodos para la carga de datos</h1>
 <p>Para cargar datos en formato PC-AXIS:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pxR)
