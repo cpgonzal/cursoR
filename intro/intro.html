@@ -530,13 +530,7 @@ par.plot &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="
 </div>
 <div id="coloreado-por-grupos" class="slide section level1">
 <h1>Coloreado por grupos</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(1:25,1:25,pch=1:25)</span>
-par.plot &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))
-<span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
-<span class="kw">plot</span>(Superficie ~<span class="st"> </span>Altitud, <span class="dt">data =</span> data.geo.municipios)
-
-
-data.geo.municipios$Provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(data.geo.municipios$Provincia)
+<pre class="sourceCode r"><code class="sourceCode r">data.geo.municipios$Provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(data.geo.municipios$Provincia)
 plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>)
 
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios, <span class="dt">col =</span> plot.colors[data.geo.municipios$Provincia], 

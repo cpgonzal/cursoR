@@ -561,12 +561,6 @@ plot(Superficie~Altitud,data=data.geo.municipios)
 # Coloreado por grupos
 
 ``` {r chart03a, echo=TRUE, message=FALSE,eval=FALSE}
-#plot(1:25,1:25,pch=1:25)
-par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
-plot(Superficie~Altitud,data=data.geo.municipios)
-
-
 data.geo.municipios$Provincia<-as.factor(data.geo.municipios$Provincia)
 plot.colors<-c("green","orange")
 
