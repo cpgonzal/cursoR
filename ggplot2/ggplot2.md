@@ -17,26 +17,20 @@ http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
 
 
     
-    
+---
+
 ## Introducción a la librería ggplot2   
 
   
 
-
-```r
-#cargar la librería 
-library(ggplot2)
-#un gráfico sencillo
-qplot(data=data.geo.municipios, x=Isla,   
-      main="Municipios por isla")
-```
-
-![plot of chunk plot01](figure/plot01.png) 
+<img src="figure/plot01.png" title="plot of chunk plot01" alt="plot of chunk plot01" style="display:block;" />
 
 
 
 Los comandos gráficos disponibles en ggplot2 son:
+
 * qplot() - para "quick plots" 
+
 * ggplot() - para mejor ajuste y control de todo
 
 
@@ -61,7 +55,7 @@ xlim=c(0,2500),ylim=c(0,1500))
 ```
 
 
-
+---
 
 ## Introducción a la librería ggplot2   
     
@@ -155,21 +149,23 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "density")
 
 ### Comprensión de la gramática de capas
 
-* Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de 
+1. Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de 
 los gráficos por capas (gramática de capas) mediante ggplot(). 
 
-* El qplot recorta bastantes detalles de ggplot() a pesar que permite una sintaxis 
+2. El qplot recorta bastantes detalles de ggplot() a pesar que permite una sintaxis 
 más familiar y cercana al plot().
 
-* Con ggplot(), sin embargo, es posible incorporar a un gráfico diferentes niveles de detalle
-mediante sucesivas capas (layers).
+3. Con ggplot(), sin embargo, es posible incorporar a un gráfico     diferentes niveles de detalle
+mediante sucesivas capas (layers). 
 
-                        ggplot(data, mapping) +
-                        layer( 
-                              geom = "",  
-                              stat = "",  
-                              position = "", ....  
-                             )
+```r
+ggplot(data, mapping) +
+layer( 
+      geom = "",  
+      stat = "",  
+      position = "", ....  
+      )
+```
 
 
 ---
@@ -216,8 +212,6 @@ sum | Sum unique values. Useful for overplotting on scatterplots
 summary | Summarise y values at every unique x
 unique | Remove duplicates  
 
---- 
-
 ## Introducción a la librería ggplot2
 
 Un scatterplot:
@@ -231,11 +225,10 @@ se compone de (http://docs.ggplot2.org/current/index.html):
 
 * Un conjunto de datos por defecto (data).
 
-* Una asignación de variables del conjunto de datos a atributos gráficos (aesthetics).
-
+* Una asignación de variables del conjunto de datos a atributos gráficos (aesthetics). 
 
 ```r
-  ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
+ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
 ```
 
 
@@ -262,7 +255,7 @@ Y de las siguientes capas o layers:
 ```
 
 
-<img src="figure/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display:block; margin:auto;" />
+<img src="figure/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display:block; margin:auto;" />
 
 
 ---
@@ -283,13 +276,6 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
   ejemplo1 + geom_point(mapping=aes(size=Provincia) ) + scale_size_discrete(range = c(2, 4) ) # cambiar el tamaño
 ```
 
-
-
----
-
-## Introducción a la librería ggplot2
-
-Además, se puede
 
 * Cambiar el sistema de representación de coordenadas (coord)
 
@@ -479,80 +465,8 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 
 
 
----
-
-## Introducción a la librería ggplot2
 
 
 
-
-
----
-
-## Introducción a la librería ggplot2
-
-#cargar la librería 
-
-```r
-library(ggplot2)
-```
-
-
-#cargar los datos utilizando read.table (en local)
-
-```r
-setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
-data.espacios.nat <- read.table(file = "superficie_espacios_naturales.txt", 
-    header = T, sep = ";")
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Otros argumentos de geom para gráficos 1D (de una variable) son:
-* geom = "histogram" representa un histograma.
-* geom = "density"   representa un gráfico de densidad.
-* geom = "bar"       representa un gráfico de barras.
-
-
-```r
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram")
-qplot(data=data.espacios.nat, x=Superficie, geom = "density")
-
-qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   # las densidades son superpuestas
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) # los histogramas son apilados y se colorea el borde
-qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   # los histogramas son apilados y se colorea el interior
-
-
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) # también los gráficos de barras son apilados
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
-qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", stat="identity", fill = Isla, position="dodge") 
-```
-
-
----
-
-## Introducción a la librería ggplot2
-
-Veamos otros ejemplos con estos tipos de objetos geométricos
-
-
-```r
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
-qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
-qplot(data=data.geo.municipios, x=Superficie, geom = "density")
-
-qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia) # los hist. son apilados y se colorea el borde
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia)   # los hist. son apilados y se colorea el interior
-
-# las barras se pueden representar sin apilar  
-qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
-
-```
 
 

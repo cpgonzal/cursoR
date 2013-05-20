@@ -543,63 +543,18 @@ names(data.from.px)<-c("Indicadores","Años","Municipios","Valor")
 
 ---
 
-
-## Funciones gráficas en R
-
-
-plot(data.geo.municipios$Superficie,data.geo.municipios$Perímetro.municipal)
-
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
-
-plot(Superficie~1,data=data.geo.municipios,type="h")
-plot(Superficie~1,data=data.geo.municipios,type="s")
-
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios,
-xlab="Perímetro del municipio (km)",
-ylab="Superficie (km. cuadrados)",
-main="Comparación del perímetro y la superficie de los municipios")
-
-
----
-
-## El comando par() 
-
-#plot(1:25,1:25,pch=1:25)
-par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
-plot(Superficie~Altitud,data=data.geo.municipios)
-
-
----
-
-## Coloreado por grupos
-
-#plot(1:25,1:25,pch=1:25)
-par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
-plot(Superficie~Altitud,data=data.geo.municipios)
-
-
-data.geo.municipios$Provincia<-as.factor(data.geo.municipios$Provincia)
-plot.colors<-c("green","orange")
-
-plot(Superficie~Perímetro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
-legend("topleft",legend=levels(data.geo.municipios$Provincia),col=c("green","orange"),pch=rep(20,2))
----
-
 ## Programación de funciones en R
 
 Es posible programar funciones personalizadas en R:
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 myfunction <- function(x) {
-       resumen<- summary(x)       
-       return(resumen)
+       vec<- rnorm(x)
+       hist(vec)
+       return(mean(vec))
      }
 
-myfunction(data.pob.municipios)
+myfunction(10)
 ```
 
-El EUSTAT tiene algunos ejemplos de programaciones sencillas con R:
 
-http://www.eustat.es/documentos/datos/CT_Visualizacion_de_datos_en_las_Estadisticas_Oficiales_c.pdf

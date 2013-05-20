@@ -1,10 +1,5 @@
-cd D:\Mis documentos\Gist_repos\cursoR\googleVis
-"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('googleVis.Rmd')"
+cd D:\Mis documentos\Gist_repos\cursoR\ggplot2
+"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('ggplot2.Rmd')"
 
-C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax googleVis.md -o googleVis.html -B header.txt
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax ggplot2.md -o ggplot2.html -B header.txt
 
-
-cd D:\Mis documentos\Gist_repos\cursoR\maptools
-"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('maptools.Rmd')"
-
-C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax maptools.md -o maptools.html -B header.txt
