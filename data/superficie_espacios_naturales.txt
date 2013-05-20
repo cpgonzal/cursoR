@@ -1,0 +1,57 @@
+Isla;Espacio.natural;Superficie;Número
+Lanzarote;Parque nacional;5107.00;1
+Lanzarote;Parque natural;19270.40;2
+Lanzarote;Parque rural;0.00;0
+Lanzarote;Reserva natural integral;165.20;1
+Lanzarote;Reserva natural especial;0.00;0
+Lanzarote;Monumento natural;5211.90;5
+Lanzarote;Paisaje protegido;5676.50;2
+Lanzarote;Sitio de interés ciéntifcio;199.50;2
+Fuerteventura;Parque nacional;0.00;0
+Fuerteventura;Parque natural;17455.10;3
+Fuerteventura;Parque rural;16544.30;1
+Fuerteventura;Reserva natural integral;0.00;0
+Fuerteventura;Reserva natural especial;0.00;0
+Fuerteventura;Monumento natural;8687.00;6
+Fuerteventura;Paisaje protegido;4924.90;2
+Fuerteventura;Sitio de interés ciéntifcio;115.60;1
+Gran Canaria;Parque nacional;0.00;0
+Gran Canaria;Parque natural;13333.00;2
+Gran Canaria;Parque rural;29893.40;2
+Gran Canaria;Reserva natural integral;3955.50;2
+Gran Canaria;Reserva natural especial;7153.10;6
+Gran Canaria;Monumento natural;5264.90;10
+Gran Canaria;Paisaje protegido;12683.20;7
+Gran Canaria;Sitio de interés ciéntifcio;276.20;4
+Tenerife;Parque nacional;18990.00;1
+Tenerife;Parque natural;46612.90;1
+Tenerife;Parque rural;22482.30;2
+Tenerife;Reserva natural integral;1411.00;4
+Tenerife;Reserva natural especial;5578.20;6
+Tenerife;Monumento natural;6344.20;14
+Tenerife;Paisaje protegido;8293.50;9
+Tenerife;Sitio de interés ciéntifcio;386.60;6
+La Gomera;Parque nacional;3984.00;1
+La Gomera;Parque natural;1757.10;1
+La Gomera;Parque rural;1992.80;1
+La Gomera;Reserva natural integral;490.80;1
+La Gomera;Reserva natural especial;292.30;1
+La Gomera;Monumento natural;1862.10;8
+La Gomera;Paisaje protegido;1788.10;1
+La Gomera;Sitio de interés ciéntifcio;313.00;3
+La Palma;Parque nacional;4690.00;1
+La Palma;Parque natural;12593.70;2
+La Palma;Parque rural;0.00;0
+La Palma;Reserva natural integral;984.10;1
+La Palma;Reserva natural especial;1074.40;1
+La Palma;Monumento natural;1452.00;8
+La Palma;Paisaje protegido;4107.70;4
+La Palma;Sitio de interés ciéntifcio;111.00;3
+El Hierro;Parque nacional;0.00;0
+El Hierro;Parque natural;0.00;0
+El Hierro;Parque rural;12488.00;1
+El Hierro;Reserva natural integral;467.40;2
+El Hierro;Reserva natural especial;601.60;1
+El Hierro;Monumento natural;984.80;1
+El Hierro;Paisaje protegido;1526.60;2
+El Hierro;Sitio de interés ciéntifcio;0.00;0

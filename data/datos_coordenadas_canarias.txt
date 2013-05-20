@@ -1,0 +1,3 @@
+cod,isla,latitude,longitude
+ES709,TENERIFE,28.4687,-16.252
+ES705,GRAN CANARIA,28.1157,-15.4408

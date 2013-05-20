@@ -1,0 +1,5 @@
+cd D:\Mis documentos\Gist_repos\cursoR\intro
+"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('intro.Rmd')"
+
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax intro.md -o intro.html -B header.txt
+
