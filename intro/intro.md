@@ -421,10 +421,6 @@ data.geo.municipios <- read.table(textConnection(getURL(data.url, ssl.verifypeer
     header = T, sep = ";")
 ```
 
-```
-## Error: la linea 1 no tiene 2 elementos
-```
-
 
 
 ---
@@ -438,20 +434,9 @@ Podemos completar los data.frames con más variables:
 # crear factores con etiquetas
 data.geo.municipios$Isla <- factor(data.geo.municipios$Isla, levels = c("El Hierro", 
     "La Palma", "La Gomera", "Tenerife", "Gran Canaria", "Fuerteventura", "Lanzarote"))
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
-
-```r
 
 data.geo.municipios$Provincia <- c(rep("Las Palmas", 34), rep("S/C. de Tenerife", 
     54))
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
 ```
 
 También podemos crear data.frames con información resumida:
@@ -461,30 +446,21 @@ También podemos crear data.frames con información resumida:
 # resumir datos from data frames
 data.geo.islas <- aggregate(data.geo.municipios[, c(3, 5)], by = list(Provincia = data.geo.municipios$Provincia, 
     Isla = data.geo.municipios$Isla), FUN = sum, na.rm = T)
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
-
-```r
 
 data.geo.islas$Altitud <- aggregate(data.geo.municipios[, 6], by = list(Provincia = data.geo.municipios$Provincia, 
     Isla = data.geo.municipios$Isla), FUN = max, na.rm = T)[, 3]
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
-
-```r
 
 # estructura de los datos
 str(data.geo.islas)
 ```
 
 ```
-## Error: objeto 'data.geo.islas' no encontrado
+## 'data.frame':	7 obs. of  5 variables:
+##  $ Provincia     : chr  "S/C. de Tenerife" "S/C. de Tenerife" "S/C. de Tenerife" "S/C. de Tenerife" ...
+##  $ Isla          : Factor w/ 7 levels "El Hierro","La Palma",..: 1 2 3 4 5 6 7
+##  $ Superficie    : num  269 708 370 2034 1560 ...
+##  $ Longitud.costa: num  41 155.6 97.5 358 242.9 ...
+##  $ Altitud       : int  571 722 810 1400 1270 395 305
 ```
 
 
@@ -656,9 +632,6 @@ names(data.from.px) <- c("Indicadores", "Años", "Municipios", "Valor")
 ## Funciones gráficas en R
 
 
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
 
 
 
@@ -675,10 +648,7 @@ plot(Superficie ~ Perímetro.municipal, data = data.geo.municipios, xlab = "Per�
 ```
 
 
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
+<img src="figure/chart01.png" title="plot of chunk chart01" alt="plot of chunk chart01" style="display:block; margin:auto;" />
 
 
 
@@ -695,10 +665,7 @@ plot(Superficie ~ Altitud, data = data.geo.municipios)
 ```
 
 
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
+<img src="figure/chart02b.png" title="plot of chunk chart02b" alt="plot of chunk chart02b" style="display:block; margin:auto;" />
 
 
 ---
@@ -723,18 +690,7 @@ legend("topleft", legend = levels(data.geo.municipios$Provincia), col = c("green
 ```
 
 
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
+<img src="figure/chart03b.png" title="plot of chunk chart03b" alt="plot of chunk chart03b" style="display:block; margin:auto;" />
 
 ---
 
@@ -756,10 +712,7 @@ xyplot(Superficie ~ Perímetro.municipal | Provincia, data = data.geo.municipios
 ```
 
 
-
-```
-## Error: objeto 'data.geo.municipios' no encontrado
-```
+<img src="figure/chart04b.png" title="plot of chunk chart04b" alt="plot of chunk chart04b" style="display:block; margin:auto;" />
 
 
 

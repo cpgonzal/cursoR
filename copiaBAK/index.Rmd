@@ -1,16 +1,33 @@
-El entorno de R
-------------------------------------------------------- 
+---
+title       : Curso de introducci√≥n y manejo de R 
+subtitle    : HTML 5
+author      : Carlos P√©rez Gonz√°lez
+job         : Departamento de Estad√≠stica, Investigaci√≥n Operativa y Computaci√≥n (ULL) - Fundaci√≥n Universidad Empresa (FEULL)
+logo: Rlogo.jpg
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+theme       : default
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, bootstrap, quiz]           # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+github:
+ user: cpgonzal
+ repo: cursoR
+ 
+---  
 
-R es un lenguaje de alto nivel y un entorno para la manipulaciÛn de datos, c·lculo y gr·ficos.
+## El entorno de R
 
-1. Almacenamiento y manipulaciÛn efectiva de datos
-2. Operadores para c·lculo sobre variables indexadas y matrices
-3. Amplia, coherente e integrada colecciÛn de herramientas para an·lisis de
+R es un lenguaje de alto nivel y un entorno para la manipulaci√≥n de datos, c√°lculo y gr√°ficos.
+
+> 1. Almacenamiento y manipulaci√≥n efectiva de datos
+> 2. Operadores para c√°lculo sobre variables indexadas y matrices
+> 3. Amplia, coherente e integrada colecci√≥n de herramientas para an√°lisis de
 datos
-4. Grandes posibilidades gr·ficas
-5. Lenguaje de programaciÛn orientado a objetos bien desarrollado, simple y efectivo
-6. Lenguaje interpretado, no compilado. Posibilidad de usar scripts
-7. Es de cÛdigo abierto: se distribuye bajo la GPL (General Public License), que no impone ninguna restricciÛn al uso de R (tanto acadÈmico como comercial). 
+> 4. Grandes posibilidades gr√°ficas
+> 5. Lenguaje de programaci√≥n orientado a objetos bien desarrollado, simple y efectivo
+> 6. Lenguaje interpretado, no compilado. Posibilidad de usar scripts
+> 7. Es de c√≥digo abierto: se distribuye bajo la GPL (General Public License), que no impone ninguna restricci√≥n al uso de R (tanto acad√©mico como comercial). 
 <br>
 Website: http://www.r-project.org/
 <br>
@@ -18,73 +35,73 @@ Website: http://www.r-project.org/
 
 ---
 
-## øPor quÈ R?
+## ¬øPor qu√© R?
 
-* Para alumnos:
- 1. Dispone de las herramientas cl·sicas de la estadistica
- 2. Es multiplataforma y gratis
- 3. Ofertas de trabajo
+Para alumnos:
+> 1. Dispone de las herramientas cl√°sicas de la estadistica
+> 2. Es multiplataforma y gratis
+> 3. Ofertas de trabajo
 
-* Para investigadores:
- 1. Desarrollos estadÌsticos avanzados
- 2. ProliferaciÛn de cÛdigo R en muchos trabajos cientÌficos
+Para investigadores:
+> 1. Desarrollos estad√≠sticos avanzados
+> 2. Proliferaci√≥n de c√≥digo R en muchos trabajos cient√≠ficos
 
-* Para universidades:
- 1. Ahorro de licencias campus de software propietario (SPSS)
- 2. Implica menos problemas de soporte tÈcnico
+Para universidades:
+> 1. Ahorro de licencias campus de software propietario (SPSS)
+> 2. Implica menos problemas de soporte t√©cnico
 
 ---
 
-# Ventajas de R
+## Ventajas de R
 
-1. Posibilidad de combinar an·lisis "empaquetados" en librerÌas con desarrollos propios "ad-hoc"
-2. Gr·ficos de alta calidad exportables a distintos formatos
-3. Consume pocos recursos inform·ticos
-4. Puede ejecutarse remotamente y conectarse con otros programa (llamar a librerÌas de R desde PROC IML)
+> 1. Posibilidad de combinar an√°lisis "empaquetados" en librer√≠as con desarrollos propios "ad-hoc"
+> 2. Gr√°ficos de alta calidad exportables a distintos formatos
+> 3. Consume pocos recursos inform√°ticos
+> 4. Puede ejecutarse remotamente y conectarse con otros programa (llamar a librer√≠as de R desde PROC IML)
 
-# Desventajas de R
+## Desventajas de R
 
-1. Interfaz gr·fica limitada (aunque se dispone de varios GUI que suplen esta deficiencia desde el punto de vista docente)
+> 1. Interfaz gr√°fica limitada (aunque se dispone de varios GUI que suplen esta deficiencia desde el punto de vista docente)
 
-2. No hay soporte comercial 
+> 2. No hay soporte comercial 
 
-3. El lenguaje de comandos es un lenguaje de programaciÛn
+> 3. El lenguaje de comandos es un lenguaje de programaci√≥n
 
 
 ---
 
 ## Estructura de un sistema R
 
-R consta de un sistema base (instalaciÛn primaria) pero se pueden extender las funcionalidades mediante librerÌas o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:
+R consta de un sistema base (instalaci√≥n primaria) pero se pueden extender las funcionalidades mediante librer√≠as o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:
 
 mva: Classical multivariate analysis
 
 maptools: Herramientas para el manejo de objetos geoespaciales
 
-googleVis: LibrerÌa que sirve de interfaz entre R y Google chart tools
+googleVis: Librer√≠a que sirve de interfaz entre R y Google chart tools
 
 ....
 
 
 ---
 
-## SesiÛn de R
+## Sesi√≥n de R
 
 
-Se puede iniciar una sesiÛn de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows). 
+Se puede iniciar una sesi√≥n de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows). 
 
-La interfaz de R para windows proporciona un men˙ muy b·sico para gestionar algunos aspectos de sesiÛn de R:
+La interfaz de R para windows proporciona un men√∫ muy b√°sico para gestionar algunos aspectos de sesi√≥n de R:
 
-> 1. El histÛrico de comandos (.Rhistory)
-> 2. El espacio de trabajo de la sesiÛn (.RData)
-> 3. La instalaciÛn de librerÌas desde un repositorio CRAN
+> 1. El hist√≥rico de comandos (.Rhistory)
+> 2. El espacio de trabajo de la sesi√≥n (.RData)
+> 3. La instalaci√≥n de librer√≠as desde un repositorio CRAN
 
 
 ---
 
-## Uso b·sico de R
+## Uso b√°sico de R
 
-Desde R se pueden realizar sencillas operaciones aritmÈticas
+Desde R se pueden realizar sencillas operaciones aritm√©ticas
 
 <style>
 pre {
@@ -101,9 +118,9 @@ factorial(3)
 
 ---
 
-## Uso b·sico de R
+## Uso b√°sico de R
 
-R ejecuta ciertas operaciones que, en otros programas, podrÌan generar mensajes de error
+R ejecuta ciertas operaciones que, en otros programas, podr√≠an generar mensajes de error
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 1/0
@@ -116,11 +133,11 @@ sqrt(-9)
 
 ## Almacenar resultados en variables. El espacio de trabajo
 
-El operador de asignaciÛn (<-) permite almacenar valores:
+El operador de asignaci√≥n (<-) permite almacenar valores:
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 log(10) -> a 
 a <- log(10)
-a = log (10) #øcual usar: = o <-?
+a = log (10) #¬øcual usar: = o <-?
 a <-rnorm(4,mean=10,sd=1) # en R se utiliza = para asignar valores a los argumentos de las funciones
 ```
 
@@ -166,7 +183,7 @@ Operaciones con vectores
 x+z
 x*z
 # se pueden sumar vectores de distinta longitud pero se 
-# produce un efecto cÌclico 
+# produce un efecto c√≠clico 
 x+w
 
 ```
@@ -176,7 +193,7 @@ x+w
 
 ## Vectores como argumentos de funciones en R
 
-Algunas funciones se eval˙an sobre un vector y
+Algunas funciones se eval√∫an sobre un vector y
 devuelven otro vector de la misma longitud. Otras, en cambio, devuelven un escalar
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
@@ -186,7 +203,7 @@ range(x)
 length(x)
 ```
 
-Incluso al evaluar una condiciÛn sobre un vector se obtiene un vector
+Incluso al evaluar una condici√≥n sobre un vector se obtiene un vector
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 x<3
@@ -199,7 +216,7 @@ x<3 & z<5
 
 ## Elementos de un vector
 
-Para seleccionar elementos de un vector se utiliza la notaciÛn de []:
+Para seleccionar elementos de un vector se utiliza la notaci√≥n de []:
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 x<-c(1,2,3,4,5) 
@@ -207,10 +224,10 @@ x[3]      # elementos de un vector
 x[c(1:2)] # partes de un vector
 x[1:2]    # partes de un vector
 x[-1]     # quitar partes de un vector
-#øCÛmo seleccionar los elementos de x menores que 2? 
+#¬øC√≥mo seleccionar los elementos de x menores que 2? 
 ```
 
-se pueden modificar los vectores haciendo uso del operador asignaciÛn:
+se pueden modificar los vectores haciendo uso del operador asignaci√≥n:
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 x[1:2]<-c(12,13)
 x[1:2]<-0
@@ -234,7 +251,7 @@ Se pueden asignar nombres a cada componente de un vector
 x<-c(1,2,3,4,5)
 names(x)<-c('primero','segundo','tercero','cuarto','quinto')
 attributes(x)
-x[2]          # accede al elemento n∫2
+x[2]          # accede al elemento n¬∫2
 x['segundo']  # accede al elemento "el segundo"
 x[segundo]    
 ```
@@ -248,9 +265,9 @@ is.vector(x)
 
 ## Factores en R
 
-Los factores son vectores que alamcenan datos categÛricos (variable con varios niveles)
+Los factores son vectores que alamcenan datos categ√≥ricos (variable con varios niveles)
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
-x<-c('Juan','Paco','MarÌa','Arturo')
+x<-c('Juan','Paco','Mar√≠a','Arturo')
 s<-c('hombre','hombre','mujer','hombre')
 s<-factor(s)
 
@@ -263,7 +280,7 @@ is.factor(s)
 
 ## Matrices en R
 
-Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (m·s de 2 dimensiones) 
+Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (m√°s de 2 dimensiones) 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 m<-matrix(1:6,nrow=3,ncol=2)
 m[1,]
@@ -284,16 +301,16 @@ m[,'2']
 
 Las listas en R son colecciones ordenadas de objetos
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
-l<-list(padres=c('Juan','MarÌa'),num.hijos=2,edad.hijos=c(3,7))
+l<-list(padres=c('Juan','Mar√≠a'),num.hijos=2,edad.hijos=c(3,7))
 # observar que se emplea = para asignar los nombres 
 # a los objetos y no el operador <-
 attributes(l)
 names(l)  
 is.list(l)
-l[[1]]          # accede al objeto n∫1
+l[[1]]          # accede al objeto n¬∫1
 l[['padres']]   # accede al objeto 'padres'
 l$padres        # accede al objeto 'padres'
-l$padres<-c("Juan PÈrez", "MarÌa Gonz·lez")
+l$padres<-c("Juan P√©rez", "Mar√≠a Gonz√°lez")
 l$padres[2]
 ```
 
@@ -301,7 +318,7 @@ l$padres[2]
 
 ## Hojas de datos en R
 
-Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observaciÛn.
+Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observaci√≥n.
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 id<-c(1:6)
 sexo<-rep(c("HOMBRE","MUJER"),each=3)
@@ -322,8 +339,8 @@ class(d$sexo)
 ## Paquetes en R
 
 > 1. La gran potencia que proporciona R reside en la gran cantidad de paquetes desarrollados y que se encuentran en repositorios CRAN. 
-> 2. En la instalaciÛn base de R se instalan sÛlo algunos de ellos. 
-> 3. A medida que se necesitan nuevas funcionalidades, se pueden instalar f·cilmente 
+> 2. En la instalaci√≥n base de R se instalan s√≥lo algunos de ellos. 
+> 3. A medida que se necesitan nuevas funcionalidades, se pueden instalar f√°cilmente 
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
 library() # listar todos los paquetes disponibles en R
@@ -340,34 +357,34 @@ library(RJSONIO)  # cargar el paquete
 
 Cuando se inicia R, el programa configura por defecto un directorio desde donde se leen o donde se guardan ficheros. Los comandos getwd() y setwd() permiten consultar y cambiar el directorio de trabajo. 
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+``` {r , echo=TRUE, message=FALSE,eval=TRUE}
 getwd()
-setwd("C:\\RLibraries")
+setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
 ```
 
 Si queremos cargar un conjunto de datos desde un archivo situado en el directorio de trabajo, lo podemos hacer mediante el comando read.table() 
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
+``` {r , echo=TRUE, message=FALSE,eval=TRUE}
 #cargar los datos utilizando read.table (en local)
-setwd("C:\\RLibraries")
+setwd("D:\\Mis documentos\\Presentaciones\\CursoR\\data")
 data.espacios.nat<-read.table(file="superficie_espacios_naturales.txt",header=T,sep=";")
 data.geo.municipios<-read.table(file="datos_geograficos_islas.txt",header=T,sep=";")
 ```
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Se puede utilizar read.table() para cargar datos desde un lugar remoto:
 
-``` {r , echo=TRUE, message=FALSE,eval=FALSE}
-#cargar los datos utilizando la funciÛn url() (en remoto, por http://)
+``` {r , echo=TRUE, message=FALSE,eval=TRUE}
+#cargar los datos utilizando la funci√≥n url() (en remoto, por http://)
 data.url<-"http://dl.dropbox.com/u/17677514/datos_geograficos_islas.txt"
 data.geo.municipios<-read.table(file=url(data.url),header=T,sep=";")
 ```
 
 ``` {r , echo=TRUE, message=FALSE,eval=TRUE}
-#cargar los datos utilizando la funciÛn url() (en remoto, por https://)
+#cargar los datos utilizando la funci√≥n url() (en remoto, por https://)
 data.url<-"https://raw.github.com/cpgonzal/cursoR/gh-pages/data/datos_geograficos_islas.txt"
 library(RCurl)
 data.geo.municipios<-read.table(textConnection(getURL(data.url,ssl.verifypeer = FALSE)),header=T,sep=";")
@@ -376,9 +393,9 @@ data.geo.municipios<-read.table(textConnection(getURL(data.url,ssl.verifypeer = 
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
-Podemos completar los data.frames con m·s variables:
+Podemos completar los data.frames con m√°s variables:
 
 ``` {r , echo=TRUE, message=FALSE,eval=TRUE}
 # crear factores con etiquetas 
@@ -387,7 +404,7 @@ levels=c("El Hierro", "La Palma", "La Gomera", "Tenerife", "Gran Canaria", "Fuer
 
 data.geo.municipios$Provincia<-c(rep("Las Palmas",34),rep("S/C. de Tenerife",54))
 ```
-TambiÈn podemos crear data.frames con informaciÛn resumida:
+Tambi√©n podemos crear data.frames con informaci√≥n resumida:
 
 ``` {r , echo=TRUE, message=FALSE,eval=TRUE}
 # resumir datos from data frames
@@ -401,7 +418,7 @@ str(data.geo.islas)
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Para cargar datos en formato JSON:
 
@@ -417,7 +434,7 @@ data.json <- fromJSON( data.json, encoding="UTF-8" )
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Para consultar la estructura que se ha cargado:
 
@@ -435,7 +452,7 @@ data.json$data[[1]]$dimCodes[1]
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
 
@@ -448,7 +465,7 @@ data.json <- fromJSON( data.json, encoding="UTF-8" )
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
 
@@ -488,7 +505,7 @@ rm(tmp.json,tmp.json.valores,tmp.json.cod)
 ## El arreglo de los datos cargados en formato JSON
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
-#asociamos los cÛdigos a sus valores descriptivos
+#asociamos los c√≥digos a sus valores descriptivos
 idx <- match(data.from.json$CodMunicipio,data.json$categories[[1]]$codes)
 data.from.json$Municipio<-data.json$categories[[1]]$labels[idx]
 
@@ -504,7 +521,7 @@ data.pob.municipios<-data.from.json[,c(1,5,2,6,3,7,4)]
 
 ---
 
-## Otros mÈtodos para la carga de datos
+## Otros m√©todos para la carga de datos
 
 Para cargar datos en formato PC-AXIS:
 
@@ -520,38 +537,35 @@ data.px$VALUES
 data.px$CODES
 
 data.from.px<-as.data.frame(data.px)
-names(data.from.px)<-c("Indicadores","AÒos","Municipios","Valor")   
+names(data.from.px)<-c("Indicadores","A√±os","Municipios","Valor")   
 
 ```
 
 ---
 
 
-## Funciones gr·ficas en R
+## Funciones gr√°ficas en R
 
-``` {r , echo=FALSE, message=FALSE,eval=TRUE}
-names(data.geo.municipios)[4]<-"Perimetro.municipal"
-```
 
 ``` {r , echo=TRUE, message=FALSE,eval=FALSE}
-plot(data.geo.municipios$Superficie,data.geo.municipios$PerÌmetro.municipal)
+plot(data.geo.municipios$Superficie,data.geo.municipios$Per√≠metro.municipal)
 
-plot(Superficie~PerÌmetro.municipal,data=data.geo.municipios)
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios)
 
 plot(Superficie~1,data=data.geo.municipios,type="h")
 plot(Superficie~1,data=data.geo.municipios,type="s")
 
-plot(Superficie~PerÌmetro.municipal,data=data.geo.municipios,
-xlab="PerÌmetro del municipio (km)",
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios,
+xlab="Per√≠metro del municipio (km)",
 ylab="Superficie (km. cuadrados)",
-main="ComparaciÛn del perÌmetro y la superficie de los municipios")
+main="Comparaci√≥n del per√≠metro y la superficie de los municipios")
 ```
 
-``` {r chart01, echo=FALSE, message=FALSE,eval=TRUE, out.extra='style="display:block; margin:auto;"'}
-plot(Superficie~Perimetro.municipal,data=data.geo.municipios,
-xlab="PerÌmetro del municipio (km)",
+``` {r chart01, echo=FALSE, message=FALSE,eval=TRUE}
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios,
+xlab="Per√≠metro del municipio (km)",
 ylab="Superficie (km. cuadrados)",
-main="ComparaciÛn del perÌmetro y la superficie de los municipios")
+main="Comparaci√≥n del per√≠metro y la superficie de los municipios")
 ```
 
 
@@ -562,11 +576,11 @@ main="ComparaciÛn del perÌmetro y la superficie de los municipios")
 ``` {r chart02a, echo=TRUE, message=FALSE,eval=FALSE}
 #plot(1:25,1:25,pch=1:25)
 par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
-plot(Superficie~PerÌmetro.municipal,data=data.geo.municipios)
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios)
 plot(Superficie~Altitud,data=data.geo.municipios)
 ```
 
-``` {r chart02b, echo=FALSE, message=FALSE,eval=TRUE, out.extra='style="display:block; margin:auto;"'}
+``` {r chart02b, echo=FALSE, message=FALSE,eval=TRUE}
 plot(Superficie~Altitud,data=data.geo.municipios)
 ```
 
@@ -577,52 +591,49 @@ plot(Superficie~Altitud,data=data.geo.municipios)
 ``` {r chart03a, echo=TRUE, message=FALSE,eval=FALSE}
 #plot(1:25,1:25,pch=1:25)
 par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
-plot(Superficie~PerÌmetro.municipal,data=data.geo.municipios)
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios)
 plot(Superficie~Altitud,data=data.geo.municipios)
 
 
 data.geo.municipios$Provincia<-as.factor(data.geo.municipios$Provincia)
 plot.colors<-c("green","orange")
 
-plot(Superficie~PerÌmetro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
 legend("topleft",legend=levels(data.geo.municipios$Provincia),col=c("green","orange"),pch=rep(20,2))
 ```
 
-``` {r chart03b, echo=FALSE, message=FALSE,eval=TRUE, out.extra='style="display:block; margin:auto;"'}
+``` {r chart03b, echo=FALSE, message=FALSE,eval=TRUE}
 data.geo.municipios$Provincia<-as.factor(data.geo.municipios$Provincia)
 plot.colors<-c("green","orange")
 
-plot(Superficie~Perimetro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
+plot(Superficie~Per√≠metro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
 legend("topleft",legend=levels(data.geo.municipios$Provincia),col=c("green","orange"),pch=rep(20,2))
 ```
 ---
 
-## Funciones gr·ficas avanzadas: paquete lattice() 
+## Funciones gr√°ficas avanzadas: paquete lattice() 
 
-Podemos conseguir un cierto grado de personalizaciÛn en los gr·ficos en R. Los gr·ficos de panel (trellis graphics) permiten representar visualizaciones por grupos: 
+Podemos conseguir un cierto grado de personalizaci√≥n en los gr√°ficos en R. Los gr√°ficos de panel (trellis graphics) permiten representar visualizaciones por grupos: 
 
 ``` {r chart04a, echo=TRUE, message=FALSE,eval=FALSE}
-library(lattice)
-
 histogram( ~Superficie | Provincia, data=data.geo.municipios)
 
 densityplot( ~Superficie | Provincia, data=data.geo.municipios)
 
 bwplot(Superficie ~ Provincia, data=data.geo.municipios)
 
-xyplot(Superficie ~ PerÌmetro.municipal | Provincia, data=data.geo.municipios)
+xyplot(Superficie ~ Per√≠metro.municipal | Provincia, data=data.geo.municipios)
 ```
 
-``` {r chart04b, echo=FALSE, message=FALSE,eval=TRUE, out.extra='style="display:block; margin:auto;"'}
-library(lattice)
-xyplot(Superficie ~ Perimetro.municipal | Provincia, data=data.geo.municipios)
+``` {r chart04b, echo=FALSE, message=FALSE,eval=TRUE}
+xyplot(Superficie ~ Per√≠metro.municipal | Provincia, data=data.geo.municipios)
 ```
 
 
----
 
 
-## ProgramaciÛn de funciones en R
+
+## Programaci√≥n de funciones en R
 
 Es posible programar funciones personalizadas en R:
 

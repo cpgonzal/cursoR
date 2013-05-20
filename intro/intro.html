@@ -417,7 +417,6 @@ data.url &lt;-<span class="st"> &quot;https://raw.github.com/cpgonzal/cursoR/gh-
 <span class="kw">library</span>(RCurl)
 data.geo.municipios &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">textConnection</span>(<span class="kw">getURL</span>(data.url, <span class="dt">ssl.verifypeer =</span> <span class="ot">FALSE</span>)), 
     <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre>
-<pre><code>## Error: la linea 1 no tiene 2 elementos</code></pre>
 </div>
 <div class="slide section level1">
 
@@ -425,25 +424,26 @@ data.geo.municipios &lt;-<span class="st"> </span><span class="kw">read.table</s
 <p>Podemos completar los data.frames con más variables:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># crear factores con etiquetas</span>
 data.geo.municipios$Isla &lt;-<span class="st"> </span><span class="kw">factor</span>(data.geo.municipios$Isla, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;El Hierro&quot;</span>, 
-    <span class="st">&quot;La Palma&quot;</span>, <span class="st">&quot;La Gomera&quot;</span>, <span class="st">&quot;Tenerife&quot;</span>, <span class="st">&quot;Gran Canaria&quot;</span>, <span class="st">&quot;Fuerteventura&quot;</span>, <span class="st">&quot;Lanzarote&quot;</span>))</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">
+    <span class="st">&quot;La Palma&quot;</span>, <span class="st">&quot;La Gomera&quot;</span>, <span class="st">&quot;Tenerife&quot;</span>, <span class="st">&quot;Gran Canaria&quot;</span>, <span class="st">&quot;Fuerteventura&quot;</span>, <span class="st">&quot;Lanzarote&quot;</span>))
+
 data.geo.municipios$Provincia &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Las Palmas&quot;</span>, <span class="dv">34</span>), <span class="kw">rep</span>(<span class="st">&quot;S/C. de Tenerife&quot;</span>, 
     <span class="dv">54</span>))</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
 <p>También podemos crear data.frames con información resumida:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># resumir datos from data frames</span>
 data.geo.islas &lt;-<span class="st"> </span><span class="kw">aggregate</span>(data.geo.municipios[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">Provincia =</span> data.geo.municipios$Provincia, 
-    <span class="dt">Isla =</span> data.geo.municipios$Isla), <span class="dt">FUN =</span> sum, <span class="dt">na.rm =</span> T)</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">
+    <span class="dt">Isla =</span> data.geo.municipios$Isla), <span class="dt">FUN =</span> sum, <span class="dt">na.rm =</span> T)
+
 data.geo.islas$Altitud &lt;-<span class="st"> </span><span class="kw">aggregate</span>(data.geo.municipios[, <span class="dv">6</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">Provincia =</span> data.geo.municipios$Provincia, 
-    <span class="dt">Isla =</span> data.geo.municipios$Isla), <span class="dt">FUN =</span> max, <span class="dt">na.rm =</span> T)[, <span class="dv">3</span>]</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">
+    <span class="dt">Isla =</span> data.geo.municipios$Isla), <span class="dt">FUN =</span> max, <span class="dt">na.rm =</span> T)[, <span class="dv">3</span>]
+
 <span class="co"># estructura de los datos</span>
 <span class="kw">str</span>(data.geo.islas)</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.islas&#39; no encontrado</code></pre>
+<pre><code>## &#39;data.frame&#39;:    7 obs. of  5 variables:
+##  $ Provincia     : chr  &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; &quot;S/C. de Tenerife&quot; ...
+##  $ Isla          : Factor w/ 7 levels &quot;El Hierro&quot;,&quot;La Palma&quot;,..: 1 2 3 4 5 6 7
+##  $ Superficie    : num  269 708 370 2034 1560 ...
+##  $ Longitud.costa: num  41 155.6 97.5 358 242.9 ...
+##  $ Altitud       : int  571 722 810 1400 1270 395 305</code></pre>
 </div>
 <div class="slide section level1">
 
@@ -546,7 +546,6 @@ data.from.px &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>
 <div class="slide section level1">
 
 <h2 id="funciones-gráficas-en-r">Funciones gráficas en R</h2>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(data.geo.municipios$Superficie, data.geo.municipios$Perímetro.municipal)
 
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
@@ -556,7 +555,7 @@ data.from.px &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>
 
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios, <span class="dt">xlab =</span> <span class="st">&quot;Perímetro del municipio (km)&quot;</span>, 
     <span class="dt">ylab =</span> <span class="st">&quot;Superficie (km. cuadrados)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Comparación del perímetro y la superficie de los municipios&quot;</span>)</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
+<p><img src="figure/chart01.png" title="plot of chunk chart01" alt="plot of chunk chart01" style="display:block; margin:auto;" /></p>
 </div>
 <div class="slide section level1">
 
@@ -565,7 +564,7 @@ data.from.px &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>
 par.plot &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Altitud, <span class="dt">data =</span> data.geo.municipios)</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
+<p><img src="figure/chart02b.png" title="plot of chunk chart02b" alt="plot of chunk chart02b" style="display:block; margin:auto;" /></p>
 </div>
 <div class="slide section level1">
 
@@ -583,9 +582,7 @@ plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
     <span class="dt">pch =</span> <span class="dv">20</span>)
 <span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(data.geo.municipios$Provincia), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, 
     <span class="st">&quot;orange&quot;</span>), <span class="dt">pch =</span> <span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">2</span>))</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
+<p><img src="figure/chart03b.png" title="plot of chunk chart03b" alt="plot of chunk chart03b" style="display:block; margin:auto;" /></p>
 </div>
 <div class="slide section level1">
 
@@ -600,7 +597,7 @@ plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
 <span class="kw">bwplot</span>(Superficie ~<span class="st"> </span>Provincia, <span class="dt">data =</span> data.geo.municipios)
 
 <span class="kw">xyplot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal |<span class="st"> </span>Provincia, <span class="dt">data =</span> data.geo.municipios)</code></pre>
-<pre><code>## Error: objeto &#39;data.geo.municipios&#39; no encontrado</code></pre>
+<p><img src="figure/chart04b.png" title="plot of chunk chart04b" alt="plot of chunk chart04b" style="display:block; margin:auto;" /></p>
 </div>
 <div class="slide section level1">
 
