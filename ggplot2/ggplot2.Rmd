@@ -294,7 +294,7 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 # Gráfico de barras en ggplot2: layers
 
-* La transformación estadística stat:
+* La transformación estadística (stat):
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
   ejemplo2 + layer(geom="bar", stat="bin" )  
@@ -312,7 +312,7 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 # Otros gráficos en ggplot2
 
-Algunos ejemplos mas (densidad e histograma):
+Algunos ejemplos más (densidad e histograma):
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
 qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   
@@ -339,7 +339,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histog
 
 # Otros gráficos en ggplot2
 
-Algunos ejemplos mas (gráficos de barras):
+Algunos ejemplos más (gráficos de barras):
 
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
@@ -359,7 +359,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_b
 
 # Otros gráficos en ggplot2
 
-Algunos ejemplos mas:
+Algunos ejemplos más:
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
 qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
@@ -377,7 +377,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar
 
 # Otros gráficos en ggplot2
 
-Algunos ejemplos mas:
+Algunos ejemplos más:
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
@@ -397,7 +397,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) 
 
 # Otros gráficos en ggplot2
 
-Algunos ejemplos mas:
+Algunos ejemplos más:
 
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia)  

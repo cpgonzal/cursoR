@@ -419,7 +419,7 @@ ul li {
 <div id="gráfico-de-barras-en-ggplot2-layers" class="slide section level1">
 <h1>Gráfico de barras en ggplot2: layers</h1>
 <ul class="incremental">
-<li>La transformación estadística stat:
+<li>La transformación estadística (stat):
 <pre class="sourceCode r"><code class="sourceCode r">  ejemplo2 +<span class="st"> </span><span class="kw">layer</span>(<span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>, <span class="dt">stat=</span><span class="st">&quot;bin&quot;</span> )  
   <span class="co"># o tambien:  ejemplo2 + geom_bar(stat=&quot;bin&quot;)  </span>
   <span class="co"># o tambien: ejemplo2 + geom_bar()</span></code></pre>
@@ -434,7 +434,7 @@ ul li {
 </div>
 <div id="otros-gráficos-en-ggplot2" class="slide section level1">
 <h1>Otros gráficos en ggplot2</h1>
-<p>Algunos ejemplos mas (densidad e histograma):</p>
+<p>Algunos ejemplos más (densidad e histograma):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>, <span class="dt">colour =</span> Isla)   
 <span class="co"># las densidades son superpuestas</span>
  
@@ -450,7 +450,7 @@ ul li {
 </div>
 <div id="otros-gráficos-en-ggplot2-1" class="slide section level1">
 <h1>Otros gráficos en ggplot2</h1>
-<p>Algunos ejemplos mas (gráficos de barras):</p>
+<p>Algunos ejemplos más (gráficos de barras):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">x=</span>Espacio.natural, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">fill =</span> Isla) 
 <span class="co"># también los gráficos de barras son apilados</span>
 
@@ -462,7 +462,7 @@ ul li {
 </div>
 <div id="otros-gráficos-en-ggplot2-2" class="slide section level1">
 <h1>Otros gráficos en ggplot2</h1>
-<p>Algunos ejemplos mas:</p>
+<p>Algunos ejemplos más:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Provincia, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>)
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Provincia)) +<span class="kw">geom_bar</span>()</code></pre>
@@ -472,7 +472,7 @@ ul li {
 </div>
 <div id="otros-gráficos-en-ggplot2-3" class="slide section level1">
 <h1>Otros gráficos en ggplot2</h1>
-<p>Algunos ejemplos mas:</p>
+<p>Algunos ejemplos más:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;histogram&quot;</span>)
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Superficie) +<span class="kw">geom_histogram</span>()
@@ -487,7 +487,7 @@ ul li {
 </div>
 <div id="otros-gráficos-en-ggplot2-4" class="slide section level1">
 <h1>Otros gráficos en ggplot2</h1>
-<p>Algunos ejemplos mas:</p>
+<p>Algunos ejemplos más:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;histogram&quot;</span>, <span class="dt">colour =</span> Provincia)  
 <span class="co"># los histogramas son apilados y se colorea el borde</span>
        
