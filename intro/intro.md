@@ -1,5 +1,4 @@
-El entorno de R
-------------------------------------------------------- 
+# Introducción al entorno de R
 
 R es un lenguaje de alto nivel y un entorno para la manipulación de datos, cálculo y gráficos.
 
@@ -18,7 +17,7 @@ Website: http://www.r-project.org/
 
 ---
 
-## ¿Por qué R?
+# ¿Por qué R?
 
 * Para alumnos:
  1. Dispone de las herramientas clásicas de la estadistica
@@ -53,7 +52,7 @@ Website: http://www.r-project.org/
 
 ---
 
-## Estructura de un sistema R
+# Estructura de un sistema R
 
 R consta de un sistema base (instalación primaria) pero se pueden extender las funcionalidades mediante librerías o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:
 
@@ -68,7 +67,7 @@ googleVis: Librería que sirve de interfaz entre R y Google chart tools
 
 ---
 
-## Sesión de R
+# Sesión de R
 
 
 Se puede iniciar una sesión de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows). 
@@ -82,7 +81,7 @@ La interfaz de R para windows proporciona un menú muy básico para gestionar al
 
 ---
 
-## Uso básico de R
+# Uso básico de R
 
 Desde R se pueden realizar sencillas operaciones aritméticas
 
@@ -103,7 +102,7 @@ factorial(3)
 
 ---
 
-## Uso básico de R
+# Uso básico de R
 
 R ejecuta ciertas operaciones que, en otros programas, podrían generar mensajes de error
 
@@ -118,7 +117,7 @@ sqrt(-9)
 
 ---
 
-## Almacenar resultados en variables. El espacio de trabajo
+# Almacenar resultados en variables. El espacio de trabajo
 
 El operador de asignación (<-) permite almacenar valores:
 
@@ -139,7 +138,7 @@ ls()
 
 ---
 
-## La ayuda en R
+# La ayuda en R
 
 Para invocar la ayuda en R, podemos hacerlo de la forma siguiente
 
@@ -154,7 +153,7 @@ help.start()
 
 ---
 
-## Vectores en R
+# Vectores en R
 
 Crear secuencias de vectores
 
@@ -188,7 +187,7 @@ x + w
 
 ---
 
-## Vectores como argumentos de funciones en R
+# Vectores como argumentos de funciones en R
 
 Algunas funciones se evalúan sobre un vector y
 devuelven otro vector de la misma longitud. Otras, en cambio, devuelven un escalar
@@ -215,7 +214,7 @@ x < 3 & z < 5
 
 ---
 
-## Elementos de un vector
+# Elementos de un vector
 
 Para seleccionar elementos de un vector se utiliza la notación de []:
 
@@ -241,7 +240,7 @@ x[15] <- 0
 
 ---
 
-## Tipo de los elementos de un vector
+# Tipo de los elementos de un vector
 
 Los vectores en R son objetos con todos sus elementos del mismo tipo
 
@@ -274,7 +273,7 @@ is.vector(x)
 
 ---
 
-## Factores en R
+# Factores en R
 
 Los factores son vectores que alamcenan datos categóricos (variable con varios niveles)
 
@@ -291,7 +290,7 @@ is.factor(s)
 
 ---
 
-## Matrices en R
+# Matrices en R
 
 Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (más de 2 dimensiones) 
 
@@ -312,7 +311,7 @@ m[, "2"]
 
 ---
 
-## Listas en R
+# Listas en R
 
 Las listas en R son colecciones ordenadas de objetos
 
@@ -333,7 +332,7 @@ l$padres[2]
 
 ---
 
-## Hojas de datos en R
+# Hojas de datos en R
 
 Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observación.
 
@@ -355,7 +354,7 @@ class(d$sexo)
 
 ---
 
-## Paquetes en R
+# Paquetes en R
 
 > 1. La gran potencia que proporciona R reside en la gran cantidad de paquetes desarrollados y que se encuentran en repositorios CRAN. 
 > 2. En la instalación base de R se instalan sólo algunos de ellos. 
@@ -374,7 +373,7 @@ library(RJSONIO)  # cargar el paquete
 
 ---
 
-## El directorio de trabajo. La carga de datos 
+# El directorio de trabajo. La carga de datos 
 
 Cuando se inicia R, el programa configura por defecto un directorio desde donde se leen o donde se guardan ficheros. Los comandos getwd() y setwd() permiten consultar y cambiar el directorio de trabajo. 
 
@@ -400,7 +399,7 @@ data.geo.municipios <- read.table(file = "datos_geograficos_islas.txt", header =
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Se puede utilizar read.table() para cargar datos desde un lugar remoto:
 
@@ -425,7 +424,7 @@ data.geo.municipios <- read.table(textConnection(getURL(data.url, ssl.verifypeer
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Podemos completar los data.frames con más variables:
 
@@ -466,7 +465,7 @@ str(data.geo.islas)
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Para cargar datos en formato JSON:
 
@@ -491,7 +490,7 @@ data.json <- fromJSON(data.json, encoding = "UTF-8")
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Para consultar la estructura que se ha cargado:
 
@@ -511,7 +510,7 @@ data.json$data[[1]]$dimCodes[1]
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
 
@@ -534,7 +533,7 @@ data.json <- fromJSON(data.json, encoding = "UTF-8")
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:
 
@@ -557,7 +556,7 @@ data.json <- fromJSON(data.json, encoding = "UTF-8")
 
 ---
 
-## El arreglo de los datos cargados en formato JSON
+# El arreglo de los datos cargados en formato JSON
 
 
 ```r
@@ -583,7 +582,7 @@ rm(tmp.json, tmp.json.valores, tmp.json.cod)
 
 ---
 
-## El arreglo de los datos cargados en formato JSON
+# El arreglo de los datos cargados en formato JSON
 
 
 ```r
@@ -604,7 +603,7 @@ data.pob.municipios <- data.from.json[, c(1, 5, 2, 6, 3, 7, 4)]
 
 ---
 
-## Otros métodos para la carga de datos
+# Otros métodos para la carga de datos
 
 Para cargar datos en formato PC-AXIS:
 
@@ -629,7 +628,7 @@ names(data.from.px) <- c("Indicadores", "Años", "Municipios", "Valor")
 ---
 
 
-## Funciones gráficas en R
+# Funciones gráficas en R
 
 
 
@@ -654,7 +653,7 @@ plot(Superficie ~ Perímetro.municipal, data = data.geo.municipios, xlab = "Per�
 
 ---
 
-## El comando par() 
+# El comando par() 
 
 
 ```r
@@ -670,7 +669,7 @@ plot(Superficie ~ Altitud, data = data.geo.municipios)
 
 ---
 
-## Coloreado por grupos
+# Coloreado por grupos
 
 
 ```r
@@ -694,7 +693,7 @@ legend("topleft", legend = levels(data.geo.municipios$Provincia), col = c("green
 
 ---
 
-## Funciones gráficas avanzadas: paquete lattice() 
+# Funciones gráficas avanzadas: paquete lattice() 
 
 Podemos conseguir un cierto grado de personalización en los gráficos en R. Los gráficos de panel (trellis graphics) permiten representar visualizaciones por grupos: 
 
@@ -719,7 +718,7 @@ xyplot(Superficie ~ Perímetro.municipal | Provincia, data = data.geo.municipios
 ---
 
 
-## Programación de funciones en R
+# Programación de funciones en R
 
 Es posible programar funciones personalizadas en R:
 

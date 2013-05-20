@@ -131,7 +131,7 @@ ul li {
 </object>
 
 </div> 
-<div id="la-librería-maptools" class="slide section level2">
+<div id="la-librería-maptools" class="slide section level1">
 <h1>La librería maptools</h1>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales.</li>
@@ -139,8 +139,8 @@ ul li {
 <li>Esta librería se suele utilizar en combinación con otras: sp (clases y métodos para datos geo-espaciales), RColorBrewer (paletas de colores) y ggplot2 (libraría gráfica). <br> Website (blog): http://rspatialtips.org.uk/ <br> Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf</li>
 </ol>
 </div>
-<div id="la-librería-maptools-1" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="cargar-archivos-shapefiles-line" class="slide section level1">
+<h1>Cargar archivos shapefiles (line)</h1>
 <p>Cargamos los archivos de las 27 comarcas de canarias:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(maptools)
 canary.counties &lt;-<span class="st"> </span><span class="kw">readShapeLines</span>(<span class="dt">fn =</span> <span class="st">&quot;ISTAC_comarcas27_R.shp&quot;</span>)
@@ -149,8 +149,8 @@ canary.counties &lt;-<span class="st"> </span><span class="kw">readShapeLines</s
 <img src="figure/loadmap03.png" />
 </div>
 </div>
-<div id="la-librería-maptools-2" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="cargar-archivos-shapefiles-poly" class="slide section level1">
+<h1>Cargar archivos shapefiles (poly)</h1>
 <p>Vamos a cargar el mapa en forma de polígonos (Poly Shape):</p>
 <pre class="sourceCode r"><code class="sourceCode r">canary.counties &lt;-<span class="st"> </span><span class="kw">readShapePoly</span>(<span class="dt">fn =</span> <span class="st">&quot;ISTAC_comarcas27_R.shp&quot;</span>)
 <span class="kw">plot</span>(canary.counties, <span class="dt">axes =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
@@ -158,8 +158,8 @@ canary.counties &lt;-<span class="st"> </span><span class="kw">readShapeLines</s
 <img src="figure/loadmap06.png" />
 </div>
 </div>
-<div id="la-librería-maptools-3" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="objetos-shapefiles" class="slide section level1">
+<h1>Objetos shapefiles</h1>
 <p>Para examinar el objeto canary.counties que hemos cargado:</p>
 <pre class="sourceCode r"><code class="sourceCode r">canary.counties
 <span class="kw">summary</span>(canary.counties)
@@ -173,8 +173,8 @@ canary.counties@polygons[[<span class="dv">1</span>]]</code></pre>
 <span class="kw">print</span>(<span class="kw">proj4string</span>(canary.counties))
 <span class="kw">plot</span>(canary.counties, <span class="dt">axes =</span> <span class="ot">TRUE</span>)</code></pre>
 </div>
-<div id="la-librería-maptools-4" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="el-slot-data" class="slide section level1">
+<h1>El slot “data”</h1>
 <p>Para representar una variable en un mapa, lo más común es asociar al slot “data” los valores de la variable utilizando el comando merge(). Por ejemplo:</p>
 <pre class="sourceCode r"><code class="sourceCode r">censal.hombres &lt;-<span class="st"> </span>data.comarcas.censal[data.comarcas.censal$sexo ==<span class="st"> &quot;men&quot;</span>, ]
 canary.tmp &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.counties@data, censal.hombres, <span class="dt">by.x =</span> <span class="st">&quot;CODCOM&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;comarca&quot;</span>, 
@@ -188,8 +188,8 @@ idx &lt;-<span class="st"> </span><span class="kw">match</span>(canary.counties@
 canary.counties@data$sexoM &lt;-<span class="st"> </span>censal.mujeres$sexo[idx]
 canary.counties@data$censoM &lt;-<span class="st"> </span>censal.mujeres$censo[idx]</code></pre>
 </div>
-<div id="la-librería-maptools-5" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="mapa-de-intensidad" class="slide section level1">
+<h1>Mapa de intensidad</h1>
 <p>Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classInt)
 <span class="kw">library</span>(RColorBrewer)
@@ -206,8 +206,8 @@ p</code></pre>
 <img src="figure/loadmap10.png" />
 </div>
 </div>
-<div id="la-librería-maptools-6" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="paletas-de-colores" class="slide section level1">
+<h1>Paletas de colores</h1>
 <p>La comarca con menor valor del censo se puede quedar de color blanco:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corrección del primer color de la escala</span>
 int$brks[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1000</span>
@@ -222,8 +222,8 @@ canary.counties@data[<span class="kw">order</span>(canary.counties@data$censoH),
 <span class="kw">pie</span>(<span class="kw">rep</span>(<span class="dv">1</span>, n), <span class="dt">col =</span> <span class="kw">heat.colors</span>(n))
 <span class="kw">pie</span>(<span class="kw">rep</span>(<span class="dv">1</span>, n), <span class="dt">col =</span> <span class="kw">terrain.colors</span>(n))</code></pre>
 </div>
-<div id="la-librería-maptools-7" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="intervalos-de-clase" class="slide section level1">
+<h1>Intervalos de clase</h1>
 <pre class="sourceCode r"><code class="sourceCode r">pal &lt;-<span class="st"> </span><span class="kw">heat.colors</span>(n)
 p &lt;-<span class="st"> </span><span class="kw">spplot</span>(canary.counties[<span class="st">&quot;censoH&quot;</span>], <span class="dt">col.regions =</span> pal, <span class="dt">at =</span> <span class="kw">signif</span>(int$brks, 
     <span class="dt">digits =</span> <span class="dv">2</span>), <span class="dt">lwd =</span> <span class="fl">0.4</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)
@@ -237,8 +237,8 @@ int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.
 int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.counties@data$censoH, n, <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>)
 int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.counties@data$censoH, n, <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>)</code></pre>
 </div>
-<div id="la-librería-maptools-8" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="métodos-alternativos-representación-de-mapas" class="slide section level1">
+<h1>Métodos alternativos representación de mapas</h1>
 <p>Podemos utilizar otros métodos de representación, plot() + legend():</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Representaciones alternativas</span>
 <span class="kw">plot</span>(canary.counties, <span class="dt">col =</span> pal[<span class="kw">findInterval</span>(canary.counties@data$censoH, int$brks, 
@@ -249,8 +249,8 @@ int &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(canary.
 <img src="figure/loadmap13a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-9" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="métodos-alternativos-representación-de-mapas-1" class="slide section level1">
+<h1>Métodos alternativos representación de mapas</h1>
 <p>Otros métodos de representación, fortify()+ggplot2():</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Otra mas</span>
 <span class="kw">library</span>(ggplot2)
@@ -265,8 +265,8 @@ canary.fort &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.f
 <span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, 
     <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</code></pre>
 </div>
-<div id="la-librería-maptools-10" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="métodos-alternativos-representación-de-mapas-2" class="slide section level1">
+<h1>Métodos alternativos representación de mapas</h1>
 <p>Entonces:</p>
 <pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH)) +<span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_polygon</span>() +<span class="st"> </span><span class="kw">geom_path</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)
@@ -275,8 +275,8 @@ map</code></pre>
 <img src="figure/loadmap14a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-11" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="representaciones-en-escalas-discretas" class="slide section level1">
+<h1>Representaciones en escalas discretas</h1>
 <p>Otras variantes con ggplot2():</p>
 <pre class="sourceCode r"><code class="sourceCode r">map +<span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;black&quot;</span>)
 
@@ -292,8 +292,8 @@ map +<span class="st"> </span><span class="kw">scale_fill_gradientn</span>(<span
 
 <span class="kw">head</span>(canary.fort)</code></pre>
 </div>
-<div id="la-librería-maptools-12" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="representaciones-en-escalas-discretas-1" class="slide section level1">
+<h1>Representaciones en escalas discretas</h1>
 <p>Entonces:</p>
 <pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> canary.fort, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> censoH.discreto)) +<span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_polygon</span>() +<span class="st"> </span><span class="kw">geom_path</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)
@@ -304,8 +304,8 @@ map</code></pre>
 </div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># map + scale_fill_brewer(&#39;Censo hombres total&#39;)</span></code></pre>
 </div>
-<div id="la-librería-maptools-13" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="representaciones-en-escalas-discretas-2" class="slide section level1">
+<h1>Representaciones en escalas discretas</h1>
 <p>Podemos representar las comarcas de una isla:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canary.counties@data[canary.counties@data$CODISLA==&#39;GC&#39;,]</span>
 idx &lt;-<span class="st"> </span>canary.fort$id %in%<span class="st"> </span>canary.counties@data[canary.counties@data$CODISLA ==<span class="st"> </span>
@@ -320,8 +320,8 @@ map</code></pre>
 <img src="figure/loadmap16a.png" />
 </div>
 </div>
-<div id="la-librería-maptools-14" class="slide section level2">
-<h1>La librería maptools</h1>
+<div id="representaciones-con-gráficos-panel" class="slide section level1">
+<h1>Representaciones con gráficos panel</h1>
 <p>Podemos representar con ggplot:</p>
 <pre class="sourceCode r"><code class="sourceCode r">canary.fort &lt;-<span class="st"> </span><span class="kw">merge</span>(canary.fort, canary.counties@data[, <span class="kw">c</span>(<span class="st">&quot;IDCOM27&quot;</span>, <span class="st">&quot;IDPROV&quot;</span>, 
     <span class="st">&quot;PROV&quot;</span>, <span class="st">&quot;CODISLA&quot;</span>, <span class="st">&quot;ISLA&quot;</span>)], <span class="dt">by.x =</span> <span class="st">&quot;id&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;IDCOM27&quot;</span>, <span class="dt">sort =</span> <span class="ot">FALSE</span>)

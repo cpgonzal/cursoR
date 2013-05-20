@@ -1,5 +1,4 @@
-La librería maptools
--------------------------------------------------------  
+# La librería maptools
 
 1. Esta librería es un conjunto de herramientas para leer y manejar objetos espaciales. 
 2. En particular, permite cargar archivos ESRI shapefiles (.shp).
@@ -14,7 +13,7 @@ Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
 
 ---
 
-## La librería maptools
+# Cargar archivos shapefiles (line)
 
 Cargamos los archivos de las 27 comarcas de canarias:
 
@@ -35,7 +34,7 @@ plot(canary.counties, axes = TRUE, col = "red")
 
 ---
 
-## La librería maptools
+# Cargar archivos shapefiles (poly)
 
 Vamos a cargar el mapa en forma de polígonos (Poly Shape):
 
@@ -53,7 +52,7 @@ plot(canary.counties, axes = TRUE, col = "red")
 
 ---
 
-## La librería maptools
+# Objetos shapefiles
 
 Para examinar el objeto canary.counties que hemos cargado:
 
@@ -81,7 +80,7 @@ plot(canary.counties, axes = TRUE)
 
 ---
 
-## La librería maptools
+# El slot "data"
 
 Para representar una variable en un mapa, lo más común es asociar al slot "data" los valores de la variable utilizando el comando merge(). Por ejemplo:
 
@@ -108,7 +107,7 @@ canary.counties@data$censoM <- censal.mujeres$censo[idx]
 
 ---
 
-## La librería maptools
+# Mapa de intensidad
 
 Para representar un mapa de intensidad, necesitamos definir una paleta de colores y luego el comando spplot();
 
@@ -132,7 +131,7 @@ p
 
 ---
 
-## La librería maptools
+# Paletas de colores
 
 La comarca con menor valor del censo se puede quedar de color blanco: 
 
@@ -161,7 +160,7 @@ pie(rep(1, n), col = terrain.colors(n))
 
 ---
 
-## La librería maptools
+# Intervalos de clase
 
 
 ```r
@@ -187,7 +186,7 @@ int <- classIntervals(canary.counties@data$censoH, n, style = "jenks")
 
 ---
 
-## La librería maptools
+# Métodos alternativos representación de mapas
 
 Podemos utilizar otros métodos de representación, plot() + legend():
 
@@ -205,7 +204,7 @@ legend(x = -18, y = 30.5, legend = leglabs(round(int$brks)), cex = 0.9, fill = p
 
 ---
 
-## La librería maptools
+# Métodos alternativos representación de mapas
 
 Otros métodos de representación, fortify()+ggplot2():
  
@@ -228,7 +227,7 @@ ggplot(data = canary.fort, aes(long, lat, group = group)) + geom_polygon(colour 
 
 ---
 
-## La librería maptools
+# Métodos alternativos representación de mapas
 
 Entonces:
 
@@ -248,7 +247,7 @@ map
 
 ---
 
-## La librería maptools
+# Representaciones en escalas discretas
 
 Otras variantes con ggplot2():
 
@@ -282,7 +281,7 @@ head(canary.fort)
 
 ---
 
-## La librería maptools
+# Representaciones en escalas discretas
 
 Entonces:
 
@@ -304,7 +303,7 @@ map
 
 ---
 
-## La librería maptools
+# Representaciones en escalas discretas
 
 Podemos representar las comarcas de una isla:
 
@@ -326,7 +325,7 @@ map
 
 ---
 
-## La librería maptools
+# Representaciones con gráficos panel
 
 Podemos representar con ggplot:
 

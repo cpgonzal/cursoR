@@ -131,7 +131,7 @@ ul li {
 </object>
 
 </div> 
-<div id="la-librería-ggplot2" class="slide section level2">
+<div id="la-librería-ggplot2" class="slide section level1">
 <h1>La librería ggplot2</h1>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Es un paquete que permite generar gráficos estadísticos.</li>
@@ -139,8 +139,8 @@ ul li {
 <li>Los gráficos se pueden construir añadiéndole sucesivamente más atributos o capas (“layers”).<br /><br> Libro: <cite>H.Wickham (2009). ggplot2: Elegant Graphics for Data Analysis 123, Use R!, Springer</cite> <br> Website: http://had.co.nz/ggplot2 <br> Tutorial: http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf</li>
 </ol>
 </div>
-<div id="introducción-a-la-librería-ggplot2" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="el-comando-qplot" class="slide section level1">
+<h1>El comando qplot()</h1>
 <p><img src="figure/plot01.png" title="plot of chunk plot01" alt="plot of chunk plot01" style="display:block;" /></p>
 <p>Los comandos gráficos disponibles en ggplot2 son:</p>
 <ul class="incremental">
@@ -148,8 +148,8 @@ ul li {
 <li><p>ggplot() - para mejor ajuste y control de todo</p></li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-1" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="el-comando-qplot-ejemplos" class="slide section level1">
+<h1>El comando qplot(): ejemplos</h1>
 <p>Veamos algunos ejemplos:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios,<span class="dt">x=</span>Superficie,<span class="dt">main=</span><span class="st">&quot;Histograma de superficie&quot;</span>,<span class="dt">binwidth=</span><span class="dv">50</span>)
 
@@ -162,24 +162,23 @@ ul li {
 <span class="dt">xlab=</span><span class="st">&quot;Superficie de la isla&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Altitud de la isla&quot;</span>,
 <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2500</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1500</span>))</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-2" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
-<h3 id="color-tamaño-forma-aspectos-estéticos">Color, tamaño, forma (aspectos estéticos)</h3>
+<div id="color-tamaño-forma-aspectos-estéticos" class="slide section level1">
+<h1>Color, tamaño, forma (aspectos estéticos)</h1>
 <p>Con el comando clásico plot(), si queremos representar variables categóricas (e.g. una variable de tipo sexo, “Hombre”,“Mujer”) con colores, debemos realizar nosotros mismos la correspondencia entre categoría y color.</p>
 <p>En qplot() se puede especificar varios argumentos: colour, size, shape</p>
-<!--- #### la vida en color
+<!--- ### la vida en color
 -->
 
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.islas,<span class="dt">x=</span>Superficie,<span class="dt">y=</span>Altitud, <span class="dt">colour =</span> Isla,
 <span class="dt">main=</span><span class="st">&quot;Gráfico de superficie vs. altitud&quot;</span>, 
 <span class="dt">xlab=</span><span class="st">&quot;Superficie&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Altitud&quot;</span>) </code></pre>
-<!--- #### el tamaño sí importa
+<!--- ### el tamaño sí importa
 -->
 
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.islas,<span class="dt">x=</span>Superficie,<span class="dt">y=</span>Altitud, <span class="dt">size =</span> Isla,
 <span class="dt">main=</span><span class="st">&quot;Gráfico de superficie vs. altitud&quot;</span>, 
 <span class="dt">xlab=</span><span class="st">&quot;Superficie&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Altitud&quot;</span>) </code></pre>
-<!--- #### sin perder las formas
+<!--- ### sin perder las formas
 -->
 
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.islas,<span class="dt">x=</span>Superficie,<span class="dt">y=</span>Altitud, <span class="dt">shape =</span> Isla,
@@ -187,9 +186,8 @@ ul li {
 <span class="dt">xlab=</span><span class="st">&quot;Superficie&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Altitud&quot;</span>) +
 <span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="dv">1</span>:<span class="dv">7</span>)</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-3" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
-<h3 id="objetos-geométricos">Objetos geométricos</h3>
+<div id="objetos-geométricos" class="slide section level1">
+<h1>Objetos geométricos</h1>
 <p>qplot no está limitado a gráficos de dispersión (scatterplot), sino que puede producir casi cualquier tipo de gráfico variando el argumento geom.</p>
 <ul class="incremental">
 <li>geom = “point” representa puntos para producir un scatterplot. Esta es la opción por defecto cuando se pasan argumentos x e y a qplot().</li>
@@ -198,8 +196,8 @@ ul li {
 <li>geom = “path” and geom = “line” representa lineas entre los puntos.</li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-4" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="ejemplos-de-ggplot---objetos-geométricos" class="slide section level1">
+<h1>Ejemplos de ggplot() - objetos geométricos</h1>
 <p>Vemos algunos ejemplos:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios,<span class="dt">x=</span>Superficie,<span class="dt">y=</span>Altitud, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>)
 
@@ -216,9 +214,8 @@ ul li {
 <span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;histogram&quot;</span>)
 <span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>)</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-5" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
-<h3 id="comprensión-de-la-gramática-de-capas">Comprensión de la gramática de capas</h3>
+<div id="comprensión-de-la-gramática-de-capas" class="slide section level1">
+<h1>Comprensión de la gramática de capas</h1>
 <ol class="incremental" style="list-style-type: decimal">
 <li><p>Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de los gráficos por capas (gramática de capas) mediante ggplot().</p></li>
 <li><p>El qplot recorta bastantes detalles de ggplot() a pesar que permite una sintaxis más familiar y cercana al plot().</p></li>
@@ -229,12 +226,10 @@ ul li {
       <span class="dt">stat =</span> <span class="st">&quot;&quot;</span>,  
       <span class="dt">position =</span> <span class="st">&quot;&quot;</span>, ....  
       )</code></pre>
-</li>
-</ol>
+</li></ol>
 </div>
-<div id="introducción-a-la-librería-ggplot2-6" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
-<h3 id="algunos-objetos-geométricos-en-ggplot2">Algunos objetos geométricos en ggplot2</h3>
+<div id="otros-objetos-geométricos-en-ggplot2" class="slide section level1">
+<h1>Otros objetos geométricos en ggplot2</h1>
 <table>
 <thead>
 <tr class="header">
@@ -294,9 +289,8 @@ ul li {
 </tbody>
 </table>
 </div>
-<div id="introducción-a-la-librería-ggplot2-7" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
-<h3 id="algunas-transformaciones-estadísticas-en-ggplot2">Algunas transformaciones estadísticas en ggplot2</h3>
+<div id="algunas-transformaciones-estadísticas-en-ggplot2" class="slide section level1">
+<h1>Algunas transformaciones estadísticas en ggplot2</h1>
 <table>
 <thead>
 <tr class="header">
@@ -356,8 +350,8 @@ ul li {
 </tbody>
 </table>
 </div>
-<div id="introducción-a-la-librería-ggplot2-8" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="scatterplot-en-ggplot2" class="slide section level1">
+<h1>Scatterplot en ggplot2</h1>
 <p>Un scatterplot:</p>
 <pre class="sourceCode r"><code class="sourceCode r">ejemplo1&lt;-<span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios,<span class="dt">x=</span>Superficie,<span class="dt">y=</span>Altitud, <span class="dt">colour =</span> Isla)</code></pre>
 <p>se compone de (http://docs.ggplot2.org/current/index.html):</p>
@@ -368,8 +362,8 @@ ul li {
 </li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-9" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="scatterplot-en-ggplot2-layers" class="slide section level1">
+<h1>Scatterplot en ggplot2: layers</h1>
 <p>Y de las siguientes capas o layers:</p>
 <ul class="incremental">
 <li>El tipo de objeto geométrico (punto, línea, barra, …) utilizado para la representación (geom).
@@ -384,8 +378,8 @@ ul li {
 </li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-10" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="scatterplot-en-ggplot2-otros-aspectos" class="slide section level1">
+<h1>Scatterplot en ggplot2: otros aspectos</h1>
 <p>Además, se puede</p>
 <ul class="incremental">
 <li>Controlar cómo se asignan las variables del conjunto de datos a los atributos aesthetics (scales). Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar según el valor de las variables.
@@ -407,8 +401,8 @@ ul li {
 </li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-11" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="gráfico-de-barras-en-ggplot2" class="slide section level1">
+<h1>Gráfico de barras en ggplot2</h1>
 <p>Un diagrama de barras:</p>
 <pre class="sourceCode r"><code class="sourceCode r">ejemplo2&lt;-<span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios,<span class="dt">x=</span>Provincia, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">fill =</span> Isla)</code></pre>
 <ul class="incremental">
@@ -422,8 +416,8 @@ ul li {
 </li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-12" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="gráfico-de-barras-en-ggplot2-layers" class="slide section level1">
+<h1>Gráfico de barras en ggplot2: layers</h1>
 <ul class="incremental">
 <li>La transformación estadística stat:
 <pre class="sourceCode r"><code class="sourceCode r">  ejemplo2 +<span class="st"> </span><span class="kw">layer</span>(<span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>, <span class="dt">stat=</span><span class="st">&quot;bin&quot;</span> )  
@@ -438,8 +432,8 @@ ul li {
 </li>
 </ul>
 </div>
-<div id="introducción-a-la-librería-ggplot2-13" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="otros-gráficos-en-ggplot2" class="slide section level1">
+<h1>Otros gráficos en ggplot2</h1>
 <p>Algunos ejemplos mas (densidad e histograma):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>, <span class="dt">colour =</span> Isla)   
 <span class="co"># las densidades son superpuestas</span>
@@ -454,8 +448,8 @@ ul li {
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Superficie,<span class="dt">fill=</span>Isla)) +<span class="kw">geom_histogram</span>()</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-14" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="otros-gráficos-en-ggplot2-1" class="slide section level1">
+<h1>Otros gráficos en ggplot2</h1>
 <p>Algunos ejemplos mas (gráficos de barras):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">x=</span>Espacio.natural, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">fill =</span> Isla) 
 <span class="co"># también los gráficos de barras son apilados</span>
@@ -466,8 +460,8 @@ ul li {
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.espacios.nat, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Espacio.natural,<span class="dt">fill=</span>Isla)) +<span class="kw">geom_bar</span>()</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-15" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="otros-gráficos-en-ggplot2-2" class="slide section level1">
+<h1>Otros gráficos en ggplot2</h1>
 <p>Algunos ejemplos mas:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Provincia, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>)
 
@@ -476,8 +470,8 @@ ul li {
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Provincia,<span class="dt">fill =</span> Isla)) +<span class="kw">geom_bar</span>()</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-16" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="otros-gráficos-en-ggplot2-3" class="slide section level1">
+<h1>Otros gráficos en ggplot2</h1>
 <p>Algunos ejemplos mas:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;histogram&quot;</span>)
 
@@ -491,8 +485,8 @@ ul li {
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>Superficie, <span class="dt">colour =</span> Provincia)) +<span class="kw">geom_density</span>()</code></pre>
 </div>
-<div id="introducción-a-la-librería-ggplot2-17" class="slide section level2">
-<h1>Introducción a la librería ggplot2</h1>
+<div id="otros-gráficos-en-ggplot2-4" class="slide section level1">
+<h1>Otros gráficos en ggplot2</h1>
 <p>Algunos ejemplos mas:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data=</span>data.geo.municipios, <span class="dt">x=</span>Superficie, <span class="dt">geom =</span> <span class="st">&quot;histogram&quot;</span>, <span class="dt">colour =</span> Provincia)  
 <span class="co"># los histogramas son apilados y se colorea el borde</span>

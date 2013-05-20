@@ -131,9 +131,8 @@ ul li {
 </object>
 
 </div> 
-<div class="slide section level1">
-
-<h2 id="el-entorno-de-r">El entorno de R</h2>
+<div id="introducción-al-entorno-de-r" class="slide section level1">
+<h1>Introducción al entorno de R</h1>
 <p>R es un lenguaje de alto nivel y un entorno para la manipulación de datos, cálculo y gráficos.</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Almacenamiento y manipulación efectiva de datos</li>
@@ -145,9 +144,8 @@ ul li {
 <li>Es de código abierto: se distribuye bajo la GPL (General Public License), que no impone ninguna restricción al uso de R (tanto académico como comercial). <br> Website: http://www.r-project.org/ <br></li>
 </ol>
 </div>
-<div class="slide section level1">
-
-<h2 id="por-qué-r">¿Por qué R?</h2>
+<div id="por-qué-r" class="slide section level1">
+<h1>¿Por qué R?</h1>
 <ul class="incremental">
 <li>Para alumnos:</li>
 </ul>
@@ -188,18 +186,16 @@ ul li {
 <li><p>El lenguaje de comandos es un lenguaje de programación</p></li>
 </ol>
 </div>
-<div class="slide section level1">
-
-<h2 id="estructura-de-un-sistema-r">Estructura de un sistema R</h2>
+<div id="estructura-de-un-sistema-r" class="slide section level1">
+<h1>Estructura de un sistema R</h1>
 <p>R consta de un sistema base (instalación primaria) pero se pueden extender las funcionalidades mediante librerías o paquetes (se instalan bajo demanda). Algunos de estos paquetes son:</p>
 <p>mva: Classical multivariate analysis</p>
 <p>maptools: Herramientas para el manejo de objetos geoespaciales</p>
 <p>googleVis: Librería que sirve de interfaz entre R y Google chart tools</p>
 <p>….</p>
 </div>
-<div class="slide section level1">
-
-<h2 id="sesión-de-r">Sesión de R</h2>
+<div id="sesión-de-r" class="slide section level1">
+<h1>Sesión de R</h1>
 <p>Se puede iniciar una sesión de R en modo terminal (en sistemas Linux) o empleando un R GUI (en sistemas windows).</p>
 <p>La interfaz de R para windows proporciona un menú muy básico para gestionar algunos aspectos de sesión de R:</p>
 <ol style="list-style-type: decimal">
@@ -208,9 +204,8 @@ ul li {
 <li>La instalación de librerías desde un repositorio CRAN</li>
 </ol>
 </div>
-<div class="slide section level1">
-
-<h2 id="uso-básico-de-r">Uso básico de R</h2>
+<div id="uso-básico-de-r" class="slide section level1">
+<h1>Uso básico de R</h1>
 <p>Desde R se pueden realizar sencillas operaciones aritméticas</p>
 <style>
 pre {
@@ -224,18 +219,16 @@ pre {
 <span class="kw">sin</span>(pi/<span class="dv">2</span>)
 <span class="kw">factorial</span>(<span class="dv">3</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="uso-básico-de-r-1">Uso básico de R</h2>
+<div id="uso-básico-de-r-1" class="slide section level1">
+<h1>Uso básico de R</h1>
 <p>R ejecuta ciertas operaciones que, en otros programas, podrían generar mensajes de error</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>/<span class="dv">0</span>
 <span class="dv">0</span>/<span class="dv">0</span>
 <span class="kw">log</span>(-<span class="dv">1</span>)
 <span class="kw">sqrt</span>(-<span class="dv">9</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="almacenar-resultados-en-variables.-el-espacio-de-trabajo">Almacenar resultados en variables. El espacio de trabajo</h2>
+<div id="almacenar-resultados-en-variables.-el-espacio-de-trabajo" class="slide section level1">
+<h1>Almacenar resultados en variables. El espacio de trabajo</h1>
 <p>El operador de asignación (&lt;-) permite almacenar valores:</p>
 <pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">10</span>)
 a &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">10</span>)
@@ -244,18 +237,16 @@ a &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">4
 <p>Al introducir los comandos anteriores, hemos creado un objeto en R: la variable “a”. Este objeto se almacena en una zona de memoria llamada “espacio de trabajo”.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="la-ayuda-en-r">La ayuda en R</h2>
+<div id="la-ayuda-en-r" class="slide section level1">
+<h1>La ayuda en R</h1>
 <p>Para invocar la ayuda en R, podemos hacerlo de la forma siguiente</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(rnorm)
 <span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rnorm)
 <span class="kw">help.search</span>(<span class="st">&quot;pc-axis&quot;</span>)
 <span class="kw">help.start</span>()</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="vectores-en-r">Vectores en R</h2>
+<div id="vectores-en-r" class="slide section level1">
+<h1>Vectores en R</h1>
 <p>Crear secuencias de vectores</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">5</span>)
@@ -273,9 +264,8 @@ x *<span class="st"> </span>z
 <span class="co"># cíclico</span>
 x +<span class="st"> </span>w</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="vectores-como-argumentos-de-funciones-en-r">Vectores como argumentos de funciones en R</h2>
+<div id="vectores-como-argumentos-de-funciones-en-r" class="slide section level1">
+<h1>Vectores como argumentos de funciones en R</h1>
 <p>Algunas funciones se evalúan sobre un vector y devuelven otro vector de la misma longitud. Otras, en cambio, devuelven un escalar</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(x)
 <span class="kw">sum</span>(x)
@@ -286,9 +276,8 @@ x +<span class="st"> </span>w</code></pre>
 x &lt;<span class="st"> </span><span class="dv">3</span> |<span class="st"> </span>z &gt;<span class="st"> </span><span class="dv">5</span>
 x &lt;<span class="st"> </span><span class="dv">3</span> &amp;<span class="st"> </span>z &lt;<span class="st"> </span><span class="dv">5</span></code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="elementos-de-un-vector">Elementos de un vector</h2>
+<div id="elementos-de-un-vector" class="slide section level1">
+<h1>Elementos de un vector</h1>
 <p>Para seleccionar elementos de un vector se utiliza la notación de []:</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
 x[<span class="dv">3</span>]  <span class="co"># elementos de un vector</span>
@@ -301,9 +290,8 @@ x[-<span class="dv">1</span>]  <span class="co"># quitar partes de un vector</sp
 x[<span class="dv">1</span>:<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
 x[<span class="dv">15</span>] &lt;-<span class="st"> </span><span class="dv">0</span></code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="tipo-de-los-elementos-de-un-vector">Tipo de los elementos de un vector</h2>
+<div id="tipo-de-los-elementos-de-un-vector" class="slide section level1">
+<h1>Tipo de los elementos de un vector</h1>
 <p>Los vectores en R son objetos con todos sus elementos del mismo tipo</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
 <span class="kw">class</span>(x)
@@ -319,9 +307,8 @@ x[segundo]</code></pre>
 <p>Hay funciones que podemos utilizar para verificar si un objeto es o no un vector</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.vector</span>(x)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="factores-en-r">Factores en R</h2>
+<div id="factores-en-r" class="slide section level1">
+<h1>Factores en R</h1>
 <p>Los factores son vectores que alamcenan datos categóricos (variable con varios niveles)</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Paco&quot;</span>, <span class="st">&quot;María&quot;</span>, <span class="st">&quot;Arturo&quot;</span>)
 s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;mujer&quot;</span>, <span class="st">&quot;hombre&quot;</span>)
@@ -330,9 +317,8 @@ s &lt;-<span class="st"> </span><span class="kw">factor</span>(s)
 <span class="kw">attributes</span>(s)
 <span class="kw">is.factor</span>(s)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="matrices-en-r">Matrices en R</h2>
+<div id="matrices-en-r" class="slide section level1">
+<h1>Matrices en R</h1>
 <p>Las matrices se crean en R utilizando matrix() (bidimensionales) o array() (más de 2 dimensiones)</p>
 <pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)
 m[<span class="dv">1</span>, ]
@@ -346,9 +332,8 @@ m[, <span class="dv">2</span>]
 m[<span class="st">&quot;A&quot;</span>, ]
 m[, <span class="st">&quot;2&quot;</span>]</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="listas-en-r">Listas en R</h2>
+<div id="listas-en-r" class="slide section level1">
+<h1>Listas en R</h1>
 <p>Las listas en R son colecciones ordenadas de objetos</p>
 <pre class="sourceCode r"><code class="sourceCode r">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">padres =</span> <span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;María&quot;</span>), <span class="dt">num.hijos =</span> <span class="dv">2</span>, <span class="dt">edad.hijos =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>))
 <span class="co"># observar que se emplea = para asignar los nombres a los objetos y no el</span>
@@ -362,9 +347,8 @@ l$padres  <span class="co"># accede al objeto &#39;padres&#39;</span>
 l$padres &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Juan Pérez&quot;</span>, <span class="st">&quot;María González&quot;</span>)
 l$padres[<span class="dv">2</span>]</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="hojas-de-datos-en-r">Hojas de datos en R</h2>
+<div id="hojas-de-datos-en-r" class="slide section level1">
+<h1>Hojas de datos en R</h1>
 <p>Las hojas de datos en R son matrices de datos formadas por elementos (columnas) de igual longitud (filas). En general, cada columna representa una variable y cada fila una observación.</p>
 <pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>)
 sexo &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;HOMBRE&quot;</span>, <span class="st">&quot;MUJER&quot;</span>), <span class="dt">each =</span> <span class="dv">3</span>)
@@ -378,9 +362,8 @@ d[[<span class="st">&quot;sexo&quot;</span>]]
 d$sexo
 <span class="kw">class</span>(d$sexo)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="paquetes-en-r">Paquetes en R</h2>
+<div id="paquetes-en-r" class="slide section level1">
+<h1>Paquetes en R</h1>
 <ol style="list-style-type: decimal">
 <li>La gran potencia que proporciona R reside en la gran cantidad de paquetes desarrollados y que se encuentran en repositorios CRAN.</li>
 <li>En la instalación base de R se instalan sólo algunos de ellos.</li>
@@ -391,9 +374,8 @@ d$sexo
 <span class="kw">install.packages</span>(<span class="st">&quot;ggplot&quot;</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
 <span class="kw">library</span>(RJSONIO)  <span class="co"># cargar el paquete</span></code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="el-directorio-de-trabajo.-la-carga-de-datos">El directorio de trabajo. La carga de datos</h2>
+<div id="el-directorio-de-trabajo.-la-carga-de-datos" class="slide section level1">
+<h1>El directorio de trabajo. La carga de datos</h1>
 <p>Cuando se inicia R, el programa configura por defecto un directorio desde donde se leen o donde se guardan ficheros. Los comandos getwd() y setwd() permiten consultar y cambiar el directorio de trabajo.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
 <span class="kw">setwd</span>(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">RLibraries&quot;</span>)</code></pre>
@@ -405,9 +387,8 @@ data.espacios.nat &lt;-<span class="st"> </span><span class="kw">read.table</spa
 data.geo.municipios &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;datos_geograficos_islas.txt&quot;</span>, <span class="dt">header =</span> T, 
     <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Se puede utilizar read.table() para cargar datos desde un lugar remoto:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cargar los datos utilizando la función url() (en remoto, por http://)</span>
 data.url &lt;-<span class="st"> &quot;http://dl.dropbox.com/u/17677514/datos_geograficos_islas.txt&quot;</span>
@@ -418,9 +399,8 @@ data.url &lt;-<span class="st"> &quot;https://raw.github.com/cpgonzal/cursoR/gh-
 data.geo.municipios &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">textConnection</span>(<span class="kw">getURL</span>(data.url, <span class="dt">ssl.verifypeer =</span> <span class="ot">FALSE</span>)), 
     <span class="dt">header =</span> T, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-1">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-1" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Podemos completar los data.frames con más variables:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># crear factores con etiquetas</span>
 data.geo.municipios$Isla &lt;-<span class="st"> </span><span class="kw">factor</span>(data.geo.municipios$Isla, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;El Hierro&quot;</span>, 
@@ -445,9 +425,8 @@ data.geo.islas$Altitud &lt;-<span class="st"> </span><span class="kw">aggregate<
 ##  $ Longitud.costa: num  41 155.6 97.5 358 242.9 ...
 ##  $ Altitud       : int  571 722 810 1400 1270 395 305</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-2">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-2" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Para cargar datos en formato JSON:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read en JSON format</span>
 <span class="kw">library</span>(RJSONIO)
@@ -457,9 +436,8 @@ data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span clas
 ## &#39;http://www.gobiernodecanarias.org/istac/jaxi-istac/tabla.do?accion=jsonMtd&amp;uuidConsulta=7db99ff7-4aab-4a57-a378-fc472aecaeb6&#39;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">data.json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(data.json, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-3">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-3" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Para consultar la estructura que se ha cargado:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># consultar la estructura que se ha cargado</span>
 <span class="kw">attributes</span>(data.json)
@@ -470,9 +448,8 @@ data.json$categories
 data.json$data[[<span class="dv">1</span>]]
 data.json$data[[<span class="dv">1</span>]]$dimCodes[<span class="dv">1</span>]</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-4">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-4" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:</p>
 <pre class="sourceCode r"><code class="sourceCode r">data.url &lt;-<span class="st"> &quot;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&quot;</span>
 data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">readLines</span>(data.url, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)[<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</code></pre>
@@ -480,9 +457,8 @@ data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span clas
 ## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">data.json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(data.json, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-5">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-5" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Si tenemos problemas en la carga de datos desde el servicio web, lo podemos hacer de otra forma:</p>
 <pre class="sourceCode r"><code class="sourceCode r">data.url &lt;-<span class="st"> &quot;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&quot;</span>
 data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">readLines</span>(data.url, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)[<span class="dv">1</span>], <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</code></pre>
@@ -490,9 +466,8 @@ data.json &lt;-<span class="st"> </span><span class="kw">paste</span>(<span clas
 ## &#39;http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json&#39;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">data.json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(data.json, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="el-arreglo-de-los-datos-cargados-en-formato-json">El arreglo de los datos cargados en formato JSON</h2>
+<div id="el-arreglo-de-los-datos-cargados-en-formato-json" class="slide section level1">
+<h1>El arreglo de los datos cargados en formato JSON</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pasamos los datos a una estructura temporal manejable</span>
 tmp.json &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, data.json$data)
 tmp.json.valores &lt;-<span class="st"> </span><span class="kw">unlist</span>(tmp.json[, <span class="dv">1</span>])
@@ -511,9 +486,8 @@ for (i in <span class="dv">1</span>:<span class="dv">4992</span>) {
 
 <span class="kw">rm</span>(tmp.json, tmp.json.valores, tmp.json.cod)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="el-arreglo-de-los-datos-cargados-en-formato-json-1">El arreglo de los datos cargados en formato JSON</h2>
+<div id="el-arreglo-de-los-datos-cargados-en-formato-json-1" class="slide section level1">
+<h1>El arreglo de los datos cargados en formato JSON</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># asociamos los códigos a sus valores descriptivos</span>
 idx &lt;-<span class="st"> </span><span class="kw">match</span>(data.from.json$CodMunicipio, data.json$categories[[<span class="dv">1</span>]]$codes)
 data.from.json$Municipio &lt;-<span class="st"> </span>data.json$categories[[<span class="dv">1</span>]]$labels[idx]
@@ -527,9 +501,8 @@ data.from.json$Indicador &lt;-<span class="st"> </span>data.json$categories[[<sp
 <span class="co"># reordenamos convenientemente las variables</span>
 data.pob.municipios &lt;-<span class="st"> </span>data.from.json[, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">4</span>)]</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="otros-métodos-para-la-carga-de-datos-6">Otros métodos para la carga de datos</h2>
+<div id="otros-métodos-para-la-carga-de-datos-6" class="slide section level1">
+<h1>Otros métodos para la carga de datos</h1>
 <p>Para cargar datos en formato PC-AXIS:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pxR)
 data.url &lt;-<span class="st"> &quot;http://www.gobiernodecanarias.org/istac/jaxi-istac/descarga.do?uripx=urn:uuid:d73bd9de-e6ed-4821-808a-616b34df9655&quot;</span>
@@ -543,9 +516,8 @@ data.px$CODES
 data.from.px &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(data.px)
 <span class="kw">names</span>(data.from.px) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Indicadores&quot;</span>, <span class="st">&quot;Años&quot;</span>, <span class="st">&quot;Municipios&quot;</span>, <span class="st">&quot;Valor&quot;</span>)</code></pre>
 </div>
-<div class="slide section level1">
-
-<h2 id="funciones-gráficas-en-r">Funciones gráficas en R</h2>
+<div id="funciones-gráficas-en-r" class="slide section level1">
+<h1>Funciones gráficas en R</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(data.geo.municipios$Superficie, data.geo.municipios$Perímetro.municipal)
 
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
@@ -557,18 +529,16 @@ data.from.px &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>
     <span class="dt">ylab =</span> <span class="st">&quot;Superficie (km. cuadrados)&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Comparación del perímetro y la superficie de los municipios&quot;</span>)</code></pre>
 <p><img src="figure/chart01.png" title="plot of chunk chart01" alt="plot of chunk chart01" style="display:block; margin:auto;" /></p>
 </div>
-<div class="slide section level1">
-
-<h2 id="el-comando-par">El comando par()</h2>
+<div id="el-comando-par" class="slide section level1">
+<h1>El comando par()</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(1:25,1:25,pch=1:25)</span>
 par.plot &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Altitud, <span class="dt">data =</span> data.geo.municipios)</code></pre>
 <p><img src="figure/chart02b.png" title="plot of chunk chart02b" alt="plot of chunk chart02b" style="display:block; margin:auto;" /></p>
 </div>
-<div class="slide section level1">
-
-<h2 id="coloreado-por-grupos">Coloreado por grupos</h2>
+<div id="coloreado-por-grupos" class="slide section level1">
+<h1>Coloreado por grupos</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(1:25,1:25,pch=1:25)</span>
 par.plot &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))
 <span class="kw">plot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal, <span class="dt">data =</span> data.geo.municipios)
@@ -584,9 +554,8 @@ plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
     <span class="st">&quot;orange&quot;</span>), <span class="dt">pch =</span> <span class="kw">rep</span>(<span class="dv">20</span>, <span class="dv">2</span>))</code></pre>
 <p><img src="figure/chart03b.png" title="plot of chunk chart03b" alt="plot of chunk chart03b" style="display:block; margin:auto;" /></p>
 </div>
-<div class="slide section level1">
-
-<h2 id="funciones-gráficas-avanzadas-paquete-lattice">Funciones gráficas avanzadas: paquete lattice()</h2>
+<div id="funciones-gráficas-avanzadas-paquete-lattice" class="slide section level1">
+<h1>Funciones gráficas avanzadas: paquete lattice()</h1>
 <p>Podemos conseguir un cierto grado de personalización en los gráficos en R. Los gráficos de panel (trellis graphics) permiten representar visualizaciones por grupos:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lattice)
 
@@ -599,9 +568,8 @@ plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
 <span class="kw">xyplot</span>(Superficie ~<span class="st"> </span>Perímetro.municipal |<span class="st"> </span>Provincia, <span class="dt">data =</span> data.geo.municipios)</code></pre>
 <p><img src="figure/chart04b.png" title="plot of chunk chart04b" alt="plot of chunk chart04b" style="display:block; margin:auto;" /></p>
 </div>
-<div class="slide section level1">
-
-<h2 id="programación-de-funciones-en-r">Programación de funciones en R</h2>
+<div id="programación-de-funciones-en-r" class="slide section level1">
+<h1>Programación de funciones en R</h1>
 <p>Es posible programar funciones personalizadas en R:</p>
 <pre class="sourceCode r"><code class="sourceCode r">myfunction &lt;-<span class="st"> </span>function(x) {
     resumen &lt;-<span class="st"> </span><span class="kw">summary</span>(x)

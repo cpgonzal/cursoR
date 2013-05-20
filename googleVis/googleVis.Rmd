@@ -1,5 +1,4 @@
-La librería googleVis
--------------------------------------------------------  
+# La librería googleVis
  
 1. googleVis es una librería que proporciona una interfaz entre R y las herramientas Google Chart.  
 2. Las funciones de la librería permiten representar datos con Google Chart Tools sin necesidad de hacer un "upload" de los datos a Google. Lo que sí se hace es referenciar a funciones javascript alojadas en Google.  
@@ -22,7 +21,7 @@ data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras a
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisMotionChart()
 
 Para representar un gráfico dinámico que responda a los eventos 
 de usuario:
@@ -45,7 +44,7 @@ print(motion.capitales,tag='chart')
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisMotionChart(): código XML
 
 Podemos ver el código XML que contiene este objeto y lo podemos insertar como un widget
 
@@ -64,7 +63,7 @@ cat(substr(createGoogleGadget(motion.capitales),1,200))
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisGeoMap()
 
 
 Podemos representar datos geo-espaciales utilizando las funciones de mapas:
@@ -87,7 +86,7 @@ Esta función no es muy adecuada para regiones que no estén codificadas como IS
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisMap()
 
 Podemos mejorar la representación utilizando gvisMap:
 
@@ -113,7 +112,7 @@ print(map.capitales,tag='chart')
 
 ---   
 
-## La librería googleVis
+# Tabla gvisTable()
 
 También se puede mostrar una representación tabular de datos
 
@@ -137,7 +136,7 @@ print(table.capitales,tag='chart')
 
 ---   
 
-## La librería googleVis
+# Gráfico gvisAnnotatedTimeLine()
 
 Vemos un ejemplo de gráficos con serie temporal o líneas:
 
@@ -166,7 +165,7 @@ print(line.capitales,tag='chart')
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisBarChart()
 
 
 Vemos un ejemplo de gráficos de barras:
@@ -189,7 +188,7 @@ print(bar.capitales,tag='chart')
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisColumnChart()
 
 Podemos representar gráficos columnas:
 
@@ -208,7 +207,7 @@ print(col.capitales,tag='chart')
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisAreaChart()
 
 Y gráficos de áreas:
 
@@ -228,7 +227,7 @@ print(area.capitales,tag='chart')
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisSteppedAreaChart()
 
 Veamos los gráficos de escalera:
 
@@ -249,7 +248,7 @@ print(step.capitales,tag='chart')
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisScatterChart()
 
 
 También se pueden representar gráficos de dos variables:
@@ -291,7 +290,7 @@ print(scatter.canarias,tag='chart')
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisBubbleChart()
 
 Un gráfico de burbujas:
 
@@ -318,7 +317,7 @@ print(bubble.canarias,tag='chart')
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisBubbleChart()
 
 Otro ejemplo del gráfico de burbujas:
 
@@ -338,7 +337,7 @@ plot(bubble.canarias)
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisPieChart()
 
 Un gráfico de sectores (o de tarta):
 
@@ -369,7 +368,7 @@ print(pie.canarias,tag='chart')
 --- 
 
 
-## La librería googleVis
+# Gráfico gvisGauge()
 
 Y los gráficos de calibración:
 
@@ -399,7 +398,7 @@ print(gauge.canarias,tag='chart')
 
 --- 
 
-## La librería googleVis
+# Gráfico gvisOrgChart()
 
 También se pueden representar esquemas organizativos:
 

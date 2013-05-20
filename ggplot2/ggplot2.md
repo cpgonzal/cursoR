@@ -1,5 +1,4 @@
-La librería ggplot2
-------------------------------------------------------- 
+# La librería ggplot2
 
 1. Es un paquete que permite generar gráficos estadísticos.
 2. Se diferencia de otras librerías en el aspecto de controlar una gran número de componentes gráficos ("gramática de gráficos").
@@ -19,7 +18,7 @@ http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf
     
 ---
 
-## Introducción a la librería ggplot2   
+# El comando qplot()
 
   
 
@@ -36,7 +35,7 @@ Los comandos gráficos disponibles en ggplot2 son:
 
 ---
 
-## Introducción a la librería ggplot2
+# El comando qplot(): ejemplos
 
 Veamos algunos ejemplos:
 
@@ -57,9 +56,7 @@ xlim=c(0,2500),ylim=c(0,1500))
 
 ---
 
-## Introducción a la librería ggplot2   
-    
-### Color, tamaño, forma (aspectos estéticos)
+# Color, tamaño, forma (aspectos estéticos)
 
 Con el comando clásico plot(), si queremos representar  variables categóricas (e.g. una variable de tipo sexo, "Hombre","Mujer") con colores, debemos realizar nosotros mismos la 
 correspondencia entre categoría y color.
@@ -67,7 +64,7 @@ correspondencia entre categoría y color.
 En qplot() se puede especificar varios argumentos: colour, size, shape 
 
 
-<!--- #### la vida en color
+<!--- ### la vida en color
 -->
 
 ```r
@@ -77,7 +74,7 @@ xlab="Superficie", ylab="Altitud")
 ```
 
 
-<!--- #### el tamaño sí importa
+<!--- ### el tamaño sí importa
 -->
 
 ```r
@@ -87,7 +84,7 @@ xlab="Superficie", ylab="Altitud")
 ```
 
 
-<!--- #### sin perder las formas
+<!--- ### sin perder las formas
 -->
 
 ```r
@@ -100,9 +97,7 @@ scale_shape_manual(values=1:7)
 
 ---
 
-## Introducción a la librería ggplot2
-
-### Objetos geométricos
+# Objetos geométricos
 
 qplot no está limitado a gráficos de dispersión (scatterplot), 
 sino que puede producir casi cualquier tipo de gráfico variando 
@@ -120,7 +115,7 @@ error estándar. Esta opción se combina con un argumento method %in% c("loess",
 
 ---
 
-## Introducción a la librería ggplot2
+# Ejemplos de ggplot() - objetos geométricos
 
 Vemos algunos ejemplos:
 
@@ -145,9 +140,7 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "density")
 
 ---
 
-## Introducción a la librería ggplot2
-
-### Comprensión de la gramática de capas
+# Comprensión de la gramática de capas
 
 1. Podemos usar sólo qplot() pero la verdadera potencia de ggplot2 está en el manejo de 
 los gráficos por capas (gramática de capas) mediante ggplot(). 
@@ -170,10 +163,8 @@ layer(
 
 ---
 
-## Introducción a la librería ggplot2
 
-
-### Algunos objetos geométricos en ggplot2
+# Otros objetos geométricos en ggplot2
 
 Name | Description  
 ------------- | -------------
@@ -193,9 +184,7 @@ text | Textual annotations
 
 ---
 
-## Introducción a la librería ggplot2
-
-### Algunas transformaciones estadísticas en ggplot2
+# Algunas transformaciones estadísticas en ggplot2
 
 Name | Description  
 ------------- | -------------
@@ -212,7 +201,9 @@ sum | Sum unique values. Useful for overplotting on scatterplots
 summary | Summarise y values at every unique x
 unique | Remove duplicates  
 
-## Introducción a la librería ggplot2
+---
+
+# Scatterplot en ggplot2
 
 Un scatterplot:
 
@@ -234,7 +225,7 @@ ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, c
 
 --- 
 
-## Introducción a la librería ggplot2
+# Scatterplot en ggplot2: layers
 
 Y de las siguientes capas o layers:
 
@@ -260,7 +251,7 @@ Y de las siguientes capas o layers:
 
 ---
 
-## Introducción a la librería ggplot2
+# Scatterplot en ggplot2: otros aspectos
 
 Además, se puede
 
@@ -294,7 +285,7 @@ Por ejemplo, la forma (shape) o el tamaño (size) de los objetos puede cambiar s
 
 ---
 
-## Introducción a la librería ggplot2
+# Gráfico de barras en ggplot2
 
 Un diagrama de barras:
 
@@ -322,7 +313,7 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 ---
 
-## Introducción a la librería ggplot2
+# Gráfico de barras en ggplot2: layers
 
 * La transformación estadística stat:
 
@@ -344,7 +335,7 @@ ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
 
 ---
 
-## Introducción a la librería ggplot2
+# Otros gráficos en ggplot2
 
 Algunos ejemplos mas (densidad e histograma):
 
@@ -377,7 +368,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histog
 
 ---
 
-## Introducción a la librería ggplot2
+# Otros gráficos en ggplot2
 
 Algunos ejemplos mas (gráficos de barras):
 
@@ -401,7 +392,7 @@ ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_b
 
 ---
 
-## Introducción a la librería ggplot2
+# Otros gráficos en ggplot2
 
 Algunos ejemplos mas:
 
@@ -423,7 +414,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar
 
 ---
 
-## Introducción a la librería ggplot2
+# Otros gráficos en ggplot2
 
 Algunos ejemplos mas:
 
@@ -445,7 +436,7 @@ ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) 
 
 ---
 
-## Introducción a la librería ggplot2
+# Otros gráficos en ggplot2
 
 Algunos ejemplos mas:
 
@@ -462,11 +453,5 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 # las barras se pueden representar sin apilar
        
 ```
-
-
-
-
-
-
 
 
