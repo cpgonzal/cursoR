@@ -25,14 +25,13 @@ github:
    * Paquetes y gráficos.
    * La carga de datos: paquetes pxR y RJSONIO.
 2. La librería googleVis  - http://cpgonzal.github.io/cursoR/googleVis/googleVis.html
-   * Interfaz entre R y la API de Google Visualization
+   * Interfaz entre R y la API de Google Visualization.
 3. La librería maptools  - http://cpgonzal.github.io/cursoR/maptools/maptools.html
-   * Visualización de datos geo-espaciales
+   * Visualización de datos geo-espaciales.
 4. La librería ggplot2  - http://cpgonzal.github.io/cursoR/ggplot2/ggplot2.html
-   * El comando qplot()
-   * Objetos geométricos: la opción geom
-   * Propiedades gráficas: la opción aesthetics
-   * La gramática de capas de los gráficos
-   * Otros aspectos de ggplot2: escalas, ejes, leyendas y posicionamiento
-
+   * El comando qplot().
+   * Objetos geométricos: la opción geom.
+   * Propiedades gráficas: la opción aesthetics.
+   * La gramática de capas de los gráficos.
+   * Otros aspectos de ggplot2: escalas, ejes, leyendas y posicionamiento.
 
