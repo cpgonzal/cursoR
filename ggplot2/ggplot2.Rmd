@@ -382,11 +382,11 @@ Algunos ejemplos más:
 ``` {r eval=FALSE, message=FALSE, tidy=FALSE}
 qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
 
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_histogram()
+ggplot(data=data.geo.municipios, mapping=aes(x=Superficie)) +geom_histogram()
 
 qplot(data=data.geo.municipios, x=Superficie, geom = "density")
 
-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie) +geom_density()
+ggplot(data=data.geo.municipios, mapping=aes(x=Superficie)) +geom_density()
        
 qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
 
@@ -411,4 +411,11 @@ qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provinc
 # las barras se pueden representar sin apilar
        
 ```  
+
+
+---
+
+# Otros gráficos en ggplot2
+
+Algunos ejemplos más:
 

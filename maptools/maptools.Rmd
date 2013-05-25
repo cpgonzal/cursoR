@@ -10,7 +10,7 @@ Tutorial: https://dl.dropbox.com/u/9577903/broomspatial.pdf
 
 ``` {r loadmap01, echo=FALSE, message=FALSE }
 #getwd()
-setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
+setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_curso_istac")
 load("dataCursoR.RData")
 library(maptools)
 canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
@@ -36,7 +36,7 @@ plot(canary.counties, axes=TRUE, col="red")
 
 ``` {r loadmap04, echo=FALSE, message=FALSE}
 #getwd()
-setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
+setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_curso_istac")
 load("dataCursoR.RData")
 library(maptools)
 canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
@@ -309,5 +309,88 @@ geom_polygon() + geom_path(color="white")
 map + facet_grid(PROV ~ ISLA,scales="free_x")
 ```
 
+---
 
+# Representaciones con ggplot2
+
+Veamos algunas representaciones con ggplot2
+
+``` {r loadmap18a, echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
+canary.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+
+canary.plot<-ggplot(data=canary.data[canary.data$CODISLA=="LP",], aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point()
+canary.plot + facet_grid(PROV ~ ISLA)
+
+canary.plot<-ggplot(data=canary.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point()
+
+canary.plot + facet_grid(PROV ~ ISLA)
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x")
+
+
+
+canary.plot<-ggplot(data=canary.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") 
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x")
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x",space="free")
+```
+
+``` {r loadmap18b, echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
+canary.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+canary.plot<-ggplot(data=canary.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") 
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x",space="free")
+```
+
+
+
+---
+
+# Representaciones con ggplot2
+
+
+``` {r loadmap19a, echo=TRUE, message=FALSE,eval=FALSE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
+source("arrange_ggplot2.txt")
+
+tenerife.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+
+laspalmas.data<-canary.counties@data[canary.counties@data$PROV=='Las Palmas',]
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+```
+
+``` {r loadmap19b, echo=FALSE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
+setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_curso_istac")
+source("arrange_ggplot2.txt")
+
+tenerife.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+
+laspalmas.data<-canary.counties@data[canary.counties@data$PROV=='Las Palmas',]
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+```
+
+---
+
+# Representaciones con ggplot2
+
+
+``` {r loadmap20a, echo=TRUE, message=FALSE,eval=TRUE,tidy=TRUE,split=FALSE, fig.height=4, fig.width=9, fig.cap="" }
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+
+```
 

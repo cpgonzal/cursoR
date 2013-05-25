@@ -348,5 +348,87 @@ map + facet_grid(PROV ~ ISLA, scales = "free_x")
 ![](figure/loadmap17a.png) 
 
 
+---
+
+# Representaciones con ggplot2
+
+Veamos algunas representaciones con ggplot2
+
+
+```r
+canary.data <- canary.counties@data[canary.counties@data$PROV == "Santa Cruz de Tenerife", 
+    ]
+
+canary.plot <- ggplot(data = canary.data[canary.data$CODISLA == "LP", ], aes(x = CODCOM, 
+    y = censoH, group = 1)) + geom_line() + geom_point()
+canary.plot + facet_grid(PROV ~ ISLA)
+
+canary.plot <- ggplot(data = canary.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_line() + geom_point()
+
+canary.plot + facet_grid(PROV ~ ISLA)
+canary.plot + facet_grid(PROV ~ ISLA, scales = "free_x")
+
+
+
+canary.plot <- ggplot(data = canary.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_bar(colour = "black", fill = "#DD8888", stat = "identity")
+canary.plot + facet_grid(PROV ~ ISLA, scales = "free_x")
+canary.plot + facet_grid(PROV ~ ISLA, scales = "free_x", space = "free")
+```
+
+
+![](figure/loadmap18b.png) 
+
+
+
+
+---
+
+# Representaciones con ggplot2
+
+
+
+```r
+source("arrange_ggplot2.txt")
+
+tenerife.data <- canary.counties@data[canary.counties@data$PROV == "Santa Cruz de Tenerife", 
+    ]
+canary.plot1 <- ggplot(data = tenerife.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_line() + geom_point() + facet_grid(PROV ~ ISLA, scales = "free_x", 
+    space = "free") + xlab("Small areas (counties)") + ylab("Total")
+
+laspalmas.data <- canary.counties@data[canary.counties@data$PROV == "Las Palmas", 
+    ]
+canary.plot2 <- ggplot(data = laspalmas.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_line() + geom_point() + facet_grid(PROV ~ ISLA, scales = "free_x", 
+    space = "free") + xlab("Small areas (counties)") + ylab("Total")
+arrange_ggplot2(canary.plot1, canary.plot2, ncol = 1)
+```
+
+
+![](figure/loadmap19b.png) 
+
+
+---
+
+# Representaciones con ggplot2
+
+
+
+```r
+canary.plot1 <- ggplot(data = tenerife.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_bar(colour = "black", fill = "#DD8888", stat = "identity") + facet_grid(PROV ~ 
+    ISLA, scales = "free_x", space = "free") + xlab("Small areas (counties)") + 
+    ylab("Total")
+
+canary.plot2 <- ggplot(data = laspalmas.data, aes(x = CODCOM, y = censoH, group = 1)) + 
+    geom_bar(colour = "black", fill = "#DD8888", stat = "identity") + facet_grid(PROV ~ 
+    ISLA, scales = "free_x", space = "free") + xlab("Small areas (counties)") + 
+    ylab("Total")
+arrange_ggplot2(canary.plot1, canary.plot2, ncol = 1)
+```
+
+![](figure/loadmap20a.png) 
 
 
