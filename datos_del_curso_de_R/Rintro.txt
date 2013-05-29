@@ -1,0 +1,222 @@
+setwd("C:\\RLibraries")
+
+
+
+
+#cargar los datos utilizando read.table (en local)
+data.espacios.nat<-read.table(file="superficie_espacios_naturales.txt",header=T,sep=";")
+data.geo.municipios<-read.table(file="datos_geograficos_islas.txt",header=T,sep=";")
+
+
+
+#cargar los datos utilizando la función url() (en remoto, por http://)
+data.url<-"http://dl.dropbox.com/u/17677514/datos_geograficos_islas.txt"
+data.geo.municipios<-read.table(file=url(data.url),header=T,sep=";")
+
+
+
+
+#cargar los datos utilizando la función url() (en remoto, por https://)
+data.url<-"https://raw.github.com/cpgonzal/cursoR/gh-pages/data/datos_geograficos_islas.txt"
+library(RCurl)
+data.geo.municipios<-read.table(textConnection(getURL(data.url,ssl.verifypeer = FALSE)),header=T,sep=";")
+
+
+
+
+# crear factores con etiquetas 
+data.geo.municipios$Isla   <- factor(data.geo.municipios$Isla,
+                                     levels=c("El Hierro", "La Palma", "La Gomera", "Tenerife", "Gran Canaria", "Fuerteventura", "Lanzarote")) 
+
+data.geo.municipios$Provincia<-c(rep("Las Palmas",34),rep("S/C. de Tenerife",54))
+
+
+# resumir datos from data frames
+data.geo.islas<-aggregate(data.geo.municipios[,c(3,5)], by=list(Provincia=data.geo.municipios$Provincia,Isla=data.geo.municipios$Isla), FUN=sum, na.rm=T)
+data.geo.islas$Altitud<-aggregate(data.geo.municipios[,6], by=list(Provincia=data.geo.municipios$Provincia,Isla=data.geo.municipios$Isla), FUN=max, na.rm=T)[,3]
+
+#estructura de los datos
+str(data.geo.islas)
+
+
+
+
+
+
+# read en JSON format
+library(RJSONIO)
+data.url<-"http://www.gobiernodecanarias.org/istac/jaxi-istac/tabla.do?accion=jsonMtd&uuidConsulta=7db99ff7-4aab-4a57-a378-fc472aecaeb6"
+data.json <- paste(readLines(data.url, encoding="UTF-8" )[1], collapse="")
+data.json <- fromJSON( data.json, encoding="UTF-8" )
+
+
+
+data.url<-"http://dl.dropboxusercontent.com/u/17677514/datos_poblacion_municipios.json"
+data.json <- paste(readLines(data.url, encoding="UTF-8" )[1], collapse="")
+data.json <- fromJSON( data.json, encoding="UTF-8" )
+
+
+
+
+#consultar la estructura que se ha cargado
+attributes(data.json)
+
+data.json$categories
+length(data.json$data)
+head(data.json$data)
+
+data.json$data[[1]]
+data.json$data[[1]]$dimCodes[1]
+
+
+
+
+
+#pasamos los datos a una estructura temporal manejable
+tmp.json<-do.call(rbind,data.json$data)
+tmp.json.valores<-unlist(tmp.json[,1])
+tmp.json.cod<-tmp.json[,2]
+
+#creamos un data.frame para trabajar los datos
+data.from.json <- data.frame(matrix(ncol = 4, nrow = 4992))
+names(data.from.json)<-c("CodMunicipio","CodAnio","CodIndicador","Valor")
+
+
+
+#creamos un data.frame para trabajar los datos
+for (i in 1:4992) {
+data.from.json$CodMunicipio[i]<-tmp.json.cod[[i]][1];
+data.from.json$CodAnio[i]<-tmp.json.cod[[i]][2];
+data.from.json$CodIndicador[i]<-tmp.json.cod[[i]][3];
+data.from.json$Valor[i]<-as.numeric(tmp.json.valores[[i]]);
+}
+
+rm(tmp.json,tmp.json.valores,tmp.json.cod)
+
+
+
+#asociamos los códigos a sus valores descriptivos
+idx <- match(data.from.json$CodMunicipio,data.json$categories[[1]]$codes)
+data.from.json$Municipio<-data.json$categories[[1]]$labels[idx]
+
+idx <- match(data.from.json$CodAnio,data.json$categories[[2]]$codes)
+data.from.json$Anio<-data.json$categories[[2]]$labels[idx]
+
+idx <- match(data.from.json$CodIndicador,data.json$categories[[3]]$codes)
+data.from.json$Indicador<-data.json$categories[[3]]$labels[idx]
+
+#reordenamos convenientemente las variables
+data.pob.municipios<-data.from.json[,c(1,5,2,6,3,7,4)]
+
+
+
+
+# read en PX format
+library(pxR)
+data.url<-"http://www.gobiernodecanarias.org/istac/jaxi-istac/descarga.do?uripx=urn:uuid:d73bd9de-e6ed-4821-808a-616b34df9655"
+
+data.px <- read.px(data.url)
+
+
+head(data.px)
+data.px$VALUES
+data.px$CODES
+
+data.from.px<-as.data.frame(data.px)
+names(data.from.px)<-c("Indicadores","Años","Municipios","Valor")    
+
+
+
+
+
+
+#funciones gráficas
+plot(data.geo.municipios$Superficie,data.geo.municipios$Perímetro.municipal)
+
+plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
+
+plot(Superficie~1,data=data.geo.municipios,type="h")
+plot(Superficie~1,data=data.geo.municipios,type="s")
+
+plot(Superficie~Perímetro.municipal,data=data.geo.municipios,
+xlab="Perímetro del municipio (km)",
+ylab="Superficie (km. cuadrados)",
+main="Comparación del perímetro y la superficie de los municipios")
+
+
+
+#plot(1:25,1:25,pch=1:25)
+par.plot<-par(pch=20,col="blue",mfrow=c(2,1))
+plot(Superficie~Perímetro.municipal,data=data.geo.municipios)
+plot(Superficie~Altitud,data=data.geo.municipios)
+
+
+
+
+data.geo.municipios$Provincia<-as.factor(data.geo.municipios$Provincia)
+plot.colors<-c("green","orange")
+
+plot(Superficie~Perímetro.municipal,data=data.geo.municipios,col=plot.colors[data.geo.municipios$Provincia],pch=20)
+legend("topleft",legend=levels(data.geo.municipios$Provincia),col=c("green","orange"),pch=rep(20,2))
+
+
+
+
+#funciones gráficas avanzadas
+library(lattice)
+
+histogram( ~Superficie | Provincia, data=data.geo.municipios)
+
+densityplot( ~Superficie | Provincia, data=data.geo.municipios)
+
+bwplot(Superficie ~ Provincia, data=data.geo.municipios)
+
+xyplot(Superficie ~ Perímetro.municipal | Provincia, data=data.geo.municipios)
+
+
+
+
+#programas sencillos 
+myfunction <- function(x) {
+       resumen<- summary(x)       
+       return(resumen)
+     }
+
+myfunction(data.pob.municipios)
+
+
+data.pob.municipios[data.pob.municipios$CodMunicipio %in% c(38013,38048,38901) &
+                    data.pob.municipios$Indicador=='Cifras absolutas' & 
+                    data.pob.municipios$Anio=='2012',"Valor"]
+
+mystats <- function (x)
+ {
+ myinput <- x
+ mymean <- mean(x, na.rm=TRUE)
+ mysd <- sd(x, na.rm=TRUE)
+ return(list(data=myinput, media=mymean, desv.tipica=mysd))
+ }
+
+mystats(data.pob.municipios[data.pob.municipios$CodMunicipio %in% c(38013,38048,38901) &
+                             data.pob.municipios$Indicador=='Cifras absolutas' & 
+                             data.pob.municipios$Anio=='2012',"Valor"])
+
+
+myfactorial <- function (n) 
+ {
+ myresult <- 1;
+ if (n>=0) 
+    for (i in 1:n) myresult <- myresult * i
+ else 
+    stop("Sólo funciona para valores positivos")
+ end
+ return(myresult)
+ }
+
+myfactorial(5)
+
+
+
+
+
+

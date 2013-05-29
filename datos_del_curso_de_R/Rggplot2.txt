@@ -1,0 +1,232 @@
+
+setwd("C:\\RLibraries")
+load("dataCursoR.RData")
+
+#cargar la librería
+library(ggplot2)
+
+
+#un gráfico sencillo
+qplot(data=data.geo.islas,x=Superficie,main="Histograma de superficie")
+qplot(data=data.geo.islas,x=Superficie,main="Histograma de superficie",binwidth=10000)
+
+
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud")
+
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud", 
+xlab="Superficie", ylab="Altitud")
+
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, main="Gráfico de superficie vs. altitud", 
+xlab="Superficie", ylab="Altitud",
+xlim=c(0,2500),ylim=c(0,1500))
+
+
+#color, tamaño, forma (aspectos estéticos)
+
+# la vida en color
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, colour = Isla,
+main="Gráfico de superficie vs. altitud", 
+xlab="Superficie", ylab="Altitud") 
+
+
+# el tamaño sí importa
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, size = Isla,
+main="Gráfico de superficie vs. altitud", 
+xlab="Superficie", ylab="Altitud") 
+
+
+# dando forma a los puntos
+qplot(data=data.geo.islas,x=Superficie,y=Altitud, shape = Isla,
+main="Gráfico de superficie vs. altitud", 
+xlab="Superficie", ylab="Altitud") 
+
+
+
+# objetos geométricos
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "point")
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "boxplot", colour = Isla)    # cuidado con el tipo de variables en gráficos
+qplot(data=data.geo.municipios,x=Isla,y=Altitud, geom = "boxplot")
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "smooth", method="loess")
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = c("point", "smooth"), method="lm")
+
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "path")
+qplot(data=data.geo.municipios,x=Superficie,y=Altitud, geom = "line")
+
+#qplot(data=data.geo[data.geo$Isla %in% c("Tenerife","Gran Canaria"),],x=Superficie,y=Altitud, geom = "line", colour = Isla)
+
+
+NOTA: data.geo.municipios[is.na(data.geo.municipios)]<-0
+
+
+
+
+# otros argumentos para geom
+qplot(data=data.espacios.nat, x=Superficie, geom = "histogram")
+qplot(data=data.espacios.nat, x=Superficie, geom = "density")
+
+qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   # las densidades son superpuestas
+qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) # los histogramas son apilados y se colorea el borde
+qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   # los histogramas son apilados y se colorea el interior
+
+
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) # también los gráficos de barras son apilados
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", stat="identity", fill = Isla, position="dodge") 
+
+
+
+
+qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
+qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
+
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
+qplot(data=data.geo.municipios, x=Superficie, geom = "density")
+
+qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia) # los histogramas son apilados y se colorea el borde
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia)   # los histogramas son apilados y se colorea el interior
+
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge") # las barras se pueden representar sin apilar
+
+
+
+
+
+# Comprensión de la gramática de capas
+ejemplo1<-qplot(data=data.geo.municipios,x=Superficie,y=Altitud, colour = Isla)
+
+ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
+  
+ejemplo1 + layer(geom="point")  # ejemplo1 + geom_point()  
+
+ejemplo1 + layer(geom="point", stat="identity" ) # ejemplo1 + geom_point(stat="identity")  # ejemplo1 + geom_point()    
+
+
+ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
+ejemplo1 + geom_point(mapping=aes(shape=Provincia) ) + scale_shape(solid = FALSE)
+
+
+ejemplo1<-ggplot(data=data.geo.municipios, mapping=aes(x=Superficie,y=Altitud, colour=Isla))
+ejemplo1 + geom_point(mapping=aes(size=Provincia) ) + scale_size_discrete(range = c(2, 4) )
+
+
+ejemplo1 + geom_point() + coord_polar()
+ejemplo1 + geom_point() + facet_grid(. ~ Provincia)
+
+
+
+
+
+
+ejemplo2<-qplot(data=data.geo.municipios,x=Provincia, geom = "bar", fill = Isla)
+ejemplo2<-ggplot(data=data.geo.municipios, mapping=aes(x=Provincia, fill=Isla))
+ejemplo2 + layer(geom="bar")    # o tambien: ejemplo2 + geom_bar() 
+ejemplo2 + layer(geom="bar", stat="bin" )  # ejemplo2 + geom_bar(stat="bin")         # ejemplo2 + geom_bar()
+ejemplo2 + layer(geom="bar", stat="bin", position="dodge")   # o tambien:  ejemplo2 + geom_bar(position=position_dodge() ) 
+
+
+
+
+
+# gráficos de desnidad e histograma
+
+qplot(data=data.espacios.nat, x=Superficie, geom = "density", colour = Isla)   
+# las densidades son superpuestas
+ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_density()
+
+
+
+qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", colour = Isla) 
+# los histogramas son apilados y se colorea el borde
+ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,colour=Isla)) +geom_histogram()
+
+
+
+qplot(data=data.espacios.nat, x=Superficie, geom = "histogram", fill = Isla)   
+# los histogramas son apilados y se colorea el interior
+ggplot(data=data.espacios.nat, mapping=aes(x=Superficie,fill=Isla)) +geom_histogram()
+
+
+
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla) 
+# también los gráficos de barras son apilados
+ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar(position=position_dodge() )
+
+
+
+qplot(data=data.espacios.nat, x=Espacio.natural, geom = "bar", fill = Isla, position="dodge") 
+# barras colocadas unas al lado de otras
+ggplot(data=data.espacios.nat, mapping=aes(x=Espacio.natural,fill=Isla)) +geom_bar()
+
+
+
+qplot(data=data.geo.municipios, x=Provincia, geom = "bar")
+ggplot(data=data.geo.municipios, mapping=aes(x=Provincia)) +geom_bar()
+
+
+qplot(data=data.geo.municipios, x=Provincia, geom = "bar", fill = Isla)
+ggplot(data=data.geo.municipios, mapping=aes(x=Provincia,fill = Isla)) +geom_bar()
+
+
+
+
+
+
+
+
+
+# Otros gráficos: histogramas y densidad
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram")
+ggplot(data=data.geo.municipios, mapping=aes(x=Superficie)) + geom_histogram()
+
+
+#ggplot(data=data.geo.municipios, mapping=aes(x=Superficie)) +
+#      geom_histogram(binwidth=30) +
+#      geom_density(mapping=aes(y=30*..count..),colour="red", adjust=4) 
+
+
+qplot(data=data.geo.municipios, x=Superficie, geom = "density")
+ggplot(data=data.geo.municipios, mapping=aes(x=Superficie)) +geom_density()
+
+       
+qplot(data=data.geo.municipios, x=Superficie, geom = "density", colour = Provincia)   # las densidades son superpuestas
+ggplot(data=data.geo.municipios, mapping=aes(x=Superficie, colour = Provincia)) +geom_density()
+
+
+
+
+# Varias maneras de representar gráficos histogramas
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", colour = Provincia)  
+# los histogramas son apilados y se colorea el borde       
+       
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia)  
+# los histogramas son apilados y se colorea el interior
+
+qplot(data=data.geo.municipios, x=Superficie, geom = "histogram", fill = Provincia, position="dodge")  
+# las barras se pueden representar sin apilar
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

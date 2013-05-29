@@ -1,0 +1,271 @@
+
+setwd("C:\\RLibraries")
+load("dataCursoR.RData")
+
+
+library(maptools)
+#readShapeLines
+canary.counties<-readShapeLines(fn="ISTAC_comarcas27_R.shp")
+plot(canary.counties, axes=TRUE, col="red")
+
+
+#readShapePoly
+canary.counties<-readShapePoly(fn="ISTAC_comarcas27_R.shp")
+plot(canary.counties, axes=TRUE, col="red")
+
+
+#examinar el objeto cargado
+canary.counties
+summary(canary.counties)
+
+slotNames(canary.counties)
+canary.counties@data
+canary.counties@polygons[[1]]
+
+plot(canary.counties, axes=TRUE)
+
+
+#escalas de longitud y latitud
+print(proj4string(canary.counties))
+proj4string(canary.counties) <- "+proj=longlat +datum=WGS84"
+print(proj4string(canary.counties))
+plot(canary.counties, axes=TRUE)
+
+#canary.counties@data<-canary.counties@data[,c(1,2,3,4,5,6,7,8,9,16,11,12,13,14)]
+#names(canary.counties@data)[10:14]<-c("PROV","CODCOM","COMARCA","CODISLA","ISLA")
+#writeOGR(canary.counties, ".", "ISTAC_comarcas27_R", driver="ESRI Shapefile")
+
+
+#creamos una variable con pobl. censal 2001 de hombres
+censal.hombres<-data.comarcas.censal[data.comarcas.censal$sexo=="men",]
+canary.tmp<-merge(canary.counties@data,censal.hombres,by.x="CODCOM",by.y="comarca",sort=FALSE)
+canary.counties@data$sexoH<-canary.tmp$sexo
+canary.counties@data$censoH<-canary.tmp$censo
+
+
+
+#creamos una variable con pobl. censal 2001 de mujeres
+censal.mujeres<-data.comarcas.censal[data.comarcas.censal$sexo=="women",]
+idx<-match(canary.counties@data$CODCOM,censal.mujeres$comarca)
+canary.counties@data$sexoM<-censal.mujeres$sexo[idx]
+canary.counties@data$censoM<-censal.mujeres$censo[idx]
+
+
+
+
+#idx<-match(SA.comarcas[idcom,"comarca"],SA.valores$area)
+#canary.counties@data <- cbind(canary.counties@data, SA.comarcas[idcom,c("abrv.isla","isla","id.provincia","provincia")],
+                                                    SA.valores[idx,"value"])
+#names(canary.counties@data)[10:14]<-c("ABRV_ISLA","ISLA","ID_PROV","PROV","Total")
+
+
+
+
+#mapas de intensidad
+library(classInt)
+library(RColorBrewer) 
+
+n=7  
+
+#obtener una paleta de 7 colores
+pal <- brewer.pal(n, 'Blues')
+#obtener intervalos de clase para 7 colores
+int <- classIntervals(canary.counties@data$censoH, n, style='jenks')  
+
+  
+p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digits=2), lwd=.4, col="black")
+p
+
+# corrección del primer color de la escala
+int$brks[1]<-1000
+# comprobar el orden de representación
+canary.counties@data[ order(canary.counties@data$censoH),]
+
+
+
+# Paletas
+#display.brewer.pal(n, 'Blues')  
+pie(rep(1, n), col = brewer.pal(n, 'Blues') )
+pie(rep(1, n), col = brewer.pal(n, 'YlOrRd') )
+pie(rep(1, n), col = heat.colors(n)  )
+pie(rep(1, n), col = terrain.colors(n)  )
+
+
+pal <- heat.colors(n) 
+p <- spplot(canary.counties["censoH"], col.regions=pal, at=signif(int$brks, digits=2), lwd=.4, col="black")
+p 
+
+
+
+# Intervalos de clase
+int<-classIntervals(canary.counties@data$censoH, n, style="quantile")
+int<-classIntervals(canary.counties@data$censoH, n, style="pretty")
+int<-classIntervals(canary.counties@data$censoH, n, style="jenks")
+
+
+
+# Representaciones alternativas
+plot(canary.counties, 
+col=pal[findInterval(canary.counties@data$censoH, int$brks,all.inside=TRUE)], 
+axes=TRUE)
+
+legend(x=-18, y=30.5, legend=leglabs(round(int$brks)), cex=0.9, fill=pal, bty="n",x.intersp = .5)
+
+
+
+
+# Representaciones alternativas con ggplot2
+library(ggplot2)
+
+# convertir el objeto "SpatialPolygons" en data.frame
+canary.fort<-fortify(canary.counties,region='IDCOM27')
+head(canary.fort)
+
+canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','censoH')],by.x="id",by.y="IDCOM27",sort=FALSE)
+
+ggplot(data=canary.fort, aes(long, lat, group=group)) + 
+      geom_polygon(colour='black', fill='white') 
+
+
+map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH) )+
+geom_polygon() +
+geom_path(color="white") 
+
+map
+
+
+# Otras variantes con ggplot2()
+map + scale_fill_gradient(low="white", high="black")
+
+map + scale_fill_gradient(name="censoH", breaks = c(10000,50000,90000))
+
+map + scale_fill_gradientn(colours=brewer.pal(7, "Blues"), limits=c(1000, 100000))
+
+
+
+# creamos una escalas discreta para el gráfico
+canary.fort$censoH.discreto <- cut(canary.fort$censoH, 
+                                  breaks=c(1000,3000,6000,9000,12000,15000,18000,21000,Inf), 
+                                  labels=c("1000-3000", "3000-6000", "6000-9000", "9000-12000","12000-15000", 
+                                           "15000-18000", "18000-21000",">21000"), 
+                                   include.lowest=TRUE)
+head(canary.fort)
+
+map<-ggplot(data=canary.fort, aes(long, lat, group=group, fill = censoH.discreto)) +
+geom_polygon() + geom_path(color="white") 
+
+map + scale_fill_brewer("Censo hombres total")
+
+
+
+
+# representar las comarcas de una isla
+canary.counties[canary.counties$CODISLA=='GC',]@data
+idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$CODISLA=='GC',"IDCOM27"]
+
+canary.fort2<-canary.fort[idx,]
+
+map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto) )+
+geom_polygon() +
+geom_path(color="white") 
+
+
+
+# representar con ggplot
+canary.fort<-merge(canary.fort,canary.counties@data[,c('IDCOM27','IDPROV','PROV','CODISLA', 'ISLA')],
+                   by.x="id",by.y="IDCOM27",sort=FALSE)
+idx<-canary.fort$id %in% canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',"IDCOM27"]
+canary.fort2<-canary.fort[idx,]
+
+map<-ggplot(data=canary.fort2, aes(long, lat, group=group, fill = censoH.discreto)) +
+geom_polygon() + geom_path(color="white") 
+
+map + facet_grid(PROV ~ ISLA,scales="free_x")
+
+
+
+
+
+# representar con ggplot 
+canary.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+
+canary.plot<-ggplot(data=canary.data[canary.data$CODISLA=="LP",], aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point()
+canary.plot + facet_grid(PROV ~ ISLA)
+
+canary.plot<-ggplot(data=canary.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point()
+
+canary.plot + facet_grid(PROV ~ ISLA)
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x")
+
+
+
+canary.plot<-ggplot(data=canary.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") 
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x")
+canary.plot + facet_grid(PROV ~ ISLA,scales="free_x",space="free")
+
+
+
+
+
+
+source("arrange_ggplot2.txt")
+tenerife.data<-canary.counties@data[canary.counties@data$PROV=='Santa Cruz de Tenerife',]
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+
+laspalmas.data<-canary.counties@data[canary.counties@data$PROV=='Las Palmas',]
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_line() + geom_point() +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+
+
+
+
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") 
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+
+
+
+
+library(scales)
+options(scipen=5)
+ymax<-max(dat[,"censoH"])
+
+canary.plot1<-ggplot(data=tenerife.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") +
+              geom_text(aes(label=censoH), size=2.5, vjust=-0.5) +
+              scale_y_continuous(limits=c(0, ymax+ymax/10), breaks=seq(0, ymax+ymax/10, 25000) ) +
+              theme(axis.text.y = element_text(size = 8),axis.text.x = element_text(size = 8),
+                    axis.title.y = element_text(size = 8),axis.title.x = element_text(size = 8) )
+canary.plot2<-ggplot(data=laspalmas.data, aes(x=CODCOM, y=censoH, group=1)) + geom_bar(colour="black", fill="#DD8888",stat="identity") +
+              facet_grid(PROV ~ ISLA,scales="free_x",space="free") +
+              xlab("Small areas (counties)") + ylab("Total") +
+              geom_text(aes(label=censoH), size=2.5, vjust=-0.5) +
+              scale_y_continuous(limits=c(0, ymax+ymax/10), breaks=seq(0, ymax+ymax/10, 25000) ) +
+              theme(axis.text.y = element_text(size = 8),axis.text.x = element_text(size = 8),
+                    axis.title.y = element_text(size = 8),axis.title.x = element_text(size = 8) )
+
+arrange_ggplot2(canary.plot1,canary.plot2,ncol=1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -565,32 +565,5 @@ plot.colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
 <p>El EUSTAT tiene algunos ejemplos de programaciones sencillas con R:</p>
 <p>http://www.eustat.es/documentos/datos/CT_Visualizacion_de_datos_en_las_Estadisticas_Oficiales_c.pdf</p>
 </div>
-<div id="programación-de-funciones-en-r-1" class="slide section level1">
-<h1>Programación de funciones en R</h1>
-<p>Veamos otro ejemplo de función:</p>
-<pre class="sourceCode r"><code class="sourceCode r">mystats &lt;-<span class="st"> </span>function(x) {
-    myinput &lt;-<span class="st"> </span>x
-    mymean &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    mysd &lt;-<span class="st"> </span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">data =</span> myinput, <span class="dt">media =</span> mymean, <span class="dt">desv.tipica =</span> mysd))
-}
-
-<span class="kw">mystats</span>(data.pob.municipios[data.pob.municipios$CodMunicipio %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">38013</span>, <span class="dv">38048</span>, 
-    <span class="dv">38901</span>) &amp;<span class="st"> </span>data.pob.municipios$Indicador ==<span class="st"> &quot;Cifras absolutas&quot;</span> &amp;<span class="st"> </span>data.pob.municipios$Anio ==<span class="st"> </span>
-<span class="st">    &quot;2012&quot;</span>, <span class="st">&quot;Valor&quot;</span>])</code></pre>
-</div>
-<div id="programación-de-funciones-en-r-2" class="slide section level1">
-<h1>Programación de funciones en R</h1>
-<p>Otro ejemplo de función:</p>
-<pre class="sourceCode r"><code class="sourceCode r">myfactorial &lt;-<span class="st"> </span>function(n) {
-    myresult &lt;-<span class="st"> </span><span class="dv">1</span>
-    if (n &gt;=<span class="st"> </span><span class="dv">0</span>) 
-        for (i in <span class="dv">1</span>:n) myresult &lt;-<span class="st"> </span>myresult *<span class="st"> </span>i else <span class="kw">stop</span>(<span class="st">&quot;Sólo funciona para valores positivos&quot;</span>)
-    end
-    <span class="kw">return</span>(myresult)
-}
-
-<span class="kw">myfactorial</span>(<span class="dv">5</span>)</code></pre>
-</div>
 </body>
 </html>

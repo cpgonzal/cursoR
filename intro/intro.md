@@ -707,3 +707,44 @@ myfunction(data.pob.municipios)
 El EUSTAT tiene algunos ejemplos de programaciones sencillas con R:
 
 http://www.eustat.es/documentos/datos/CT_Visualizacion_de_datos_en_las_Estadisticas_Oficiales_c.pdf
+
+---
+
+# Programación de funciones en R
+
+Veamos otro ejemplo de función:
+
+
+```r
+mystats <- function(x) {
+    myinput <- x
+    mymean <- mean(x, na.rm = TRUE)
+    mysd <- sd(x, na.rm = TRUE)
+    return(list(data = myinput, media = mymean, desv.tipica = mysd))
+}
+
+mystats(data.pob.municipios[data.pob.municipios$CodMunicipio %in% c(38013, 38048, 
+    38901) & data.pob.municipios$Indicador == "Cifras absolutas" & data.pob.municipios$Anio == 
+    "2012", "Valor"])
+```
+
+
+---
+
+# Programación de funciones en R
+
+Otro ejemplo de función:
+
+
+```r
+myfactorial <- function(n) {
+    myresult <- 1
+    if (n >= 0) 
+        for (i in 1:n) myresult <- myresult * i else stop("Sólo funciona para valores positivos")
+    end
+    return(myresult)
+}
+
+myfactorial(5)
+```
+
