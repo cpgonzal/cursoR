@@ -3,3 +3,4 @@ cd D:\Mis documentos\Gist_repos\cursoR\intro
 
 C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax intro.md -o intro.html -B header.txt
 
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s intro.md -o intro.pdf -B header.txt

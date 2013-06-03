@@ -1,4 +1,4 @@
-
+#setwd("D:\\Docencia&Investigacion\\Asignaturas\\DatosR_Statistica_SPSS\\R_ggplot")
 setwd("C:\\RLibraries")
 load("dataCursoR.RData")
 
@@ -14,7 +14,7 @@ data.pob.capitales<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras a
 
 
 
-# ráfico gvisMotionChart()
+# Gráfico gvisMotionChart()
 motion.capitales=gvisMotionChart(data.pob.capitales, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
 # Display chart
 plot(motion.capitales) 
@@ -26,6 +26,18 @@ plot(motion.capitales)
 cat(createGoogleGadget(motion.capitales), file="motionchart.xml")
 # se sube el gadget a algún repositorio y se vincula en alguna página
 # https://sites.google.com/site/cpgonzal/
+
+
+
+
+# Otro ejemplo
+data.pob.lgom<-data.pob.municipios[data.pob.municipios$Indicador=="Cifras absolutas" &
+                                          data.pob.municipios$CodMunicipio %in% c("38002","38003","38021","38036","38049","38050"),]
+motion.lgom=gvisMotionChart(data.pob.lgom, idvar="Municipio", timevar="Anio", options=list(height=350, width=400))
+plot(motion.lgom)
+
+
+
 
 
 #asociar coordenadas geo-espaciales
@@ -122,6 +134,12 @@ bar.capitales <- gvisBarChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIFE",
 plot(bar.capitales)
 
 
+# otro ejemplo
+data.geo.lpalma<-data.geo.municipios[data.geo.municipios$Isla=="La Palma",]
+bar.lpalma <- gvisBarChart(data.geo.lpalma,xvar="Municipio",yvar=c("Superficie"),
+                              options=list(legend='right', width=600, height=400))
+plot(bar.lpalma)
+
 
 
 
@@ -131,6 +149,11 @@ col.capitales <- gvisColumnChart(data.pob.capitales2,xvar="Anio",yvar=c("TENERIF
 plot(col.capitales)
 
 
+#otro ejemplo
+col.lpalma <- gvisColumnChart(data.geo.lpalma,xvar="Municipio",yvar=c("Superficie","Perímetro.municipal"),
+                              options=list(legend='right', width=800, height=400,
+                                           hAxis="{slantedText:true,slantedTextAngle:60}"))
+plot(col.lpalma)
 
 
 
@@ -153,6 +176,26 @@ step.capitales <- gvisSteppedAreaChart(data.pob.capitales2,xvar="Anio",yvar=c("T
 plot(step.capitales)
 
 
+# otro ejemplo
+step.lpalma <- gvisSteppedAreaChart(data.geo.lpalma,xvar="Municipio",yvar=c("Superficie"),
+                              options=list(legend='right', width=800, height=400,
+                                           hAxis="{slantedText:true,slantedTextAngle:60}"))
+plot(step.lpalma)
+
+
+
+## crear un gráfico composite
+compone.capitales <- gvisMerge(gvisMerge(bar.capitales,col.capitales, horizontal=FALSE), 
+                               step.capitales, 
+                              horizontal=TRUE, tableOptions="cellspacing=5")
+plot(compone.capitales)
+
+
+# otro ejemplo
+compone.lpalma <- gvisMerge(gvisMerge(bar.lpalma,col.lpalma, horizontal=FALSE), 
+                               step.lpalma, 
+                              horizontal=TRUE, tableOptions="cellspacing=5")
+plot(compone.lpalma)
 
 
 
@@ -173,6 +216,17 @@ scatter.canarias <- gvisScatterChart(data.pob.canarias2,
                                                   title="Comparacion de poblacion absoluta y var. inter.",                                                   
                                                   width=600, height=600))
 plot(scatter.canarias)
+
+
+#otro ejemplo
+data.geo.lpalma2<-data.geo.lpalma[,c("Superficie","Altitud")]
+scatter.lpalma <- gvisScatterChart(data.geo.lpalma2, 
+                                     options=list(legend="none",
+                                                  lineWidth=0, pointSize=2, 
+                                                  vAxis="{title:'Altitud'}",
+                                                  hAxis="{title:'Superficie'}",
+                                                  width=600, height=600))
+plot(scatter.lpalma)
 
 
 
@@ -208,6 +262,13 @@ bubble.canarias <- gvisBubbleChart(data.pob.capitales2, idvar="ISLA", xvar="CIFR
 plot(bubble.canarias)
 
 
+#otro ejemplo
+bubble.lpalma <- gvisBubbleChart(data.geo.lpalma, idvar="Isla", colorvar="Municipio", 
+                                 xvar="Superficie", yvar="Altitud",  sizevar="Perímetro.municipal",                                              
+                                 options=list( width=600, height=600, bubble="{textStyle:{color: 'none'}}"))
+
+plot(bubble.lpalma)
+
 
 
 
@@ -224,6 +285,12 @@ pie.canarias <- gvisPieChart(data.pob.canarias2,labelvar = "ANIO", numvar = "CIF
 plot(pie.canarias)
 
 
+# otro ejemplo
+data.geo.lpalma2<-data.geo.lpalma[,c("Municipio","Superficie")]
+
+pie.lpalma <- gvisPieChart(data.geo.lpalma2,labelvar = "Municipio", numvar = "Superficie", 
+                                       options=list(width=600, height=400))
+plot(pie.lpalma)
 
 
 
