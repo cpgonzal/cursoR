@@ -6,3 +6,8 @@ C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax maptools
 
 
 C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -t slidy --mathjax maptools.md -o maptools.html -B header.txt
+
+
+"D:\Libraries\GnuWin32\bin\iconv" -t utf-8 maptoolsPDF.md | C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer --template=ull.beamer.tex --listings -V lhs -Vurl:1 -V theme:CambridgeUS -V colortheme:beaver -V author:"Carlos Pérez Glez." -V shorttitle:"La librería maptools" -V title:"Curso sobre el software estadístico R: La librería maptools"  -V fontsize=8pt -o maptoolsPDF.pdf
+
+

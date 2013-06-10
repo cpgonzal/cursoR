@@ -4,3 +4,23 @@ cd D:\Mis documentos\Gist_repos\cursoR\intro
 C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s -S -i -t slidy --mathjax intro.md -o intro.html -B header.txt
 
 C:\Users\Carlos\AppData\Local\Pandoc\pandoc -s intro.md -o intro.pdf -B header.txt
+
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer intro.md -V theme:Warsaw -o intro.pdf --variable fontsize=8pt 
+
+
+
+
+"C:\Program Files\Estadistica\R-3.0.0\bin\Rscript" -e "library(knitr); knit('intro2.Rmd')"
+
+
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer intro2.md -V theme:Warsaw -o intro2.pdf --listings --template simple --variable fontsize=8pt
+"D:\Libraries\GnuWin32\bin\iconv" -t utf-8 intro2.md |
+C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer --template=utah.beamer.tex -Vurl:1 -V theme:CambridgeUS -V colortheme:beaver  -V shorttitle:intro2  -V fontsize=8pt intro2.md -o intro2.pdf
+"D:\Libraries\GnuWin32\bin\iconv" -t utf-8 intro2.md | C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer --template simple --listings -V theme:Warsaw -V fontsize=8pt -o intro2a.pdf
+"D:\Libraries\GnuWin32\bin\iconv" -t utf-8 introPDF.md | C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer --template=ull.beamer2.tex --listings --table-of-contents -V lhs -Vurl:1 -V theme:CambridgeUS -V colortheme:beaver -V author:"Carlos Pérez Glez." -V title:"Introducción al entorno de R"  -V fontsize=8pt -o introPDF.pdf
+
+
+
+"D:\Libraries\GnuWin32\bin\iconv" -t utf-8 introPDF.md | C:\Users\Carlos\AppData\Local\Pandoc\pandoc -t beamer --template=ull.beamer.tex --listings -V lhs -Vurl:1 -V theme:CambridgeUS -V colortheme:beaver -V author:"Carlos Pérez Glez." -V shorttitle:"Introducción al entorno de R" -V title:"Curso sobre el software estadístico R: Introducción al entorno de R" -V fontsize=8pt -o introPDF.pdf
+
+
